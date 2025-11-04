@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "bun --bun next dev",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "react": "19.2.0",
@@ -23,4 +23,5 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.1"
   }
+  
 }
