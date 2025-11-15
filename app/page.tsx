@@ -38,7 +38,7 @@ export default function Home() {
 
 	return (
 		<div className="min-h-screen from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
-			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10" role="main">
+			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10">
 				{/* Header about me */}
 				<header className="flex flex-col items-start mb-12">
 					<div className="flex flex-row items-center justify-between gap-2 w-full">
@@ -108,7 +108,7 @@ export default function Home() {
 								<span className="text-xs sm:text-sm">
 									Junior Software Engineer @ Medlo
 								</span>
-								<span className="text-[10px] sm:text-xs text-muted-foreground">
+								<span className="text-xs sm:text-sm text-muted-foreground">
 									June 2024 - Present
 								</span>
 							</div>
@@ -174,7 +174,7 @@ export default function Home() {
 								<span className="text-xs sm:text-sm">
 									Software Engineer Intern @ Medlo
 								</span>
-								<span className="text-[10px] sm:text-xs text-muted-foreground">
+								<span className="text-xs sm:text-sm text-muted-foreground">
 									Feb 2024 - June 2024
 								</span>
 							</div>
@@ -208,7 +208,7 @@ export default function Home() {
 								<span className="text-xs sm:text-sm">
 									Bachelor of Computer Science @ RMIT
 								</span>
-								<span className="text-[10px] sm:text-xs text-muted-foreground">
+								<span className="text-xs sm:text-sm text-muted-foreground">
 									Feb 2023 - Present
 								</span>
 							</div>
@@ -272,7 +272,7 @@ export default function Home() {
 					</div>
 				</section>
 			</main>
-			<footer className="w-full max-w-4xl mt-auto px-4 md:px-6">
+			<footer className="w-full max-w-3xl mt-auto px-4 md:px-6">
 				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-[10px] sm:text-xs text-muted-foreground">
 					<span>© {new Date().getFullYear()} Cooper Agustin</span>
 				</div>
