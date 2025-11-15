@@ -7,3 +7,7 @@ optional = true
 [install.lockfile]
 # Save lockfile
 save = true
+
+[run]
+# Use Bun's runtime instead of Node.js
+bun = false
