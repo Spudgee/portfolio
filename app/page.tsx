@@ -86,15 +86,8 @@ export default function Home() {
 					</div>
 					<div className="flex flex-col items-start gap-2 w-full mt-4">
 						<p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-							Learning to build efficient, high-quality, and scalable software
-							solutions at Medlo.
-							<br />
-							<br />
-							I&apos;ve always been drawn to how technology works. Growing up, I
-							would experiment with phone software and game systems, breaking
-							things to understand how they functioned. I enjoy managing home
-							servers, networks, offline LLMs, and developing personal projects
-							in my free time.
+							Eager to learn and grow. Learning to develop efficient,
+							high-quality, and scalable software at Medlo.
 						</p>
 					</div>
 				</div>
