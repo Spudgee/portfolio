@@ -37,8 +37,8 @@ export default function Home() {
 	}, [isNightMode]);
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
-			<main className="w-full max-w-4xl px-4 md:px-6 pt-12 sm:pt-20 pb-12 ">
+		<div className="min-h-screen from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
+			<main className="w-full max-w-4xl px-4 md:px-6 pb-12 ">
 				{/* Header about me */}
 				<div className="flex flex-col items-start mb-12">
 					<div className="flex flex-row items-center justify-between gap-2 w-full">
@@ -50,6 +50,9 @@ export default function Home() {
 							size="icon-sm"
 							className="hover:bg-accent transition-colors p-0 border-none shadow-none"
 							onClick={() => setIsNightMode(!isNightMode)}
+							aria-label={
+								isNightMode ? "Switch to light mode" : "Switch to dark mode"
+							}
 						>
 							{isNightMode ? (
 								<SunMedium className="size-4" />
@@ -87,11 +90,11 @@ export default function Home() {
 							solutions at Medlo.
 							<br />
 							<br />
-							I&apos;ve always been drawn to how technology works. Growing up,
-							I&apos;d mess with phone software and game systems, breaking
-							things just to see what would happen. Enjoy managing home servers,
-							networks, offline LLMs, and developing my own projects in my free
-							time.
+							I&apos;ve always been drawn to how technology works. Growing up, I
+							would experiment with phone software and game systems, breaking
+							things to understand how they functioned. I enjoy managing home
+							servers, networks, offline LLMs, and developing personal projects
+							in my free time.
 						</p>
 					</div>
 				</div>
@@ -109,7 +112,7 @@ export default function Home() {
 									Junior Software Engineer @ Medlo
 								</span>
 								<span className="text-xs sm:text-sm text-muted-foreground">
-									June 2025 - Present
+									June 2024 - Present
 								</span>
 							</div>
 							<div className="flex flex-col items-start pl-2 sm:pl-4 gap-2">
@@ -119,12 +122,13 @@ export default function Home() {
 									rel="noopener noreferrer"
 									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
-									<ChevronRight className="size-4 flex-shrink-0" />
+									<ChevronRight className="size-4 shrink-0" />
 									<Image
 										src="/favicon/medlo.png"
 										alt="Medlo"
 										width={20}
 										height={20}
+										priority
 									/>
 									<span className="underline">Locum shifts with Medlo</span>
 								</a>
@@ -134,12 +138,13 @@ export default function Home() {
 									rel="noopener noreferrer"
 									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
-									<ChevronRight className="size-4 flex-shrink-0" />
+									<ChevronRight className="size-4 shrink-0" />
 									<Image
 										src="/favicon/doccy.png"
 										alt="Doccy"
 										width={20}
 										height={20}
+										priority
 									/>
 									<span className="underline">
 										Online telehealth with Doccy
@@ -151,12 +156,13 @@ export default function Home() {
 									rel="noopener noreferrer"
 									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
-									<ChevronRight className="size-4 flex-shrink-0" />
+									<ChevronRight className="size-4 shrink-0" />
 									<Image
 										src="/favicon/evidence.png"
 										alt="Medlo"
 										width={20}
 										height={20}
+										priority
 									/>
 									<span className="underline">
 										Become a better doctor with Medlo Evidence
@@ -172,19 +178,19 @@ export default function Home() {
 									Software Engineer Intern @ Medlo
 								</span>
 								<span className="text-xs sm:text-sm text-muted-foreground">
-									Feb 2025 - June 2025
+									Feb 2024 - June 2024
 								</span>
 							</div>
-							<div className="flex flex-col items-start pl-2 sm:pl-4">
+							<div className="flex flex-col items-start pl-2 sm:pl-4 gap-2">
 								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 flex-shrink-0" />
-									Built a mock-up for Doccy
+									<ChevronRight className="size-4 shrink-0" />
+									Developed a full-stack prototype for Doccy telehealth platform
 								</span>
 
 								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 flex-shrink-0" />
-									next.js, shadcn, tailwindcss, typescript, react, supabase,
-									trpc, zod
+									<ChevronRight className="size-4 shrink-0" />
+									Tech stack: Next.js, shadcn/ui, Tailwind CSS, TypeScript,
+									React, Supabase, tRPC, Zod
 								</span>
 							</div>
 						</div>
@@ -208,7 +214,7 @@ export default function Home() {
 							<div className="flex flex-col items-start pl-2 sm:pl-4">
 								<div className="flex flex-row items-center gap-2">
 									<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2 mr-4">
-										<ChevronRight className="size-4 flex-shrink-0" />
+										<ChevronRight className="size-4 shrink-0" />
 										GPA: 3.6/4.0
 									</span>
 									<span className="text-sm sm:text-base text-muted-foreground">
@@ -216,7 +222,7 @@ export default function Home() {
 									</span>
 								</div>
 								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 flex-shrink-0" />
+									<ChevronRight className="size-4 shrink-0" />
 									Expected Graduation: June 2026
 								</span>
 							</div>
@@ -248,21 +254,17 @@ export default function Home() {
 						))}
 					</div> */}
 					<div className="flex flex-col items-start gap-3 mb-4">
-						<div className="flex  items-start gap-2">
-							<span className="text-sm sm:text-base text-foreground">
-								In progress...
-							</span>
-						</div>
 						<span className="text-sm sm:text-base text-muted-foreground">
-							Developing high-quality projects to enhance my abilities at work
-							and in my free time. Will be updated as I complete projects.
+							Currently developing projects to showcase here. Building tools and
+							applications to strengthen my development skills in both
+							professional and personal contexts.
 						</span>
 					</div>
 				</div>
 			</main>
 			<footer className="w-full max-w-4xl mt-auto px-4 md:px-6">
 				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-xs sm:text-sm text-muted-foreground">
-					<span>© 2025 Cooper Agustin</span>
+					<span>© {new Date().getFullYear()} Cooper Agustin</span>
 				</div>
 			</footer>
 		</div>
