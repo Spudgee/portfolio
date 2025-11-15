@@ -38,11 +38,11 @@ export default function Home() {
 
 	return (
 		<div className="min-h-screen from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
-			<main className="w-full max-w-4xl px-4 md:px-6 pb-12 ">
+			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10">
 				{/* Header about me */}
 				<div className="flex flex-col items-start mb-12">
 					<div className="flex flex-row items-center justify-between gap-2 w-full">
-						<span className="text-xl sm:text-2xl font-medium">
+						<span className="text-lg sm:text-xl font-medium">
 							Cooper Agustin
 						</span>
 						<Button
@@ -62,7 +62,7 @@ export default function Home() {
 						</Button>
 					</div>
 					<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full">
-						<span className="text-sm sm:text-base text-muted-foreground">
+						<span className="text-xs sm:text-sm text-muted-foreground">
 							Junior Software Engineer
 						</span>
 						<div className="flex flex-row items-center gap-4">
@@ -70,7 +70,7 @@ export default function Home() {
 								href="https://github.com/Spudgee"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors group"
+								className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors group"
 							>
 								<span className="underline">github</span>
 							</a>
@@ -78,14 +78,14 @@ export default function Home() {
 								href="https://www.linkedin.com/in/cooper-agustin/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors group"
+								className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors group"
 							>
 								<span className="underline">linkedin</span>
 							</a>
 						</div>
 					</div>
 					<div className="flex flex-col items-start gap-2 w-full mt-4">
-						<p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+						<p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
 							Eager to learn and grow. Learning to develop efficient,
 							high-quality, and scalable software at Medlo.
 						</p>
@@ -94,17 +94,17 @@ export default function Home() {
 
 				{/* Professional Experience */}
 				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-xl sm:text-2xl font-medium">
+					<span className="text-lg sm:text-xl font-medium">
 						Professional Experience
 					</span>
 					<div className="flex flex-col items-start gap-6 w-full">
 						{/* Junior Software Engineer */}
 						<div className="flex flex-col items-start gap-2 w-full">
 							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-sm sm:text-base">
+								<span className="text-xs sm:text-sm">
 									Junior Software Engineer @ Medlo
 								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
+								<span className="text-[10px] sm:text-xs text-muted-foreground">
 									June 2024 - Present
 								</span>
 							</div>
@@ -113,7 +113,7 @@ export default function Home() {
 									href="https://medlo.com.au"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
+									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
 									<ChevronRight className="size-4 shrink-0" />
 									<Image
@@ -129,7 +129,7 @@ export default function Home() {
 									href="https://doccy.com.au"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
+									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
 									<ChevronRight className="size-4 shrink-0" />
 									<Image
@@ -147,7 +147,7 @@ export default function Home() {
 									href="https://medlo.evidence.com.au"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
+									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
 								>
 									<ChevronRight className="size-4 shrink-0" />
 									<Image
@@ -167,20 +167,20 @@ export default function Home() {
 						{/* Software Engineer Intern */}
 						<div className="flex flex-col items-start gap-2 w-full">
 							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-sm sm:text-base">
+								<span className="text-xs sm:text-sm">
 									Software Engineer Intern @ Medlo
 								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
+								<span className="text-[10px] sm:text-xs text-muted-foreground">
 									Feb 2024 - June 2024
 								</span>
 							</div>
 							<div className="flex flex-col items-start pl-2 sm:pl-4 gap-2">
-								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
+								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
 									<ChevronRight className="size-4 shrink-0" />
 									Developed a full-stack prototype for Doccy telehealth platform
 								</span>
 
-								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
+								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
 									<ChevronRight className="size-4 shrink-0" />
 									Tech stack: Next.js, shadcn/ui, Tailwind CSS, TypeScript,
 									React, Supabase, tRPC, Zod
@@ -192,29 +192,32 @@ export default function Home() {
 
 				{/* Education */}
 				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-xl sm:text-2xl font-medium">Education</span>
+					<span className="text-lg sm:text-xl font-medium">Education</span>
 					<div className="flex flex-col items-start gap-6 w-full">
 						<div className="flex flex-col items-start gap-2 w-full">
 							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-sm sm:text-base">
-									Bachelor of Computer Science (Advanced Computer Science) @
-									RMIT
+								<span className="text-xs sm:text-sm">
+									Bachelor of Computer Science @ RMIT
 								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
+								<span className="text-[10px] sm:text-xs text-muted-foreground">
 									Feb 2023 - Present
 								</span>
 							</div>
 							<div className="flex flex-col items-start pl-2 sm:pl-4">
+								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2 mr-4">
+									<ChevronRight className="size-4 shrink-0" />
+									Major: Advanced Computer Science
+								</span>
 								<div className="flex flex-row items-center gap-2">
-									<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2 mr-4">
+									<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2 mr-4">
 										<ChevronRight className="size-4 shrink-0" />
 										GPA: 3.6/4.0
 									</span>
-									<span className="text-sm sm:text-base text-muted-foreground">
+									<span className="text-xs sm:text-sm text-muted-foreground">
 										WAM: 86%
 									</span>
 								</div>
-								<span className="text-sm sm:text-base text-muted-foreground flex items-center gap-2">
+								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
 									<ChevronRight className="size-4 shrink-0" />
 									Expected Graduation: June 2026
 								</span>
@@ -225,7 +228,7 @@ export default function Home() {
 
 				{/* Features */}
 				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-xl sm:text-2xl font-medium">Projects</span>
+					<span className="text-lg sm:text-xl font-medium">Projects</span>
 					{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full">
 						{features.map((feature) => (
 							<div
@@ -237,17 +240,17 @@ export default function Home() {
 										<feature.icon className="size-5 sm:size-6 text-foreground" />
 									</div>
 								</div>
-								<h3 className="text-base sm:text-lg font-normal mb-3 sm:mb-4 text-foreground">
+								<h3 className="text-sm sm:text-base font-normal mb-3 sm:mb-4 text-foreground">
 									{feature.title}
 								</h3>
-								<p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+								<p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
 									{feature.description}
 								</p>
 							</div>
 						))}
 					</div> */}
 					<div className="flex flex-col items-start gap-3 mb-4">
-						<span className="text-sm sm:text-base text-muted-foreground">
+						<span className="text-xs sm:text-sm text-muted-foreground">
 							Currently developing projects to showcase here. Building tools and
 							applications to strengthen my development skills in both
 							professional and personal contexts.
@@ -256,7 +259,7 @@ export default function Home() {
 				</div>
 			</main>
 			<footer className="w-full max-w-4xl mt-auto px-4 md:px-6">
-				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-xs sm:text-sm text-muted-foreground">
+				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-[10px] sm:text-xs text-muted-foreground">
 					<span>© {new Date().getFullYear()} Cooper Agustin</span>
 				</div>
 			</footer>
