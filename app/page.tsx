@@ -42,9 +42,7 @@ export default function Home() {
 				{/* Header about me */}
 				<header className="flex flex-col items-start mb-12">
 					<div className="flex flex-row items-center justify-between gap-2 w-full">
-						<h1 className="text-lg sm:text-xl font-medium">
-							Cooper Agustin
-						</h1>
+						<h1 className="text-lg sm:text-xl font-medium">Cooper Agustin</h1>
 						<Button
 							variant="outline"
 							size="icon-sm"
@@ -93,8 +91,14 @@ export default function Home() {
 				</header>
 
 				{/* Professional Experience */}
-				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="professional-experience">
-					<h2 id="professional-experience" className="text-lg sm:text-xl font-medium">
+				<section
+					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
+					aria-labelledby="professional-experience"
+				>
+					<h2
+						id="professional-experience"
+						className="text-lg sm:text-xl font-medium"
+					>
 						Professional Experience
 					</h2>
 					<div className="flex flex-col items-start gap-6 w-full">
@@ -144,7 +148,7 @@ export default function Home() {
 									</span>
 								</a>
 								<a
-									href="https://medlo.evidence.com.au"
+									href="https://evidence.medlo.com.au"
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
@@ -191,8 +195,13 @@ export default function Home() {
 				</section>
 
 				{/* Education */}
-				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="education">
-					<h2 id="education" className="text-lg sm:text-xl font-medium">Education</h2>
+				<section
+					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
+					aria-labelledby="education"
+				>
+					<h2 id="education" className="text-lg sm:text-xl font-medium">
+						Education
+					</h2>
 					<div className="flex flex-col items-start gap-6 w-full">
 						<div className="flex flex-col items-start gap-2 w-full">
 							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
@@ -227,8 +236,13 @@ export default function Home() {
 				</section>
 
 				{/* Features */}
-				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="projects">
-					<h2 id="projects" className="text-lg sm:text-xl font-medium">Projects</h2>
+				<section
+					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
+					aria-labelledby="projects"
+				>
+					<h2 id="projects" className="text-lg sm:text-xl font-medium">
+						Projects
+					</h2>
 					{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full">
 						{features.map((feature) => (
 							<div
