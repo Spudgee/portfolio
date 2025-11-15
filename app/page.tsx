@@ -38,13 +38,13 @@ export default function Home() {
 
 	return (
 		<div className="min-h-screen from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
-			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10">
+			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10" role="main">
 				{/* Header about me */}
-				<div className="flex flex-col items-start mb-12">
+				<header className="flex flex-col items-start mb-12">
 					<div className="flex flex-row items-center justify-between gap-2 w-full">
-						<span className="text-lg sm:text-xl font-medium">
+						<h1 className="text-lg sm:text-xl font-medium">
 							Cooper Agustin
-						</span>
+						</h1>
 						<Button
 							variant="outline"
 							size="icon-sm"
@@ -62,9 +62,9 @@ export default function Home() {
 						</Button>
 					</div>
 					<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full">
-						<span className="text-xs sm:text-sm text-muted-foreground">
+						<p className="text-xs sm:text-sm text-muted-foreground">
 							Junior Software Engineer
-						</span>
+						</p>
 						<div className="flex flex-row items-center gap-4">
 							<a
 								href="https://github.com/Spudgee"
@@ -90,13 +90,13 @@ export default function Home() {
 							high-quality, and scalable software at Medlo.
 						</p>
 					</div>
-				</div>
+				</header>
 
 				{/* Professional Experience */}
-				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-lg sm:text-xl font-medium">
+				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="professional-experience">
+					<h2 id="professional-experience" className="text-lg sm:text-xl font-medium">
 						Professional Experience
-					</span>
+					</h2>
 					<div className="flex flex-col items-start gap-6 w-full">
 						{/* Junior Software Engineer */}
 						<div className="flex flex-col items-start gap-2 w-full">
@@ -188,11 +188,11 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
 				{/* Education */}
-				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-lg sm:text-xl font-medium">Education</span>
+				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="education">
+					<h2 id="education" className="text-lg sm:text-xl font-medium">Education</h2>
 					<div className="flex flex-col items-start gap-6 w-full">
 						<div className="flex flex-col items-start gap-2 w-full">
 							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
@@ -224,11 +224,11 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
 				{/* Features */}
-				<div className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12">
-					<span className="text-lg sm:text-xl font-medium">Projects</span>
+				<section className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12" aria-labelledby="projects">
+					<h2 id="projects" className="text-lg sm:text-xl font-medium">Projects</h2>
 					{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full">
 						{features.map((feature) => (
 							<div
@@ -256,7 +256,7 @@ export default function Home() {
 							professional and personal contexts.
 						</span>
 					</div>
-				</div>
+				</section>
 			</main>
 			<footer className="w-full max-w-4xl mt-auto px-4 md:px-6">
 				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-[10px] sm:text-xs text-muted-foreground">
