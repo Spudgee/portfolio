@@ -1,0 +1,9 @@
+[install]
+# Optimize dependency installation
+cache = true
+production = false
+optional = true
+
+[install.lockfile]
+# Save lockfile
+save = true
