@@ -1,25 +1,21 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+};
 
 export const metadata: Metadata = {
-	title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
+	title: "Cooper Agustin — Founding Engineer",
 	description:
-		"Cooper Agustin is a Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT (3.6 GPA). Available for software engineering opportunities.",
+		"Cooper Agustin is a Founding Engineer at Medlo, building full-stack products with Next.js, React, TypeScript and Supabase. Computer Science student at RMIT.",
 	keywords: [
 		"Cooper Agustin",
 		"Software Engineer",
-		"Junior Software Engineer",
+		"Founding Engineer",
 		"Full-Stack Developer",
 		"Next.js Developer",
 		"React Developer",
@@ -42,9 +38,9 @@ export const metadata: Metadata = {
 		type: "profile",
 		locale: "en_US",
 		url: "/",
-		title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
+		title: "Cooper Agustin — Founding Engineer",
 		description:
-			"Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT.",
+			"Founding Engineer at Medlo, building full-stack products with Next.js, React, TypeScript and Supabase. Computer Science student at RMIT.",
 		siteName: "Cooper Agustin Portfolio",
 		// images: [
 		// 	{
@@ -57,7 +53,7 @@ export const metadata: Metadata = {
 	},
 	// twitter: {
 	// 	card: "summary_large_image",
-	// 	title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
+	// 	title: "Cooper Agustin — Founding Engineer",
 	// 	description: "Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase.",
 	// 	images: ["/og-image.png"],
 	// },
@@ -86,7 +82,7 @@ export default function RootLayout({
 		"@context": "https://schema.org",
 		"@type": "Person",
 		name: "Cooper Agustin",
-		jobTitle: "Junior Software Engineer",
+		jobTitle: "Founding Engineer",
 		worksFor: {
 			"@type": "Organization",
 			name: "Medlo",
@@ -114,7 +110,7 @@ export default function RootLayout({
 		],
 		url: "https://cooperagustin.vercel.app",
 		description:
-			"Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT University.",
+			"Founding Engineer at Medlo, building full-stack products with Next.js, React, TypeScript and Supabase. Computer Science student at RMIT University.",
 	};
 
 	return (
@@ -126,7 +122,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
 			>
 				{children}
 			</body>
