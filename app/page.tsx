@@ -17,14 +17,14 @@ const EXPERIENCE = [
 		role: "Founding Engineer",
 		company: "Doccy & Medlo",
 		summary:
-			"Building and shipping the products behind Doccy and Medlo — telehealth and locum shifts.",
+			"Joined the founding team for the long haul, building and shipping the products behind Doccy and Medlo — telehealth and locum shifts.",
 		period: "Jun 2026 — Now",
 	},
 	{
 		role: "Junior Software Engineer",
 		company: "Doccy & Medlo",
 		summary:
-			"Shipped features across the Doccy and Medlo platforms end to end.",
+			"Built and shipped the products behind Doccy and Medlo — telehealth and locum shifts.",
 		period: "Jun 2025 — Jun 2026",
 	},
 	{
@@ -329,8 +329,9 @@ export default function Home() {
 							</p>
 							<div className="mt-5 pl-[1.2cqw] sm:mt-6 sm:pl-[0.6cqw]">
 								<p className="text-2xl font-medium leading-tight tracking-tight text-ink-foreground/85 sm:text-4xl">
-									<span className="block">Founding Engineer</span>
-									<span className="block text-ink-foreground/55">
+									<span className="block sm:inline">Founding Engineer</span>
+									<span className="block text-ink-foreground/55 sm:inline">
+										{" "}
 										@ Doccy &amp; Medlo
 									</span>
 								</p>
