@@ -7,8 +7,8 @@ const COPYRIGHT_YEAR = new Date().getFullYear();
 /** Copyright and the social links, on one line. Lowercase by CSS; the source keeps proper names. */
 export function SiteFooter() {
 	return (
-		<footer className="mt-24 grid grid-cols-4 gap-x-4 pb-2 text-sm lowercase sm:mt-40 sm:grid-cols-12 sm:gap-x-6 sm:pb-4">
-			<p className="col-span-2 py-2 text-muted sm:col-span-3">
+		<footer className="mt-24 grid grid-cols-4 gap-x-4 pb-1 lowercase sm:mt-40 sm:grid-cols-12 sm:gap-x-6 sm:pb-3">
+			<p className="col-span-2 flex min-h-11 items-center whitespace-nowrap text-muted sm:col-span-3">
 				© {COPYRIGHT_YEAR} {PERSON.name}
 			</p>
 			<ul className="col-span-2 flex justify-end gap-x-5 sm:col-span-9 sm:justify-start">

@@ -3,12 +3,13 @@ import { InlineLink } from "@/components/inline-link";
 import { JsonLd } from "@/components/json-ld";
 import { EDUCATION } from "@/content/education";
 import { PERSON } from "@/content/person";
+import { PATHS } from "@/content/site";
 import { educationGraph } from "@/lib/json-ld";
 import { monthLabel } from "@/lib/month-label";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
-	path: "/education",
+	path: PATHS.education,
 	title: `Education – ${PERSON.name}`,
 	description: `${PERSON.name}'s ${EDUCATION.degree} at ${EDUCATION.institution}, ${EDUCATION.location}: ${EDUCATION.major} major, GPA ${EDUCATION.gpa}, WAM ${EDUCATION.wam}.`,
 });
@@ -45,24 +46,24 @@ export default function EducationPage() {
 			<JsonLd graph={educationGraph()} />
 			<section
 				aria-labelledby="education"
-				className="grid grid-cols-4 gap-x-4 pt-16 sm:grid-cols-12 sm:gap-x-6 sm:pt-24"
+				className="grid grid-cols-4 gap-x-4 pt-24 sm:grid-cols-12 sm:gap-x-6 sm:pt-40"
 			>
-				<h1 id="education" className="col-span-full text-display font-medium">
+				<h1 id="education" className="col-span-full font-medium sm:col-span-3">
 					Education
 				</h1>
-				<p className="col-span-full mt-8 text-lead sm:col-span-8 sm:col-start-4 sm:mt-12 lg:col-span-6 lg:col-start-4">
+				<p className="col-span-full mt-2 max-w-prose text-pretty sm:col-span-9 sm:mt-0 lg:col-span-5">
 					{EDUCATION.degree} at {EDUCATION.institution}, {EDUCATION.location},
 					majoring in {EDUCATION.major}.
 				</p>
 			</section>
 
-			<dl className="mt-24 flex flex-col gap-y-6 sm:mt-40">
+			<dl className="mt-16 flex flex-col gap-y-3 sm:mt-24 sm:gap-y-1">
 				{DETAILS.map((detail) => (
 					<div
 						key={detail.term}
 						className="grid grid-cols-4 gap-x-4 sm:grid-cols-12 sm:gap-x-6"
 					>
-						<dt className="col-span-full text-sm text-muted sm:col-span-3">
+						<dt className="col-span-full text-muted sm:col-span-3">
 							{detail.term}
 						</dt>
 						<dd className="col-span-full tabular-nums sm:col-span-9">

@@ -17,7 +17,7 @@
 }
 
 @theme inline {
-	/* Only the three tokens exist, so a stray palette class fails to compile instead of drifting. */
+	/* Only these tokens exist, so a stray palette or size class fails to compile instead of drifting. */
 	--color-*: initial;
 	--color-paper: var(--paper);
 	--color-ink: var(--ink);
@@ -25,19 +25,15 @@
 
 	--font-sans: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
 
-	/* Ramp: sm 14 · base 16 · lead 24 · display (the page title, fluid).
-	   21vw is the most that fits "Education" (4.08em wide) on a 320px phone. */
-	--text-lead: 1.5rem;
-	--text-lead--line-height: 1.3;
-	--text-lead--letter-spacing: -0.01em;
-	--text-display: clamp(3rem, 21vw, 16rem);
-	--text-display--line-height: 0.92;
-	--text-display--letter-spacing: -0.045em;
+	/* One small size for every line of text; hierarchy comes from weight, colour and position. */
+	--text-*: initial;
+	--text-body: 0.8125rem;
+	--text-body--line-height: 1.4;
 }
 
 @layer base {
 	body {
-		@apply bg-paper font-sans text-ink antialiased;
+		@apply bg-paper font-sans text-body text-ink antialiased;
 	}
 
 	::selection {
