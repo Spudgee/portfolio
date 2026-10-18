@@ -1,4 +1,6 @@
-const MONTH_FORMAT = new Intl.DateTimeFormat("en-AU", {
+import { LOCALE } from "@/content/site";
+
+const MONTH_FORMAT = new Intl.DateTimeFormat(LOCALE, {
 	month: "short",
 	year: "numeric",
 	timeZone: "UTC",

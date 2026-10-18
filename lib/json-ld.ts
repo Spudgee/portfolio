@@ -1,7 +1,7 @@
 import { EDUCATION } from "@/content/education";
 import { EXPERIENCE } from "@/content/experience";
 import { PERSON } from "@/content/person";
-import { SITE_URL, siteUrl } from "@/content/site";
+import { LOCALE, PATHS, SITE_URL, siteUrl } from "@/content/site";
 
 type JsonValue =
 	| string
@@ -19,11 +19,10 @@ export type JsonLdGraph = {
 	readonly "@graph": readonly JsonLdNode[];
 };
 
-const HOME_URL = siteUrl("/");
+const HOME_URL = siteUrl(PATHS.home);
 /** Stable node ids; changing one splits the entity in search engines. */
 const WEBSITE_ID = `${SITE_URL}/#website`;
 const PERSON_ID = `${SITE_URL}/#person`;
-const LANGUAGE = "en-AU";
 
 /** Companies where a role is current, once each. */
 function currentEmployers() {
@@ -50,7 +49,7 @@ export function homeGraph(): JsonLdGraph {
 				"@id": WEBSITE_ID,
 				url: HOME_URL,
 				name: PERSON.name,
-				inLanguage: LANGUAGE,
+				inLanguage: LOCALE,
 			},
 			{
 				"@type": "ProfilePage",
@@ -58,7 +57,7 @@ export function homeGraph(): JsonLdGraph {
 				url: HOME_URL,
 				isPartOf: { "@id": WEBSITE_ID },
 				mainEntity: { "@id": PERSON_ID },
-				inLanguage: LANGUAGE,
+				inLanguage: LOCALE,
 			},
 			{
 				"@type": "Person",
@@ -78,7 +77,7 @@ export function homeGraph(): JsonLdGraph {
 
 /** Education graph: the page, and the university the person studied at. */
 export function educationGraph(): JsonLdGraph {
-	const url = siteUrl("/education");
+	const url = siteUrl(PATHS.education);
 	return {
 		"@context": "https://schema.org",
 		"@graph": [
@@ -88,7 +87,7 @@ export function educationGraph(): JsonLdGraph {
 				url,
 				isPartOf: { "@id": WEBSITE_ID },
 				about: { "@id": PERSON_ID },
-				inLanguage: LANGUAGE,
+				inLanguage: LOCALE,
 			},
 			{
 				"@type": "Person",
@@ -104,7 +103,7 @@ export function educationGraph(): JsonLdGraph {
 	};
 }
 
-/** JSON for a `<script>` body: `<` becomes `<`, so no string can close the element. */
+/** JSON for a `<script>` body: every `<` becomes its JSON unicode escape (u003c), so no string can close the element. */
 export function toJsonLd(graph: JsonLdGraph) {
 	return JSON.stringify(graph).replace(/</g, "\\u003c");
 }
