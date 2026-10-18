@@ -1,40 +1,40 @@
 # Portfolio
 
-Cooper Agustin's personal site, served static from Vercel at `https://cooperagustin.vercel.app`. Where this file and the code disagree, this file wins.
+Cooper Agustin's personal site, served static from Vercel at `https://cooperagustin.vercel.app` (the `SITE_URL` constant in `content/site.ts`). Where this file and the code disagree, this file wins.
 
 ## What the site says
 
 **Experience leads.** Cooper is a founding engineer at Doccy (telehealth, doccy.com.au) and Medlo (locum marketplace, medlo.com.au); the home page exists to show that work.
 
-- `/` — the name, the founding-engineer line, then experience: what was built at each company, with dates and numbers where they are true. Projects join here as they ship.
+- `/` — one sentence naming Cooper, the founding-engineer role and both companies (the H1), then experience: what was built at each company, with dates and numbers where they are true, then the stack. Projects join here as they ship.
 - `/education` — RMIT and grades. Secondary: one link in the header, nothing about it on the home page.
 - `app/not-found.tsx` serves a real 404.
 
-Copy and links live once, in typed modules under `content/`. Pages, header, footer, metadata, JSON-LD and the sitemap all read from them, so a role, date or URL changes in one place.
+Copy, links and paths live once, in typed modules under `content/`. Pages, header, footer, metadata, JSON-LD and the sitemap all read from them, so a role, date or URL changes in one place.
 
 ## Design direction
 
-**Swiss**, studio-grade, with typography doing all the work. References, and what each contributes:
+**Swiss and small**: studio-grade, typography doing all the work, every line of text the same small size. References, and what each contributes:
 
-- [Norgram](https://www.norgram.co) — one neo-grotesk at two extremes: a single huge display line and small body text on a strict grid, with most of the page left empty.
-- [Daria Izbash](https://www.dariaizbash.com) — the name oversized as the hero; short metadata lines (place, role, year) spread across the columns.
-- [Shovel — Work](https://www.shovel.studio/work) — text-only nav and social links; work listed as a name plus one factual result line; underlines that appear on hover.
+- [Luke Hoban](https://lukehoban.co.nz) — the model: all text small, information set in columns across a 12-column grid, hierarchy from colour and position, most of the page left empty. Take the small type, not its giant "Selected Work" heading.
+- [Shovel](https://www.shovel.studio) — text-only nav and social links, work as a name plus one factual line, underlines that appear on hover. Take the text links, not its pill-shaped nav buttons.
 
 The rules that hold it together:
 
-- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. The ramp is the `--text-*` tokens in `app/globals.css`: small, body, lead and display (each page's H1, sized so its longest word fits a 320 px phone). Hierarchy comes from size, weight, space and position alone.
+- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. One size: the `--text-body` token in `app/globals.css` (13 px), and the default Tailwind size scale is removed so a larger size cannot compile. Hierarchy comes from weight, colour, space and position.
 - **Colour** — monochrome: paper, ink and one muted grey, as tokens in `app/globals.css`. Muted text holds 4.5:1 contrast on paper. Dark mode follows the OS through `prefers-color-scheme` in CSS, with no toggle.
-- **Space** — content sits directly on the page, grouped by whitespace and aligned to shared column lines. Mobile is one column; desktop spreads the header and metadata across the grid.
-- **Copy** — short, factual: what was built, for whom, when. Body text is sentence case with proper names capitalised; header and footer text is lowercase. Text only: links, social links included, are words, never icons or images.
+- **Space** — content sits directly on the page, grouped by whitespace and aligned to shared column lines: section labels in columns 1–3, content from column 4. Mobile is one column.
+- **Copy** — short, factual: what was built, for whom, when. Body text uses normal capitalisation; header and footer text is lowercase.
+- **Text only** — every control is a text link. No buttons, pills, boxes, icons or images.
 - **Motion** — the hover underline is the only animation.
 
 ## Header and footer
 
-Both are quiet text on the page, at small size and lowercase. The lowercase comes from the CSS `lowercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
+Both are quiet text on the page, lowercase. The lowercase comes from the CSS `lowercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
 
 - **Header** — the name (links to `/`) and Education.
 - **Footer** — one line: `© <year> Cooper Agustin`, GitHub, LinkedIn.
-- **Hover underline** — every header and footer link is `components/hover-underline-link.tsx`: the underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, 3 px offset, 150 ms). The line already exists, so nothing shifts. Links inside running text use `components/inline-link.tsx`, underlined at rest.
+- **Hover underline** — every header and footer link is `components/hover-underline-link.tsx`: the underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, 3 px offset, 150 ms), with a 44 px tall hit area. The line already exists, so nothing shifts. Links inside running text use `components/inline-link.tsx`, underlined at rest.
 - Tailwind v4's `hover:` fires only on hover-capable devices, so on touch a header or footer link must read as a link from its position alone.
 
 ## Fast core
@@ -42,7 +42,6 @@ Both are quiet text on the page, at small size and lowercase. The lowercase come
 - **Static** — every route prerenders: `bun run build` marks each one `○ (Static)`. Reading cookies, headers or search params, or fetching per request, breaks this.
 - **Server Components** — a `"use client"` file needs a job CSS cannot do.
 - **Dependencies** — the site ships Next, React and Tailwind only: no UI kit, icon pack, animation library or third-party script. Dev tools (Biome, oxlint, Playwright) stay in `devDependencies`.
-- **Images** — `next/image` with a fixed aspect ratio and `sizes`.
 - **Check** — Lighthouse (mobile) against `bun run build && bun run start`: Performance ≥ 95 and CLS 0 (2026-10-18: 98–99, real first paint 0.7 s). Its simulated LCP (~2.3 s) counts the Next runtime download; search engines rank on field Core Web Vitals instead: p75 LCP ≤ 2.5 s, INP < 200 ms, CLS < 0.1.
 
 ## SEO and GEO
@@ -50,10 +49,10 @@ Both are quiet text on the page, at small size and lowercase. The lowercase come
 AI engines retrieve pages much as search engines do, so one job serves both: readable server HTML, one clear entity, facts stated plainly.
 
 - **One entity** — the name is "Cooper Agustin" everywhere: site, titles, JSON-LD, GitHub and LinkedIn.
-- **Answer first** — the opening lines of `/` state the name, the founding-engineer role and both company names. Each section still makes sense when quoted on its own.
-- **Per route** — a unique `<title>` (`<page> – Cooper Agustin`; the home title carries the founding-engineer line), one matching H1, a page-specific description, an absolute self-canonical and a 1200×630 `og:image`, all through the Next Metadata API.
-- **JSON-LD** — one `@graph` per page from one function, server-rendered with `<` escaped to `<`. Nodes: `WebSite` (`/#website`) and, on `/`, a `ProfilePage` whose `mainEntity` is the `Person` (`/#person`: `jobTitle`, `worksFor` Doccy and Medlo, `alumniOf` RMIT, `sameAs` GitHub and LinkedIn). Other pages reference `/#person` by `@id`. Markup mirrors visible text only.
-- **Crawl files** — `app/sitemap.ts` lists canonical URLs, with `lastmod` only where a real date exists; `app/robots.ts` allows every crawler, AI ones included, and points at the sitemap. Both replace the hand-written files in `public/`.
+- **Answer first** — the H1 of `/` states the name, the founding-engineer role and both company names. Each section still makes sense when quoted on its own.
+- **Per route** — a unique `<title>` (`<page> – Cooper Agustin`; the home title carries the founding-engineer line), one H1, a page-specific description, an absolute self-canonical and a 1200×630 `og:image`, all through `lib/page-metadata.ts`.
+- **JSON-LD** — one `@graph` per page from `lib/json-ld.ts`, server-rendered with every `<` escaped. `/` holds `WebSite` (`/#website`), a `ProfilePage` and its `mainEntity` `Person` (`/#person`: `jobTitle`, `worksFor` Doccy and Medlo, `knowsAbout` the stack, `sameAs` GitHub and LinkedIn). `/education` adds `alumniOf` RMIT to the same `/#person` node. Markup mirrors the visible text of its own page.
+- **Crawl files** — `app/sitemap.ts` lists canonical URLs, with `lastmod` only where a real date exists; `app/robots.ts` allows every crawler, AI ones included, and points at the sitemap.
 - Skip `llms.txt`, FAQ or HowTo markup, the `keywords` meta, `priority` and `changefreq`: no engine reads them.
 
 ## Working here
