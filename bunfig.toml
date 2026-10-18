@@ -3,6 +3,8 @@
 cache = true
 production = false
 optional = true
+# Skip versions published in the last 3 days (supply-chain cooldown)
+minimumReleaseAge = 259200
 
 [install.lockfile]
 # Save lockfile
