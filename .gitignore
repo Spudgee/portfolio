@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+# bun only: other package managers' lockfiles never belong here
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
 /.pnp
 .pnp.*
 .yarn/*

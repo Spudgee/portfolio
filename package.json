@@ -2,6 +2,7 @@
 	"name": "portfolio",
 	"version": "0.1.0",
 	"private": true,
+	"packageManager": "bun@1.3.10",
 	"scripts": {
 		"dev": "bun --bun next dev",
 		"build": "next build",
@@ -39,6 +40,9 @@
 		"@biomejs/biome"
 	],
 	"engines": {
-		"bun": ">=1.3.10"
+		"bun": ">=1.3.10",
+		"npm": "please-use-bun",
+		"pnpm": "please-use-bun",
+		"yarn": "please-use-bun"
 	}
 }
