@@ -12,6 +12,9 @@
 	"categories": {
 		"correctness": "error"
 	},
+	"rules": {
+		"react/rules-of-hooks": "error"
+	},
 	"env": {
 		"builtin": true
 	}
