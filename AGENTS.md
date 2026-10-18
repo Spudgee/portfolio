@@ -1,13 +1,13 @@
 # Portfolio
 
-Cooper Agustin's personal site, served static from Vercel at `https://cooperagustin.vercel.app`. The site is being rebuilt from scratch: where this file and the code disagree, this file wins.
+Cooper Agustin's personal site, served static from Vercel at `https://cooperagustin.vercel.app`. Where this file and the code disagree, this file wins.
 
 ## What the site says
 
 **Experience leads.** Cooper is a founding engineer at Doccy (telehealth, doccy.com.au) and Medlo (locum marketplace, medlo.com.au); the home page exists to show that work.
 
 - `/` — the name, the founding-engineer line, then experience: what was built at each company, with dates and numbers where they are true. Projects join here as they ship.
-- `/education` — RMIT and grades. Secondary: linked from the footer, kept out of the header.
+- `/education` — RMIT and grades. Secondary: one link in the header, nothing about it on the home page.
 - `app/not-found.tsx` serves a real 404.
 
 Copy and links live once, in typed modules under `content/`. Pages, header, footer, metadata, JSON-LD and the sitemap all read from them, so a role, date or URL changes in one place.
@@ -22,26 +22,26 @@ Copy and links live once, in typed modules under `content/`. Pages, header, foot
 
 The rules that hold it together:
 
-- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. Three sizes: display (the name; tight tracking, line-height near 1, scaled with `clamp()` so it fits 375 px), body and small. Hierarchy comes from size, weight, space and position alone.
+- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. The ramp is the `--text-*` tokens in `app/globals.css`: small, body, lead and display (each page's H1, sized so its longest word fits a 320 px phone). Hierarchy comes from size, weight, space and position alone.
 - **Colour** — monochrome: paper, ink and one muted grey, as tokens in `app/globals.css`. Muted text holds 4.5:1 contrast on paper. Dark mode follows the OS through `prefers-color-scheme` in CSS, with no toggle.
 - **Space** — content sits directly on the page, grouped by whitespace and aligned to shared column lines. Mobile is one column; desktop spreads the header and metadata across the grid.
-- **Copy** — short, factual, sentence case: what was built, for whom, when. Social links are words (GitHub, LinkedIn).
+- **Copy** — short, factual: what was built, for whom, when. Body text is sentence case with proper names capitalised; header and footer text is lowercase. Text only: links, social links included, are words, never icons or images.
 - **Motion** — the hover underline is the only animation.
 
 ## Header and footer
 
-Both are quiet text on the page, at body size or smaller.
+Both are quiet text on the page, at small size and lowercase. The lowercase comes from the CSS `lowercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
 
-- **Header** — the name (links to `/`) plus at most two text links.
-- **Footer** — one line: `© <year> Cooper Agustin`, Education, GitHub, LinkedIn.
-- **Hover underline** — on every header and footer link, defined once and shared. The underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, ~3 px offset, ~150 ms). The line already exists, so nothing shifts. Links inside running text are underlined at rest instead.
+- **Header** — the name (links to `/`) and Education.
+- **Footer** — one line: `© <year> Cooper Agustin`, GitHub, LinkedIn.
+- **Hover underline** — every header and footer link is `components/hover-underline-link.tsx`: the underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, 3 px offset, 150 ms). The line already exists, so nothing shifts. Links inside running text use `components/inline-link.tsx`, underlined at rest.
 - Tailwind v4's `hover:` fires only on hover-capable devices, so on touch a header or footer link must read as a link from its position alone.
 
 ## Fast core
 
 - **Static** — every route prerenders: `bun run build` marks each one `○ (Static)`. Reading cookies, headers or search params, or fetching per request, breaks this.
 - **Server Components** — a `"use client"` file needs a job CSS cannot do.
-- **Dependencies** stop at Next, React and Tailwind: no UI kit, icon pack, animation library or third-party script.
+- **Dependencies** — the site ships Next, React and Tailwind only: no UI kit, icon pack, animation library or third-party script. Dev tools (Biome, oxlint, Playwright) stay in `devDependencies`.
 - **Images** — `next/image` with a fixed aspect ratio and `sizes`.
 - **Check** — Lighthouse (mobile) against `bun run build && bun run start`: LCP under 1.5 s, CLS 0.
 
@@ -60,5 +60,5 @@ AI engines retrieve pages much as search engines do, so one job serves both: rea
 
 - Bun only; npm, pnpm and yarn installs are refused on purpose.
 - Tailwind v4 is configured in CSS (`@theme` in `app/globals.css`); there is no `tailwind.config`.
-- Before finishing: `bun run check` (Biome format, lint and imports; it writes), `bun run lint` (oxlint) and `bun run build`. CI runs lint and build on `main` and `staging`.
+- Before finishing: `bun run check` (Biome format, lint and imports; it writes), `bun run lint` (oxlint), `bun run build`, then `bun run test:e2e` (Playwright against the built site on port 3100; `e2e/site.spec.ts`). CI runs lint, build and e2e on `main` and `staging`.
 - Work lands on `staging`. Vercel deploys `main` only, so there are no preview URLs: check changes locally.
