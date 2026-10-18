@@ -23,8 +23,6 @@ const DETAILS = [
 			</InlineLink>
 		),
 	},
-	{ term: "Degree", value: EDUCATION.degree },
-	{ term: "Major", value: EDUCATION.major },
 	{
 		term: "Dates",
 		value: (
@@ -46,7 +44,7 @@ export default function EducationPage() {
 			<JsonLd graph={educationGraph()} />
 			<section
 				aria-labelledby="education"
-				className="grid grid-cols-4 gap-x-4 pt-16 sm:grid-cols-12 sm:gap-x-6 sm:pt-24"
+				className="grid grid-cols-4 gap-x-4 pt-12 sm:grid-cols-12 sm:gap-x-6 sm:pt-16"
 			>
 				<h1 id="education" className="col-span-full font-medium sm:col-span-3">
 					Education
@@ -57,7 +55,7 @@ export default function EducationPage() {
 				</p>
 			</section>
 
-			<dl className="mt-16 border-b border-ink sm:mt-24">
+			<dl className="mt-12 border-b border-ink sm:mt-16">
 				{DETAILS.map((detail) => (
 					<div
 						key={detail.term}

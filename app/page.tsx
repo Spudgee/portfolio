@@ -18,13 +18,13 @@ export default function HomePage() {
 	return (
 		<>
 			<JsonLd graph={homeGraph()} />
-			<h1 className="grid grid-cols-4 gap-x-4 pt-16 font-medium sm:grid-cols-12 sm:gap-x-6 sm:pt-24">
+			<h1 className="grid grid-cols-4 gap-x-4 pt-12 font-medium sm:grid-cols-12 sm:gap-x-6 sm:pt-16">
 				<span className="col-span-full max-w-prose text-pretty sm:col-span-9 sm:col-start-4 lg:col-span-5 lg:col-start-4">
 					{PERSON.introduction}
 				</span>
 			</h1>
 
-			<section aria-labelledby="experience" className="mt-16 sm:mt-24">
+			<section aria-labelledby="experience" className="mt-12 sm:mt-16">
 				<h2 id="experience" className="pb-2 font-medium">
 					Experience
 				</h2>
@@ -38,7 +38,7 @@ export default function HomePage() {
 				</ol>
 			</section>
 
-			<section aria-labelledby="stack" className="mt-16 sm:mt-24">
+			<section aria-labelledby="stack" className="mt-12 sm:mt-16">
 				<h2 id="stack" className="pb-2 font-medium">
 					Stack
 				</h2>

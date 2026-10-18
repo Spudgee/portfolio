@@ -12,7 +12,7 @@ export default function NotFound() {
 	return (
 		<section
 			aria-labelledby="not-found"
-			className="grid grid-cols-4 gap-x-4 pt-24 sm:grid-cols-12 sm:gap-x-6 sm:pt-40"
+			className="grid grid-cols-4 gap-x-4 pt-12 sm:grid-cols-12 sm:gap-x-6 sm:pt-16"
 		>
 			<h1 id="not-found" className="col-span-full font-medium sm:col-span-3">
 				Page not found
