@@ -46,7 +46,7 @@ export default function EducationPage() {
 			<JsonLd graph={educationGraph()} />
 			<section
 				aria-labelledby="education"
-				className="grid grid-cols-4 gap-x-4 pt-24 sm:grid-cols-12 sm:gap-x-6 sm:pt-40"
+				className="grid grid-cols-4 gap-x-4 pt-16 sm:grid-cols-12 sm:gap-x-6 sm:pt-24"
 			>
 				<h1 id="education" className="col-span-full font-medium sm:col-span-3">
 					Education
@@ -57,11 +57,11 @@ export default function EducationPage() {
 				</p>
 			</section>
 
-			<dl className="mt-16 flex flex-col gap-y-3 sm:mt-24 sm:gap-y-1">
+			<dl className="mt-16 border-b border-ink sm:mt-24">
 				{DETAILS.map((detail) => (
 					<div
 						key={detail.term}
-						className="grid grid-cols-4 gap-x-4 sm:grid-cols-12 sm:gap-x-6"
+						className="grid grid-cols-4 gap-x-4 border-t border-ink py-2 sm:grid-cols-12 sm:gap-x-6"
 					>
 						<dt className="col-span-full text-muted sm:col-span-3">
 							{detail.term}

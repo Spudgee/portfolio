@@ -1,10 +1,7 @@
-/**
- * One role, newest first. Months are ISO `YYYY-MM`; `end: null` means current.
- * `companyUrl: null` skips a link the list already shows.
- */
+/** One role, newest first. Months are ISO `YYYY-MM`; `end: null` means current. */
 export type Role = {
 	company: string;
-	companyUrl: string | null;
+	companyUrl: string;
 	title: string;
 	start: string;
 	end: string | null;
@@ -32,7 +29,7 @@ export const EXPERIENCE: readonly Role[] = [
 	},
 	{
 		company: "Medlo",
-		companyUrl: null,
+		companyUrl: "https://medlo.com.au",
 		title: "Software Engineer Intern",
 		start: "2024-02",
 		end: "2024-06",
