@@ -67,7 +67,7 @@ test("every line of text is small and every control is a text link", async ({
 
 		await expect(page.getByRole("button"), path).toHaveCount(0);
 		await expect(page.locator("svg, img"), path).toHaveCount(0);
-		const largestTextPx = await page.evaluate(() => {
+		const textSizesPx = await page.evaluate(() => {
 			const sizes = [...document.body.querySelectorAll("*")]
 				.filter((element) =>
 					[...element.childNodes].some(
@@ -78,9 +78,9 @@ test("every line of text is small and every control is a text link", async ({
 				.map((element) =>
 					Number.parseFloat(getComputedStyle(element).fontSize),
 				);
-			return Math.max(...sizes);
+			return [...new Set(sizes)];
 		});
-		expect(largestTextPx, path).toBe(TEXT_SIZE_PX);
+		expect(textSizesPx, path).toEqual([TEXT_SIZE_PX]);
 	}
 });
 
@@ -100,13 +100,19 @@ test("education is its own page, reached from the header", async ({ page }) => {
 	await expect(
 		header.getByRole("link", { name: "Cooper Agustin" }),
 	).not.toHaveAttribute("aria-current");
+	expect(
+		await textColor(header.getByRole("link", { name: "Education" })),
+		"the current page's link is ink, the other muted",
+	).not.toBe(
+		await textColor(header.getByRole("link", { name: "Cooper Agustin" })),
+	);
 	await expect(page.getByRole("heading", { level: 1 })).toHaveText("Education");
 	await expect(
 		page.getByRole("link", { name: "RMIT University" }),
 	).toBeVisible();
 });
 
-test("header and footer are lowercase text links that underline on hover and focus", async ({
+test("header and footer are all-caps text links that underline on hover and focus", async ({
 	page,
 }) => {
 	await page.goto("/");
@@ -120,7 +126,7 @@ test("header and footer are lowercase text links that underline on hover and foc
 		footer.getByRole("link", { name: "LinkedIn" }),
 	];
 	for (const link of links) {
-		await expect(link).toHaveCSS("text-transform", "lowercase");
+		await expect(link).toHaveCSS("text-transform", "uppercase");
 		await expect(link).toHaveCSS("text-decoration-line", "underline");
 		await expect(link).toHaveCSS("text-decoration-color", TRANSPARENT);
 
