@@ -1,12 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-	Moon,
-	SunMedium,
-	Ellipsis,
-	ChevronRight,
-} from "lucide-react";
+import { Moon, SunMedium, Ellipsis, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
