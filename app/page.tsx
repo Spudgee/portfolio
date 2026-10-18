@@ -2,8 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import {
-	ExternalLink,
-	Github,
 	Moon,
 	SunMedium,
 	Ellipsis,
@@ -12,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+// oxlint-disable-next-line no-unused-vars -- kept for the parked Projects grid
 const features = [
 	{
 		icon: Ellipsis,
@@ -20,6 +19,9 @@ const features = [
 			"Developing high-quality projects to enhance my abilities at work and in my free time.",
 	},
 ];
+
+/** Read once per page load; React render must stay pure. */
+const COPYRIGHT_YEAR = new Date().getFullYear();
 
 export default function Home() {
 	const [isNightMode, setIsNightMode] = useState(() => {
@@ -274,7 +276,7 @@ export default function Home() {
 			</main>
 			<footer className="w-full max-w-3xl mt-auto px-4 md:px-6">
 				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-[10px] sm:text-xs text-muted-foreground">
-					<span>© {new Date().getFullYear()} Cooper Agustin</span>
+					<span>© {COPYRIGHT_YEAR} Cooper Agustin</span>
 				</div>
 			</footer>
 		</div>
