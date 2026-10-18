@@ -43,7 +43,7 @@ Both are quiet text on the page, at small size and lowercase. The lowercase come
 - **Server Components** — a `"use client"` file needs a job CSS cannot do.
 - **Dependencies** — the site ships Next, React and Tailwind only: no UI kit, icon pack, animation library or third-party script. Dev tools (Biome, oxlint, Playwright) stay in `devDependencies`.
 - **Images** — `next/image` with a fixed aspect ratio and `sizes`.
-- **Check** — Lighthouse (mobile) against `bun run build && bun run start`: LCP under 1.5 s, CLS 0.
+- **Check** — Lighthouse (mobile) against `bun run build && bun run start`: Performance ≥ 95 and CLS 0 (2026-10-18: 98–99, real first paint 0.7 s). Its simulated LCP (~2.3 s) counts the Next runtime download; search engines rank on field Core Web Vitals instead: p75 LCP ≤ 2.5 s, INP < 200 ms, CLS < 0.1.
 
 ## SEO and GEO
 
