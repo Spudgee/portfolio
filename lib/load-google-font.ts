@@ -2,10 +2,10 @@ const FONT_FETCH_TIMEOUT_MS = 10_000;
 const TRUETYPE_SOURCE = /src: url\((.+?)\) format\('(?:opentype|truetype)'\)/;
 
 /**
- * GET under the deadline. A network failure, timeout or non-2xx throws an error naming
- * what was fetched and the URL.
+ * GET a body under one deadline. A network failure, a non-2xx, or a timeout while
+ * connecting or while reading throws an error naming what was fetched and the URL.
  */
-async function fetchWithDeadline(url: string, what: string) {
+async function fetchBytes(url: string, what: string) {
 	const response = await fetch(url, {
 		signal: AbortSignal.timeout(FONT_FETCH_TIMEOUT_MS),
 	}).catch((cause) => {
@@ -14,7 +14,9 @@ async function fetchWithDeadline(url: string, what: string) {
 	if (!response.ok) {
 		throw new Error(`${what} at ${url} returned ${response.status}`);
 	}
-	return response;
+	return response.arrayBuffer().catch((cause) => {
+		throw new Error(`${what} at ${url} failed while reading`, { cause });
+	});
 }
 
 /**
@@ -29,16 +31,11 @@ export async function loadGoogleFont(
 ) {
 	const what = `Google Fonts CSS for ${family} ${weight}`;
 	const cssUrl = `https://fonts.googleapis.com/css2?family=${family.replaceAll(" ", "+")}:wght@${weight}&text=${encodeURIComponent(text)}`;
-	const css = await (await fetchWithDeadline(cssUrl, what)).text();
+	const css = new TextDecoder().decode(await fetchBytes(cssUrl, what));
 
 	const fontUrl = TRUETYPE_SOURCE.exec(css)?.[1];
 	if (fontUrl === undefined) {
 		throw new Error(`${what} at ${cssUrl} has no TrueType source`);
 	}
-
-	const font = await fetchWithDeadline(
-		fontUrl,
-		`Font file for ${family} ${weight}`,
-	);
-	return font.arrayBuffer();
+	return fetchBytes(fontUrl, `Font file for ${family} ${weight}`);
 }
