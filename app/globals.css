@@ -12,7 +12,7 @@
 	:root {
 		--paper: oklch(0.17 0.005 250);
 		--ink: oklch(0.94 0.004 250);
-		--muted: oklch(0.68 0.008 250);
+		--muted: oklch(0.62 0.008 250);
 	}
 }
 
