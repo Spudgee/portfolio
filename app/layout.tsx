@@ -3,7 +3,7 @@ import { Hanken_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { PERSON } from "@/content/person";
-import { SITE_URL } from "@/content/site";
+import { LOCALE, SITE_URL } from "@/content/site";
 import "./globals.css";
 
 const hankenGrotesk = Hanken_Grotesk({
@@ -16,16 +16,11 @@ export const metadata: Metadata = {
 	authors: [{ name: PERSON.name, url: SITE_URL }],
 	creator: PERSON.name,
 	twitter: { card: "summary_large_image" },
+	// Indexing is the default; leaving index/follow out keeps the 404's own noindex unopposed.
 	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			"max-image-preview": "large",
-			"max-snippet": -1,
-			"max-video-preview": -1,
-		},
+		"max-image-preview": "large",
+		"max-snippet": -1,
+		"max-video-preview": -1,
 	},
 };
 
@@ -35,7 +30,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en-AU" className={hankenGrotesk.variable}>
+		<html lang={LOCALE} className={hankenGrotesk.variable}>
 			<body className="mx-auto flex min-h-dvh w-full max-w-(--breakpoint-2xl) flex-col px-4 sm:px-8">
 				<SiteHeader />
 				<main className="flex-1">{children}</main>
