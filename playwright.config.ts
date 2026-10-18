@@ -6,8 +6,10 @@ const PORT = 3100;
 export default defineConfig({
 	testDir: "e2e",
 	forbidOnly: Boolean(process.env.CI),
-	reporter: process.env.CI ? "line" : "list",
-	use: { baseURL: `http://localhost:${PORT}` },
+	reporter: process.env.CI
+		? [["line"], ["json", { outputFile: "test-results/results.json" }]]
+		: "list",
+	use: { baseURL: `http://localhost:${PORT}`, trace: "retain-on-failure" },
 	webServer: {
 		command: `bun run start --port ${PORT}`,
 		url: `http://localhost:${PORT}`,

@@ -2,6 +2,10 @@ import { expect, type Locator, type Page, test } from "@playwright/test";
 
 const SITE_URL = "https://cooperagustin.vercel.app";
 const TRANSPARENT = "rgba(0, 0, 0, 0)";
+/** The one text size, `--text-body` in app/globals.css. */
+const TEXT_SIZE_PX = 13;
+const HOME_H1 =
+	"Cooper Agustin is a founding engineer at Doccy and Medlo, building full-stack software for Australian healthcare.";
 /** Ids a page may reference without defining: they live in the home graph. */
 const SITE_IDS = [`${SITE_URL}/#website`, `${SITE_URL}/#person`];
 
@@ -9,7 +13,7 @@ const PAGES = [
 	{
 		path: "/",
 		title: "Cooper Agustin – Founding Engineer at Doccy and Medlo",
-		h1: "Cooper Agustin",
+		h1: HOME_H1,
 		canonical: SITE_URL,
 	},
 	{
@@ -41,12 +45,7 @@ test("home leads with founding-engineer work at Doccy and Medlo", async ({
 }) => {
 	await page.goto("/");
 
-	await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-		"Cooper Agustin",
-	);
-	await expect(page.locator("main p").first()).toContainText(
-		"Founding engineer at Doccy and Medlo",
-	);
+	await expect(page.getByRole("heading", { level: 1 })).toHaveText(HOME_H1);
 	const experience = page.getByRole("region", { name: "Experience" });
 	await expect(
 		experience.getByRole("heading", { level: 3, name: "Doccy" }),
@@ -54,7 +53,35 @@ test("home leads with founding-engineer work at Doccy and Medlo", async ({
 	await expect(
 		experience.getByRole("heading", { level: 3, name: "Medlo" }).first(),
 	).toBeVisible();
-	await expect(page.getByText("RMIT")).toHaveCount(0);
+	expect(
+		await page.content(),
+		"education stays off the home page",
+	).not.toContain("RMIT");
+});
+
+test("every line of text is small and every control is a text link", async ({
+	page,
+}) => {
+	for (const { path } of PAGES) {
+		await page.goto(path);
+
+		await expect(page.getByRole("button"), path).toHaveCount(0);
+		await expect(page.locator("svg, img"), path).toHaveCount(0);
+		const largestTextPx = await page.evaluate(() => {
+			const sizes = [...document.body.querySelectorAll("*")]
+				.filter((element) =>
+					[...element.childNodes].some(
+						(node) =>
+							node.nodeType === Node.TEXT_NODE && node.textContent?.trim(),
+					),
+				)
+				.map((element) =>
+					Number.parseFloat(getComputedStyle(element).fontSize),
+				);
+			return Math.max(...sizes);
+		});
+		expect(largestTextPx, path).toBe(TEXT_SIZE_PX);
+	}
 });
 
 test("education is its own page, reached from the header", async ({ page }) => {
@@ -78,11 +105,6 @@ test("header and footer are lowercase text links that underline on hover and foc
 	const header = page.getByRole("banner");
 	const footer = page.getByRole("contentinfo");
 
-	for (const { path } of PAGES) {
-		await page.goto(path);
-		await expect(page.locator("svg, img"), path).toHaveCount(0);
-	}
-
 	const links = [
 		header.getByRole("link", { name: "Cooper Agustin" }),
 		header.getByRole("link", { name: "Education" }),
@@ -91,6 +113,7 @@ test("header and footer are lowercase text links that underline on hover and foc
 	];
 	for (const link of links) {
 		await expect(link).toHaveCSS("text-transform", "lowercase");
+		await expect(link).toHaveCSS("text-decoration-line", "underline");
 		await expect(link).toHaveCSS("text-decoration-color", TRANSPARENT);
 
 		await link.scrollIntoViewIfNeeded();
