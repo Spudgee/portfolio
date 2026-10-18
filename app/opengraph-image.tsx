@@ -1,17 +1,18 @@
 import { ImageResponse } from "next/og";
 import { PERSON } from "@/content/person";
 import { loadGoogleFont } from "@/lib/load-google-font";
+import { OG_IMAGE_ALT, OG_IMAGE_SIZE } from "@/lib/page-metadata";
 
 /** Hex copies of the light tokens in app/globals.css; the image renderer reads no CSS variables. */
 const PAPER = "#f5f7f9";
 const INK = "#181b1e";
 const MUTED = "#65696f";
 
-export const alt = `${PERSON.name}, ${PERSON.headline}`;
-export const size = { width: 1200, height: 630 };
+export const alt = OG_IMAGE_ALT;
+export const size = OG_IMAGE_SIZE;
 export const contentType = "image/png";
 
-/** The 1200×630 link-preview card: the role line above the name, set large. */
+/** The 1200×630 link-preview card: name and role, small, top left, like the site. */
 export default async function OpenGraphImage() {
 	const font = await loadGoogleFont(
 		"Hanken Grotesk",
@@ -26,26 +27,16 @@ export default async function OpenGraphImage() {
 				height: "100%",
 				display: "flex",
 				flexDirection: "column",
-				justifyContent: "space-between",
 				padding: 64,
 				background: PAPER,
 				color: INK,
 				fontFamily: "Hanken Grotesk",
+				fontSize: 36,
+				lineHeight: 1.4,
 			}}
 		>
-			<div style={{ fontSize: 32, color: MUTED }}>{PERSON.headline}</div>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					fontSize: 200,
-					lineHeight: 0.92,
-					letterSpacing: "-0.045em",
-				}}
-			>
-				<span>{PERSON.givenName}</span>
-				<span>{PERSON.familyName}</span>
-			</div>
+			<span>{PERSON.name}</span>
+			<span style={{ color: MUTED }}>{PERSON.headline}</span>
 		</div>,
 		{
 			...size,
