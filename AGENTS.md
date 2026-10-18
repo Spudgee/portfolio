@@ -20,19 +20,21 @@ Copy, links and paths live once, in typed modules under `content/`. Pages, heade
 - [Shovel](https://www.shovel.studio) — text-only nav and social links, work as a name plus one factual line, underlines that appear on hover. Take the text links, not its pill-shaped nav buttons.
 - [F451](https://f451.studio) — one text size for everything, each project as stacked lines of facts (name, site, year, disciplines, stack), and a nav where the current page is ink and the others grey.
 - [Nuevo.Tokyo](https://www.nuevo.tokyo) — small text in columns: short descriptor lines on the left, the statement in a middle column, generous off-white space. Take the layout, not its monospace capitals.
+- [Katharina Nejdl](https://portfolio.katharinanejdl.com/about) — simple lines: every fact a row under a thin rule, date first; all-caps chrome; capitalised words throughout. Take the rules and the casing, not its boxed tag buttons.
 
 The rules that hold it together:
 
-- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. One size: the `--text-body` token in `app/globals.css` (13 px), and the default Tailwind size scale is removed so a larger size cannot compile. Hierarchy comes from weight, colour, space and position.
+- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. One size: the `--text-body` token in `app/globals.css` (13 px). The default Tailwind size scale is removed, so `text-body` is the only named size, and the e2e fails if any text node renders at another size. Hierarchy comes from weight, colour, rules and position.
 - **Colour** — monochrome: paper, ink and one muted grey, as tokens in `app/globals.css`. Muted text holds 4.5:1 contrast on paper. Dark mode follows the OS through `prefers-color-scheme` in CSS, with no toggle.
-- **Space** — content sits directly on the page, grouped by whitespace and aligned to shared column lines: section labels in columns 1–3, content from column 4. Mobile is one column.
-- **Copy** — short, factual: what was built, for whom, when. Body text uses normal capitalisation; header and footer text is lowercase.
+- **Space and lines** — content sits directly on the page, aligned to shared column lines: dates and labels in columns 1–3, content from column 4. Each row of facts (a role, a degree detail, the stack) sits under a 1 px ink rule, and the list closes with one; the header has a rule beneath, the footer one above. Mobile is one column.
+- **Case** — never lowercase. Header and footer are all caps (CSS `uppercase`, `tracking-wider`); headings, labels, names and titles are capitalised words; sentences start with a capital.
+- **Copy** — short, factual: what was built, for whom, when.
 - **Text only** — every control is a text link. No buttons, pills, boxes, icons or images.
 - **Motion** — the hover underline is the only animation.
 
 ## Header and footer
 
-Both are quiet text on the page, lowercase. The lowercase comes from the CSS `lowercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
+Both are quiet text on the page, in all caps. The caps come from the CSS `uppercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
 
 - **Header** — the name (links to `/`) and Education. The current page's link is ink (`aria-current="page"`), the other muted, as on F451.
 - **Footer** — one line: `© <year> Cooper Agustin`, GitHub, LinkedIn.
