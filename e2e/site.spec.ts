@@ -92,6 +92,14 @@ test("education is its own page, reached from the header", async ({ page }) => {
 		.click();
 
 	await expect(page).toHaveURL(/\/education$/);
+	const header = page.getByRole("banner");
+	await expect(header.getByRole("link", { name: "Education" })).toHaveAttribute(
+		"aria-current",
+		"page",
+	);
+	await expect(
+		header.getByRole("link", { name: "Cooper Agustin" }),
+	).not.toHaveAttribute("aria-current");
 	await expect(page.getByRole("heading", { level: 1 })).toHaveText("Education");
 	await expect(
 		page.getByRole("link", { name: "RMIT University" }),
