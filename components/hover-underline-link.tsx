@@ -19,7 +19,7 @@ export function HoverUnderlineLink({
 		<Link
 			href={href}
 			aria-current={ariaCurrent}
-			className="inline-flex min-h-11 items-center underline decoration-transparent decoration-1 underline-offset-3 transition-colors duration-150 ease-out hover:decoration-current focus-visible:decoration-current motion-reduce:transition-none aria-[current=page]:text-ink"
+			className="-mx-2 inline-flex min-h-11 items-center px-2 underline decoration-transparent decoration-1 underline-offset-3 transition-colors duration-150 ease-out hover:decoration-current focus-visible:decoration-current focus-visible:decoration-2 focus-visible:outline-hidden motion-reduce:transition-none aria-[current=page]:text-ink"
 		>
 			{children}
 		</Link>
