@@ -10,7 +10,7 @@ export const PERSON = {
 	/** The one-line role used in titles, the preview image and its alt text. */
 	headline: "Founding Engineer at Doccy and Medlo",
 	/** The home page's H1: name, role and both companies in one answer-first sentence. */
-	introduction: `${GIVEN_NAME} ${FAMILY_NAME} is a founding engineer at Doccy and Medlo, building full-stack software for Australian healthcare.`,
+	introduction: `${GIVEN_NAME} ${FAMILY_NAME} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit.`,
 	stack: [
 		"Next.js",
 		"React",

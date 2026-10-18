@@ -5,7 +5,7 @@ const TRANSPARENT = "rgba(0, 0, 0, 0)";
 /** The one text size, `--text-body` in app/globals.css. */
 const TEXT_SIZE_PX = 13;
 const HOME_H1 =
-	"Cooper Agustin is a founding engineer at Doccy and Medlo, building full-stack software for Australian healthcare.";
+	"Cooper Agustin is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit.";
 /** Ids a page may reference without defining: they live in the home graph. */
 const SITE_IDS = [`${SITE_URL}/#website`, `${SITE_URL}/#person`];
 

@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata: Metadata = pageMetadata({
 	path: PATHS.home,
 	title: `${PERSON.name} – ${PERSON.headline}`,
-	description: `${PERSON.name} is a founding engineer at Doccy, 24/7 telehealth across Australia, and Medlo, a locum marketplace for doctors, building full-stack software with Next.js, TypeScript and PostgreSQL.`,
+	description: `${PERSON.name} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit: 24/7 consults, certificates and prescriptions at Doccy, and locum shifts at Medlo, in Next.js, TypeScript and PostgreSQL.`,
 });
 
 /** Experience-led home: who and what in one sentence, then ruled rows of roles and the stack. */
