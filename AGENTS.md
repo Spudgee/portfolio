@@ -18,6 +18,8 @@ Copy, links and paths live once, in typed modules under `content/`. Pages, heade
 
 - [Luke Hoban](https://lukehoban.co.nz) — the model: all text small, information set in columns across a 12-column grid, hierarchy from colour and position, most of the page left empty. Take the small type, not its giant "Selected Work" heading.
 - [Shovel](https://www.shovel.studio) — text-only nav and social links, work as a name plus one factual line, underlines that appear on hover. Take the text links, not its pill-shaped nav buttons.
+- [F451](https://f451.studio) — one text size for everything, each project as stacked lines of facts (name, site, year, disciplines, stack), and a nav where the current page is ink and the others grey.
+- [Nuevo.Tokyo](https://www.nuevo.tokyo) — small text in columns: short descriptor lines on the left, the statement in a middle column, generous off-white space. Take the layout, not its monospace capitals.
 
 The rules that hold it together:
 
@@ -32,7 +34,7 @@ The rules that hold it together:
 
 Both are quiet text on the page, lowercase. The lowercase comes from the CSS `lowercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
 
-- **Header** — the name (links to `/`) and Education.
+- **Header** — the name (links to `/`) and Education. The current page's link is ink (`aria-current="page"`), the other muted, as on F451.
 - **Footer** — one line: `© <year> Cooper Agustin`, GitHub, LinkedIn.
 - **Hover underline** — every header and footer link is `components/hover-underline-link.tsx`: the underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, 3 px offset, 150 ms), with a 44 px tall hit area. The line already exists, so nothing shifts. Links inside running text use `components/inline-link.tsx`, underlined at rest.
 - Tailwind v4's `hover:` fires only on hover-capable devices, so on touch a header or footer link must read as a link from its position alone.
