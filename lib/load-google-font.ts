@@ -2,6 +2,22 @@ const FONT_FETCH_TIMEOUT_MS = 10_000;
 const TRUETYPE_SOURCE = /src: url\((.+?)\) format\('(?:opentype|truetype)'\)/;
 
 /**
+ * GET under the deadline. A network failure, timeout or non-2xx throws an error naming
+ * what was fetched and the URL.
+ */
+async function fetchWithDeadline(url: string, what: string) {
+	const response = await fetch(url, {
+		signal: AbortSignal.timeout(FONT_FETCH_TIMEOUT_MS),
+	}).catch((cause) => {
+		throw new Error(`${what} at ${url} failed`, { cause });
+	});
+	if (!response.ok) {
+		throw new Error(`${what} at ${url} returned ${response.status}`);
+	}
+	return response;
+}
+
+/**
  * TrueType bytes for one weight of a Google font, subset to `text`. The OG image renderer
  * cannot read the woff2 that next/font serves. Runs at build, when the image prerenders.
  * @see app/opengraph-image.tsx
@@ -11,28 +27,18 @@ export async function loadGoogleFont(
 	weight: number,
 	text: string,
 ) {
+	const what = `Google Fonts CSS for ${family} ${weight}`;
 	const cssUrl = `https://fonts.googleapis.com/css2?family=${family.replaceAll(" ", "+")}:wght@${weight}&text=${encodeURIComponent(text)}`;
-	const cssResponse = await fetch(cssUrl, {
-		signal: AbortSignal.timeout(FONT_FETCH_TIMEOUT_MS),
-	});
-	if (!cssResponse.ok) {
-		throw new Error(
-			`Google Fonts CSS for ${family} ${weight} returned ${cssResponse.status}`,
-		);
-	}
+	const css = await (await fetchWithDeadline(cssUrl, what)).text();
 
-	const fontUrl = TRUETYPE_SOURCE.exec(await cssResponse.text())?.[1];
+	const fontUrl = TRUETYPE_SOURCE.exec(css)?.[1];
 	if (fontUrl === undefined) {
-		throw new Error(
-			`Google Fonts CSS for ${family} ${weight} has no TrueType source`,
-		);
+		throw new Error(`${what} at ${cssUrl} has no TrueType source`);
 	}
 
-	const fontResponse = await fetch(fontUrl, {
-		signal: AbortSignal.timeout(FONT_FETCH_TIMEOUT_MS),
-	});
-	if (!fontResponse.ok) {
-		throw new Error(`Font file ${fontUrl} returned ${fontResponse.status}`);
-	}
-	return fontResponse.arrayBuffer();
+	const font = await fetchWithDeadline(
+		fontUrl,
+		`Font file for ${family} ${weight}`,
+	);
+	return font.arrayBuffer();
 }
