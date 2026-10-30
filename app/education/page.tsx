@@ -33,27 +33,20 @@ const DETAILS = [
 			</>
 		),
 	},
+	{ term: "Major", value: EDUCATION.major },
 	{ term: "GPA", value: EDUCATION.gpa },
 	{ term: "WAM", value: EDUCATION.wam },
 ];
 
-/** Secondary page: the degree, linked from the header and kept off the home page. */
+/** Secondary page: the degree as one lead sentence, then its facts in ruled rows. */
 export default function EducationPage() {
 	return (
 		<>
 			<JsonLd graph={educationGraph()} />
-			<section
-				aria-labelledby="education"
-				className="grid grid-cols-4 gap-x-4 pt-12 sm:grid-cols-12 sm:gap-x-6 sm:pt-16"
-			>
-				<h1 id="education" className="col-span-full font-medium sm:col-span-3">
-					Education
-				</h1>
-				<p className="col-span-full mt-2 max-w-prose text-pretty sm:col-span-9 sm:mt-0 lg:col-span-5">
-					{EDUCATION.degree} at {EDUCATION.institution}, {EDUCATION.location},
-					majoring in {EDUCATION.major}.
-				</p>
-			</section>
+			<h1 className="max-w-[28em] pt-12 text-lead font-normal text-balance sm:pt-16">
+				{EDUCATION.degree} at {EDUCATION.institution}, {EDUCATION.location},
+				majoring in {EDUCATION.major}.
+			</h1>
 
 			<dl className="mt-12 border-b border-ink sm:mt-16">
 				{DETAILS.map((detail) => (
