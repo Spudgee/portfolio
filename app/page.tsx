@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ExperienceEntry } from "@/app/experience-entry";
-import { InlineLink } from "@/components/inline-link";
 import { JsonLd } from "@/components/json-ld";
 import { EXPERIENCE } from "@/content/experience";
 import { PERSON } from "@/content/person";
@@ -14,26 +13,13 @@ export const metadata: Metadata = pageMetadata({
 	description: `${PERSON.name} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit: 24/7 consults, certificates and prescriptions at Doccy, and locum shifts at Medlo, in Next.js, TypeScript and PostgreSQL.`,
 });
 
-/** Home: a statement filling the first screen (after nabiu.studio), then ruled rows of roles and the stack. */
+/** Experience-led home: who and what in one lead sentence, then ruled rows of roles and the stack. */
 export default function HomePage() {
 	return (
 		<>
 			<JsonLd graph={homeGraph()} />
-			<h1 className="flex min-h-[calc(100svh-3.0625rem)] flex-col justify-end gap-3 pb-6 font-normal sm:pb-8">
-				<span className="text-lead text-muted">
-					{PERSON.name} — {PERSON.jobTitle}
-				</span>
-				<span className="max-w-[22em] text-statement text-balance">
-					{PERSON.statement.map((run) =>
-						"href" in run ? (
-							<InlineLink key={run.text} href={run.href}>
-								{run.text}
-							</InlineLink>
-						) : (
-							run.text
-						),
-					)}
-				</span>
+			<h1 className="max-w-[30em] pt-12 text-lead font-normal text-balance sm:pt-16">
+				{PERSON.introduction}
 			</h1>
 
 			<section

@@ -9,17 +9,8 @@ export const PERSON = {
 	jobTitle: "Founding Engineer",
 	/** The one-line role used in titles, the preview image and its alt text. */
 	headline: "Founding Engineer at Doccy and Medlo",
-	/**
-	 * The home page's statement, as runs of text; a run with `href` renders as a link.
-	 * Read after the name line, the whole H1 answers who, what role and which companies.
-	 */
-	statement: [
-		{ text: `I'm ${GIVEN_NAME}, a founding engineer building telehealth at ` },
-		{ text: "Doccy", href: "https://doccy.com.au" },
-		{ text: " and locum shifts at " },
-		{ text: "Medlo", href: "https://medlo.com.au" },
-		{ text: ", from the first commit." },
-	],
+	/** The home page's H1: name, role and both companies in one answer-first sentence. */
+	introduction: `${GIVEN_NAME} ${FAMILY_NAME} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit.`,
 	stack: [
 		"Next.js",
 		"React",
