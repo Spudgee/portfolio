@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ContentGroup } from "@/components/content-group";
 import { type Row, RowList } from "@/components/row-list";
 import { PERSON } from "@/content/person";
 import { PATHS } from "@/content/site";
@@ -17,14 +16,12 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 	secondary: group.tools.join(", "),
 }));
 
-/** The tools, by area, in the same rows and pane as About. */
+/** The tools, by area, in the same rows as Work and Education; the nav pill names the page. */
 export default function StackPage() {
 	return (
 		<div className="mx-auto max-w-[40rem]">
 			<h1 className="sr-only">Stack</h1>
-			<ContentGroup id="tools" label="Tools">
-				<RowList rows={STACK_ROWS} />
-			</ContentGroup>
+			<RowList rows={STACK_ROWS} />
 		</div>
 	);
 }
