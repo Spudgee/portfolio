@@ -40,9 +40,9 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
 				/>
 			</head>
-			<body className="md:grid md:grid-cols-[15rem_minmax(0,1fr)]">
+			<body>
 				<SiteNav />
-				<main className="px-4 md:px-12">{children}</main>
+				<main className="px-4 md:px-8">{children}</main>
 			</body>
 		</html>
 	);
