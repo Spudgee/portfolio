@@ -1,6 +1,6 @@
 /**
- * One labelled group on a page, after Brian Lovin's about page: a small grey heading, then its rows
- * or buttons. Every group uses it, so Work, Education, Stack and Contact all open the same way.
+ * One headed group on a page: a medium-weight heading at row size (20px), a step above the 16px rows
+ * beneath it and sitting close to them. Every group uses it, so they all open the same way.
  */
 export function ContentGroup({
 	id,
@@ -13,10 +13,10 @@ export function ContentGroup({
 }) {
 	return (
 		<section aria-labelledby={`${id}-heading`}>
-			<h2 id={`${id}-heading`} className="text-muted">
+			<h2 id={`${id}-heading`} className="text-row font-medium">
 				{label}
 			</h2>
-			<div className="mt-2">{children}</div>
+			<div className="mt-1">{children}</div>
 		</section>
 	);
 }

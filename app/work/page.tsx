@@ -46,11 +46,11 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 
 /**
  * The career in one place: Experience, then Education and Stack (the background behind it).
- * Every group opens with the same grey label over the same rows.
+ * Every group opens with the same heading over the same rows.
  */
 export default function WorkPage() {
 	return (
-		<div className="mx-auto grid max-w-[40rem] gap-10">
+		<div className="mx-auto grid max-w-[40rem] gap-12">
 			<h1 className="sr-only">Work</h1>
 			<ContentGroup id="experience" label="Experience">
 				<RowList rows={EXPERIENCE_ROWS} />
