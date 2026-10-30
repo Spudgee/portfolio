@@ -12,17 +12,18 @@ export type Row = {
 };
 
 const ROW_CLASS =
-	"group flex min-h-11 items-start justify-between gap-4 py-1.5 md:min-h-[2.375rem] md:items-center md:py-0";
+	"group flex min-h-11 items-start justify-between gap-4 py-1.5 md:min-h-8 md:items-center md:py-0";
 
 /**
  * The one row style for every list on the site, after Brian Lovin's work list: the primary in medium
  * ink with the secondary in grey beside it, and the aside in grey on the right. On phones the
  * secondary drops under the primary and the aside sits on the first line, so nothing wraps mid-row;
- * from md up it is one 38px line at the row size. A linked row is a link across its whole width.
+ * from md up it is one 32px line. Rows are body size everywhere, smaller than the statement. A
+ * linked row is a link across its whole width.
  */
 export function RowList({ rows }: { rows: readonly Row[] }) {
 	return (
-		<ul className="text-body md:text-row">
+		<ul className="text-body">
 			{rows.map((row) => {
 				const content = (
 					<>

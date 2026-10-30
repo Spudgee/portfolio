@@ -48,8 +48,8 @@
 	--font-sans:
 		var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-	/* Three sizes, after Brian Lovin's about page: body for labels, row for lists, lead for the
-	   nav and each section's statement. */
+	/* Three sizes: body for labels and rows, row for the statement and the name on phones, lead for
+	   the same two from md up. */
 	--text-*: initial;
 	--text-body: 1rem;
 	--text-body--line-height: 1.6;
