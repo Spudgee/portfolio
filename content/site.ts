@@ -10,6 +10,8 @@ export const PATHS = {
 	work: "/work",
 	archive: "/archive",
 	contact: "/contact",
+	/** Not in the nav or the sitemap: a LinkedIn QR code to show someone in person. */
+	qr: "/qr",
 } as const;
 
 /** The nav, in order: four pages. */

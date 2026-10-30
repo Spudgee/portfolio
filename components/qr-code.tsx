@@ -24,7 +24,7 @@ export function QrCode({ value, label }: { value: string; label: string }) {
 		<svg
 			viewBox={`0 0 ${box} ${box}`}
 			shapeRendering="crispEdges"
-			className="size-40 rounded-xl bg-[#ffffff] text-[#171717]"
+			className="size-64 rounded-2xl bg-[#ffffff] text-[#171717]"
 		>
 			<title>{label}</title>
 			<path d={path} fill="currentColor" />
