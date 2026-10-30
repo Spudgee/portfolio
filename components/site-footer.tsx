@@ -32,7 +32,7 @@ export function SiteFooter() {
 				))}
 			</ul>
 
-			<div className="grid gap-3">
+			<div className="@container grid gap-1">
 				<p
 					aria-hidden="true"
 					className="text-display font-medium whitespace-nowrap"
