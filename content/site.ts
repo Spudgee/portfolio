@@ -7,33 +7,22 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = {
 	home: "/",
-	work: "/work",
-	education: "/education",
-	projects: "/projects",
-	blog: "/blog",
-	stack: "/stack",
 	archive: "/archive",
 } as const;
 
-/** The nav, in order: About is the home page with the statement; each other page is one list. */
-export const NAV_PAGES = [
-	{ label: "About", path: PATHS.home },
-	{ label: "Work", path: PATHS.work },
-	{ label: "Education", path: PATHS.education },
-	{ label: "Projects", path: PATHS.projects },
-	{ label: "Blog", path: PATHS.blog },
-	{ label: "Stack", path: PATHS.stack },
-	{ label: "Archive", path: PATHS.archive },
+/**
+ * The nav, in order. Home, Work and Contact are sections of the home page (`section` is the id the
+ * nav fills while it is on screen); Archive is its own page.
+ */
+export const NAV_ITEMS = [
+	{ label: "Home", href: "/#home", section: "home" },
+	{ label: "Work", href: "/#work", section: "work" },
+	{ label: "Archive", href: PATHS.archive, section: null },
+	{ label: "Contact", href: "/#contact", section: "contact" },
 ] as const;
 
-/** Indexable routes, in sitemap order. Projects and Blog join once they have content. */
-export const PAGE_PATHS = [
-	PATHS.home,
-	PATHS.work,
-	PATHS.education,
-	PATHS.stack,
-	PATHS.archive,
-] as const;
+/** Indexable routes, in sitemap order. */
+export const PAGE_PATHS = [PATHS.home, PATHS.archive] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:
