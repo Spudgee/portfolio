@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HighlightLink } from "@/components/highlight-link";
+import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
 import { NAV_LINKS, PATHS } from "@/content/site";
 
@@ -84,6 +85,9 @@ export function SiteHeader() {
 						</li>
 					))}
 				</ul>
+				<div className="mx-4 pt-4 text-muted">
+					<ThemeSwitch />
+				</div>
 			</nav>
 		</header>
 	);

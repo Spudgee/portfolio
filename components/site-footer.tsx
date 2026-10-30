@@ -1,12 +1,13 @@
 import { HighlightLink } from "@/components/highlight-link";
+import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
 
 /** Read once at module load, keeping render pure. Pages prerender, so it rolls over on the next deploy. */
 const COPYRIGHT_YEAR = new Date().getFullYear();
 
 /**
- * One ruled line: the social links first in ink, then copyright and Back to top in grey. It wraps
- * on phones. The header's Contact link jumps here.
+ * One ruled line: the social links first in ink, then the theme switch, copyright and Back to top
+ * in grey. It wraps on phones. The header's Contact link jumps here.
  */
 export function SiteFooter() {
 	return (
@@ -19,7 +20,8 @@ export function SiteFooter() {
 						</li>
 					))}
 				</ul>
-				<div className="flex items-center gap-5 text-muted">
+				<div className="flex flex-wrap items-center gap-x-5 text-muted">
+					<ThemeSwitch />
 					<p>
 						© {COPYRIGHT_YEAR} {PERSON.name}
 					</p>
