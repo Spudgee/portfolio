@@ -13,25 +13,13 @@ export const PATHS = {
 
 /**
  * The home page's sections, top to bottom: each is one screen of the carousel and one nav item.
- * About opens the page with the longer statement; the others say what their rows cannot.
+ * Only About carries a statement, the one summary at the top; the rest are a label and their rows.
  */
 export const SECTIONS = [
 	{ id: "about", label: "About", statement: PERSON.bio },
-	{
-		id: "work",
-		label: "Work",
-		statement: "Building products for patients and clinicians.",
-	},
-	{
-		id: "education",
-		label: "Education",
-		statement: "Completed alongside two founding roles.",
-	},
-	{
-		id: "contact",
-		label: "Contact",
-		statement: "Always happy to talk product, design and engineering.",
-	},
+	{ id: "work", label: "Work" },
+	{ id: "education", label: "Education" },
+	{ id: "contact", label: "Contact" },
 ] as const;
 
 export type Section = (typeof SECTIONS)[number];
