@@ -7,7 +7,9 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = {
 	home: "/",
+	work: "/work",
 	archive: "/archive",
+	contact: "/contact",
 } as const;
 
 /**

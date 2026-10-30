@@ -1,14 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	/** Old pages now live as sections of the home page; their links land on the right section. */
+	/** Old pages folded into Work; Blog returns once there is writing. */
 	async redirects() {
 		return [
 			{ source: "/about", destination: "/", permanent: true },
-			{ source: "/education", destination: "/#home", permanent: true },
-			{ source: "/stack", destination: "/#home", permanent: true },
-			{ source: "/work", destination: "/#work", permanent: true },
-			{ source: "/projects", destination: "/#work", permanent: true },
+			{ source: "/education", destination: "/work", permanent: true },
+			{ source: "/stack", destination: "/work", permanent: true },
+			{ source: "/projects", destination: "/work", permanent: true },
 			{ source: "/blog", destination: "/", permanent: false },
 		];
 	},
