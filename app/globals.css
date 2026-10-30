@@ -43,4 +43,11 @@
 	::selection {
 		@apply bg-ink text-paper;
 	}
+
+	/* The phone menu covers the screen, so the page behind it stops scrolling while it is open. */
+	@media (width < 40rem) {
+		body:has(#mobile-menu[data-open]) {
+			overflow: hidden;
+		}
+	}
 }
