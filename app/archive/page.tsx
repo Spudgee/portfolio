@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PillLink } from "@/components/pill-link";
 import { ARCHIVE_CHANNEL } from "@/content/archive";
 import { PERSON } from "@/content/person";
 import { PATHS } from "@/content/site";
@@ -13,10 +14,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Columns fill top to bottom, so the first screen shows the top of every column, not the first
- * few images; loading the first nine eagerly covers three columns of three.
+ * Columns fill top to bottom, so the first screen shows the top of both columns, not the first few
+ * images; loading the first six eagerly covers two columns of three.
  */
-const ABOVE_FOLD_COUNT = 9;
+const ABOVE_FOLD_COUNT = 6;
 
 /** Are.na down or slow should cost the Archive its pictures, never the whole site its build. */
 async function loadImages(): Promise<readonly ArchiveImage[] | null> {
@@ -28,33 +29,24 @@ async function loadImages(): Promise<readonly ArchiveImage[] | null> {
 }
 
 /**
- * Images worth keeping, pulled from an Are.na channel: a grey label, a pill out to the channel,
- * then a masonry grid where each picture opens the site it came from.
+ * Images worth keeping, pulled from an Are.na channel: a grey label with a link out to the channel
+ * on the same line, then a two-column masonry grid in the pane where each picture opens its site.
  */
 export default async function ArchivePage() {
 	const images = await loadImages();
 
 	return (
-		<section
-			aria-labelledby="archive-heading"
-			className="mx-auto w-full max-w-[72rem] pt-24 pb-16"
-		>
+		<section aria-labelledby="archive-heading">
 			<div className="flex items-center justify-between gap-4">
 				<h1 id="archive-heading" className="text-muted">
 					Archive
 				</h1>
-				<a
-					href={ARCHIVE_CHANNEL.url}
-					className="inline-flex min-h-11 items-center"
-				>
-					<span className="rounded-full bg-pill-soft px-4 py-1.5 transition-colors duration-150 ease-out hover:bg-pill motion-reduce:transition-none">
-						View on Are.na
-					</span>
-				</a>
+				{/* PillLink pads outwards, so the text lines up with the column's right edge. */}
+				<PillLink href={ARCHIVE_CHANNEL.url}>View on Are.na</PillLink>
 			</div>
 
 			{images === null || images.length === 0 ? (
-				<p className="mt-8 text-muted">
+				<p className="mt-4 text-muted">
 					{images === null
 						? "The archive could not load from Are.na just now."
 						: "Nothing in the archive yet."}{" "}
@@ -64,7 +56,7 @@ export default async function ArchivePage() {
 					.
 				</p>
 			) : (
-				<ul className="mt-8 columns-2 gap-4 md:columns-3">
+				<ul className="mt-4 columns-2 gap-4">
 					{images.map((image, index) => (
 						<li key={image.id} className="mb-4 break-inside-avoid">
 							<a href={image.href} className="group grid gap-2">

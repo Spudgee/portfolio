@@ -61,12 +61,6 @@
 }
 
 @layer base {
-	/* The page is a vertical carousel: each section fills the screen and a scroll snaps to the next.
-	   The bar floats over the top of each section, whose content sits in the middle clear of it. */
-	html {
-		scroll-snap-type: y mandatory;
-	}
-
 	@media (prefers-reduced-motion: no-preference) {
 		html {
 			scroll-behavior: smooth;
@@ -79,10 +73,5 @@
 
 	::selection {
 		@apply bg-ink text-paper;
-	}
-
-	/* The phone menu covers the screen, so the page behind it stops scrolling while it is open. */
-	body:has(#mobile-menu[open]) {
-		overflow: hidden;
 	}
 }

@@ -41,8 +41,11 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<SiteNav />
-				<main className="px-4 md:px-8">{children}</main>
+				{/* One centred pane on every page; it starts at the same height so the pills never jump. */}
+				<div className="mx-auto w-full max-w-[40rem] px-4 pt-[12vh] pb-24">
+					<SiteNav />
+					<main className="mt-14">{children}</main>
+				</div>
 			</body>
 		</html>
 	);
