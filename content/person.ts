@@ -25,7 +25,11 @@ export const PERSON = {
 		"Tailwind CSS",
 	],
 	socialLinks: [
-		{ label: "GitHub", href: "https://github.com/Spudgee" },
-		{ label: "LinkedIn", href: "https://www.linkedin.com/in/cooper-agustin/" },
+		{ label: "GitHub", brand: "github", href: "https://github.com/Spudgee" },
+		{
+			label: "LinkedIn",
+			brand: "linkedin",
+			href: "https://www.linkedin.com/in/cooper-agustin/",
+		},
 	],
 } as const;
