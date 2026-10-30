@@ -9,6 +9,8 @@ export const PATHS = {
 	home: "/",
 	work: "/work",
 	education: "/education",
+	projects: "/projects",
+	blog: "/blog",
 	stack: "/stack",
 	archive: "/archive",
 } as const;
@@ -18,11 +20,13 @@ export const NAV_PAGES = [
 	{ label: "About", path: PATHS.home },
 	{ label: "Work", path: PATHS.work },
 	{ label: "Education", path: PATHS.education },
+	{ label: "Projects", path: PATHS.projects },
+	{ label: "Blog", path: PATHS.blog },
 	{ label: "Stack", path: PATHS.stack },
 	{ label: "Archive", path: PATHS.archive },
 ] as const;
 
-/** Indexable routes, in sitemap order. */
+/** Indexable routes, in sitemap order. Projects and Blog join once they have content. */
 export const PAGE_PATHS = [
 	PATHS.home,
 	PATHS.work,
