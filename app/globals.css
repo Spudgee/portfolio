@@ -70,7 +70,7 @@
 	}
 
 	/* While the full-screen phone menu is open the page behind stops scrolling. */
-	@media (width < 48rem) {
+	@media (width < 64rem) {
 		body:has(#mobile-menu[data-open]) {
 			overflow: hidden;
 		}
