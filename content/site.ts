@@ -12,19 +12,21 @@ export const PATHS = {
 	contact: "/contact",
 } as const;
 
-/**
- * The nav, in order. Home, Work and Contact are sections of the home page (`section` is the id the
- * nav fills while it is on screen); Archive is its own page.
- */
-export const NAV_ITEMS = [
-	{ label: "Home", href: "/#home", section: "home" },
-	{ label: "Work", href: "/#work", section: "work" },
-	{ label: "Archive", href: PATHS.archive, section: null },
-	{ label: "Contact", href: "/#contact", section: "contact" },
+/** The nav, in order: four pages. */
+export const NAV_PAGES = [
+	{ label: "Home", path: PATHS.home },
+	{ label: "Work", path: PATHS.work },
+	{ label: "Archive", path: PATHS.archive },
+	{ label: "Contact", path: PATHS.contact },
 ] as const;
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home, PATHS.archive] as const;
+export const PAGE_PATHS = [
+	PATHS.home,
+	PATHS.work,
+	PATHS.archive,
+	PATHS.contact,
+] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:

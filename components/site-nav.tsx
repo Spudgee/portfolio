@@ -1,41 +1,24 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import { HighlightLink } from "@/components/highlight-link";
 import { PillLink } from "@/components/pill-link";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
-import { NAV_ITEMS, PATHS } from "@/content/site";
-import { activeSectionStore } from "@/lib/active-section";
+import { NAV_PAGES, PATHS } from "@/content/site";
 
 /**
  * The bar across the top of every page: the name on the left. From md up, Home, Work, Archive and
- * Contact sit on the right as soft pills beside the theme button; a section's pill fills while that
- * section is on screen, Archive's while its page is open. On phones two short lines open a
- * full-screen panel downwards with the same items at the name's size, each pill starting where the
- * name starts; at the foot, within thumb reach, a round theme button on the left and a round × on
- * the right. The page behind stops scrolling (globals.css). Reading the route, the section on
- * screen and the open state is why this is a client component.
+ * Contact sit on the right as soft pills (the open page darker) beside the theme button. On phones
+ * two short lines open a full-screen panel downwards with the same pages at the name's size, each
+ * pill starting where the name starts; at the foot, within thumb reach, a round theme button on the
+ * left and a round × on the right. The page behind stops scrolling (globals.css). Reading the route
+ * and the open state is why this is a client component.
  */
 export function SiteNav() {
 	const pathname = usePathname();
-	const activeSection = useSyncExternalStore(
-		activeSectionStore.subscribe,
-		activeSectionStore.readActiveSection,
-		activeSectionStore.readServerActiveSection,
-	);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	/** A section item fills while its section is on screen; the Archive item while its page is open. */
-	function currentState(item: (typeof NAV_ITEMS)[number]) {
-		if (item.section === null) {
-			return pathname === item.href ? "page" : undefined;
-		}
-		return pathname === PATHS.home && activeSection === item.section
-			? "location"
-			: undefined;
-	}
 
 	function handleMenuToggle() {
 		setIsMenuOpen((wasOpen) => !wasOpen);
@@ -57,10 +40,13 @@ export function SiteNav() {
 				<div className="hidden items-center gap-6 md:flex">
 					<nav aria-label="Main">
 						<ul className="flex gap-8 text-lead">
-							{NAV_ITEMS.map((item) => (
-								<li key={item.href}>
-									<PillLink href={item.href} aria-current={currentState(item)}>
-										{item.label}
+							{NAV_PAGES.map((page) => (
+								<li key={page.path}>
+									<PillLink
+										href={page.path}
+										aria-current={pathname === page.path ? "page" : undefined}
+									>
+										{page.label}
 									</PillLink>
 								</li>
 							))}
@@ -98,14 +84,14 @@ export function SiteNav() {
 				<div className="flex h-full flex-col justify-between">
 					{/* PillLink pads 12px outwards, so pl-7 starts each pill where the name starts (16px). */}
 					<ul className="grid pt-1 pr-4 pl-7 text-lead">
-						{NAV_ITEMS.map((item) => (
-							<li key={item.href}>
+						{NAV_PAGES.map((page) => (
+							<li key={page.path}>
 								<PillLink
-									href={item.href}
-									aria-current={currentState(item)}
+									href={page.path}
+									aria-current={pathname === page.path ? "page" : undefined}
 									onClick={handleMenuClose}
 								>
-									{item.label}
+									{page.label}
 								</PillLink>
 							</li>
 						))}
