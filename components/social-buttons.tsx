@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { BrandIcon } from "@/components/brand-icon";
-import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
 
 /**
- * GitHub and LinkedIn as grey icon buttons that turn ink on hover, optionally followed by the theme
- * button. The 44px buttons pull left by their inner margin so the first icon lines up with text.
+ * GitHub and LinkedIn as grey icon buttons that turn ink on hover. The 44px buttons pull left by
+ * their inner margin so the first icon lines up with the text above.
  */
-export function SocialButtons({ hasThemeSwitch }: { hasThemeSwitch: boolean }) {
+export function SocialButtons() {
 	return (
 		<div className="-ml-[13px] flex items-center">
 			{PERSON.socialLinks.map((link) => (
@@ -21,7 +20,6 @@ export function SocialButtons({ hasThemeSwitch }: { hasThemeSwitch: boolean }) {
 					<BrandIcon brand={link.brand} />
 				</Link>
 			))}
-			{hasThemeSwitch && <ThemeSwitch />}
 		</div>
 	);
 }

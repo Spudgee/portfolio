@@ -41,11 +41,9 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				{/* One centred pane on every page; it starts at the same height so the pills never jump. */}
-				<div className="mx-auto w-full max-w-[40rem] px-4 pt-[12vh] pb-24">
-					<SiteNav />
-					<main className="mt-14">{children}</main>
-				</div>
+				<SiteNav />
+				{/* Pages centre their own column: About reads narrow, Archive's grid runs wider. */}
+				<main className="px-4 pt-[8vh] pb-24">{children}</main>
 			</body>
 		</html>
 	);

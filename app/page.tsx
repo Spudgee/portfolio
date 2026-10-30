@@ -33,6 +33,7 @@ const EDUCATION_ROWS: readonly Row[] = [
 		aside: yearSpan(EDUCATION.start, EDUCATION.end),
 		href: EDUCATION.institutionUrl,
 	},
+	{ key: "major", primary: "Major", secondary: EDUCATION.major },
 	{ key: "gpa", primary: "GPA", aside: EDUCATION.gpa },
 	{ key: "wam", primary: "WAM", aside: EDUCATION.wam },
 ];
@@ -44,12 +45,12 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 }));
 
 /**
- * About: the summary statement, then Work, Education, Stack and Contact as labelled groups of the
- * same rows, all in the centred pane under the name and the About and Archive pills.
+ * About: the summary statement with the GitHub and LinkedIn buttons right under it, then Work,
+ * Education and Stack as labelled groups of the same rows, in the centred pane under the bar.
  */
 export default function HomePage() {
 	return (
-		<>
+		<div className="mx-auto max-w-[40rem]">
 			<JsonLd graph={homeGraph()} />
 			<h1 className="sr-only">
 				{PERSON.name}, {PERSON.headline}
@@ -58,6 +59,9 @@ export default function HomePage() {
 			<p className="text-row font-medium text-pretty md:text-lead">
 				{PERSON.bio}
 			</p>
+			<div className="mt-6">
+				<SocialButtons />
+			</div>
 
 			<div className="mt-12 grid gap-10">
 				<ContentGroup id="work" label="Work">
@@ -69,10 +73,7 @@ export default function HomePage() {
 				<ContentGroup id="stack" label="Stack">
 					<RowList rows={STACK_ROWS} />
 				</ContentGroup>
-				<ContentGroup id="contact" label="Contact">
-					<SocialButtons hasThemeSwitch={false} />
-				</ContentGroup>
 			</div>
-		</>
+		</div>
 	);
 }

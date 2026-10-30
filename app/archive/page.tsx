@@ -14,10 +14,10 @@ export const metadata: Metadata = pageMetadata({
 });
 
 /**
- * Columns fill top to bottom, so the first screen shows the top of both columns, not the first few
- * images; loading the first six eagerly covers two columns of three.
+ * Columns fill top to bottom, so the first screen shows the top of every column, not the first few
+ * images; loading the first eight eagerly covers four columns of two.
  */
-const ABOVE_FOLD_COUNT = 6;
+const ABOVE_FOLD_COUNT = 8;
 
 /** Are.na down or slow should cost the Archive its pictures, never the whole site its build. */
 async function loadImages(): Promise<readonly ArchiveImage[] | null> {
@@ -30,13 +30,16 @@ async function loadImages(): Promise<readonly ArchiveImage[] | null> {
 
 /**
  * Images worth keeping, pulled from an Are.na channel: a grey label with a link out to the channel
- * on the same line, then a two-column masonry grid in the pane where each picture opens its site.
+ * on the same line, then a masonry grid, four across on desktop and two on phones, where each picture opens its site.
  */
 export default async function ArchivePage() {
 	const images = await loadImages();
 
 	return (
-		<section aria-labelledby="archive-heading">
+		<section
+			aria-labelledby="archive-heading"
+			className="mx-auto max-w-[72rem]"
+		>
 			<div className="flex items-center justify-between gap-4">
 				<h1 id="archive-heading" className="text-muted">
 					Archive
@@ -56,7 +59,7 @@ export default async function ArchivePage() {
 					.
 				</p>
 			) : (
-				<ul className="mt-4 columns-2 gap-4">
+				<ul className="mt-4 columns-2 gap-4 md:columns-4">
 					{images.map((image, index) => (
 						<li key={image.id} className="mb-4 break-inside-avoid">
 							<a href={image.href} className="group grid gap-2">
