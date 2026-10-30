@@ -4,9 +4,9 @@ import { loadGoogleFont } from "@/lib/load-google-font";
 import { OG_IMAGE_ALT, OG_IMAGE_SIZE } from "@/lib/page-metadata";
 
 /** Hex copies of the light tokens in app/globals.css; the image renderer reads no CSS variables. */
-const PAPER = "#f5f7f9";
-const INK = "#181b1e";
-const MUTED = "#65696f";
+const PAPER = "#ffffff";
+const INK = "#171717";
+const MUTED = "#737373";
 const FONT_FAMILY = "Inter";
 
 export const alt = OG_IMAGE_ALT;

@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
-/* Monochrome tokens: paper, ink, muted. Light by default; dark follows the OS. Grays carry a faint cool tint. */
+/* Monochrome tokens: paper, ink, muted, all pure neutral. White paper by default; dark mode follows the OS. */
 :root {
 	color-scheme: light dark;
-	--paper: oklch(0.975 0.003 250);
-	--ink: oklch(0.22 0.008 250);
-	--muted: oklch(0.52 0.01 250);
+	--paper: oklch(1 0 0);
+	--ink: oklch(0.205 0 0);
+	--muted: oklch(0.556 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--paper: oklch(0.17 0.005 250);
-		--ink: oklch(0.94 0.004 250);
-		--muted: oklch(0.62 0.008 250);
+		--paper: oklch(0.205 0 0);
+		--ink: oklch(0.97 0 0);
+		--muted: oklch(0.708 0 0);
 	}
 }
 
 /* The footer turns the palette over: paper text on an ink ground, in both themes. */
 [data-tone="inverse"] {
-	--paper: oklch(0.22 0.008 250);
-	--ink: oklch(0.975 0.003 250);
-	--muted: oklch(0.7 0.008 250);
+	--paper: oklch(0.205 0 0);
+	--ink: oklch(1 0 0);
+	--muted: oklch(0.708 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
 	[data-tone="inverse"] {
-		--paper: oklch(0.94 0.004 250);
-		--ink: oklch(0.17 0.005 250);
-		--muted: oklch(0.45 0.008 250);
+		--paper: oklch(0.97 0 0);
+		--ink: oklch(0.205 0 0);
+		--muted: oklch(0.5 0 0);
 	}
 }
 
