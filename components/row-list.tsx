@@ -12,21 +12,22 @@ export type Row = {
 };
 
 const ROW_CLASS =
-	"group flex min-h-11 items-center justify-between gap-4 md:min-h-[2.375rem]";
+	"group flex min-h-11 items-start justify-between gap-4 py-1.5 md:min-h-[2.375rem] md:items-center md:py-0";
 
 /**
- * The one row style for every list on the site, after Brian Lovin's work list: 38px rows (44px on
- * phones, for thumbs), the primary in medium ink with the secondary in grey beside it, and the aside
- * in grey on the right, in Inter like everything else. A linked row is a link across its whole width.
+ * The one row style for every list on the site, after Brian Lovin's work list: the primary in medium
+ * ink with the secondary in grey beside it, and the aside in grey on the right. On phones the
+ * secondary drops under the primary and the aside sits on the first line, so nothing wraps mid-row;
+ * from md up it is one 38px line at the row size. A linked row is a link across its whole width.
  */
 export function RowList({ rows }: { rows: readonly Row[] }) {
 	return (
-		<ul className="text-row">
+		<ul className="text-body md:text-row">
 			{rows.map((row) => {
 				const content = (
 					<>
-						<span className="flex min-w-0 flex-wrap items-baseline gap-x-2">
-							<span className="-mx-1 px-1 font-medium transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none">
+						<span className="flex min-w-0 flex-col md:flex-row md:items-baseline md:gap-x-2">
+							<span className="-mx-1 self-start px-1 font-medium transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none">
 								{row.primary}
 							</span>
 							{row.secondary && (

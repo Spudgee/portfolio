@@ -36,7 +36,7 @@ export function SiteNav() {
 
 	return (
 		<header className="fixed inset-x-0 top-0 z-10 bg-paper">
-			<div className="flex h-14 items-center justify-between gap-4 px-4 text-lead md:h-16 md:px-8">
+			<div className="flex h-14 items-center justify-between gap-4 px-4 text-row md:h-16 md:px-8 md:text-lead">
 				<HighlightLink href="/#about">{PERSON.name}</HighlightLink>
 
 				<div className="hidden items-center gap-6 md:flex">
@@ -79,7 +79,7 @@ export function SiteNav() {
 				className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none translate-x-full bg-paper text-ink transition-[translate,display,overlay] transition-discrete duration-300 ease-out backdrop:bg-transparent open:translate-x-0 motion-reduce:transition-none starting:open:translate-x-full md:hidden"
 			>
 				<div className="flex h-full flex-col px-4">
-					<div className="flex h-14 shrink-0 items-center justify-between text-lead">
+					<div className="flex h-14 shrink-0 items-center justify-between text-row">
 						<HighlightLink href="/#about" onClick={handleMenuClose}>
 							{PERSON.name}
 						</HighlightLink>

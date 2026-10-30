@@ -2,9 +2,9 @@ import type { Section } from "@/content/site";
 
 /**
  * One screen of the home page's vertical carousel, laid out like a section of Brian Lovin's about
- * page: a small grey label, the summary statement at lead size where the section has one (only the
- * first does), then its rows or buttons, in a 40rem column centred on the screen both ways. The
- * fixed bar floats over the top padding.
+ * page: a small grey label, the summary statement where the section has one (only the first does;
+ * row size on phones, lead size from md), then its rows or buttons, in a 40rem column centred on
+ * the screen both ways. The fixed bar floats over the top padding.
  */
 export function SnapSection({
 	section,
@@ -24,7 +24,7 @@ export function SnapSection({
 					{section.label}
 				</h2>
 				{"statement" in section && (
-					<p className="mt-4 text-lead font-medium text-pretty">
+					<p className="mt-4 text-row font-medium text-pretty md:text-lead">
 						{section.statement}
 					</p>
 				)}
