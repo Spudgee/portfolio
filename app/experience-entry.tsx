@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Role } from "@/content/experience";
 import { roleYears } from "@/lib/role-years";
 
 /**
- * One line per role, after Brian Lovin's work list: the app icon, the company in ink, the title in
- * grey and the years on the right. The whole row links to the company's site; hover fills the name.
+ * One line per role, after Brian Lovin's work list: the company in ink, the title in grey and the
+ * years on the right. The whole row links to the company's site; hover fills the name.
  */
 export function ExperienceEntry({ role }: { role: Role }) {
 	return (
@@ -14,13 +13,6 @@ export function ExperienceEntry({ role }: { role: Role }) {
 				href={role.companyUrl}
 				className="group flex min-h-11 items-center gap-3 focus-visible:outline-hidden"
 			>
-				<Image
-					src={role.iconPath}
-					alt=""
-					width={18}
-					height={18}
-					className="size-[18px] shrink-0 rounded-[4px] ring-1 ring-muted/30"
-				/>
 				<span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2">
 					<span className="-mx-1 px-1 transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none">
 						{role.company}
