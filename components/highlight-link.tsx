@@ -2,36 +2,20 @@ import Link from "next/link";
 
 /**
  * Navigation link that turns into a solid ink block on hover, keyboard focus and the current page,
- * as on F451. `bare` keeps a 44px tall hit area but fills only a tight block around the text;
- * `row` fills its whole full-width row, as in the phone menu.
+ * as on F451. The hit area stays 44px tall while the block hugs the text.
  * @see components/inline-link.tsx for links inside running text
  */
 export function HighlightLink({
 	href,
-	look,
 	children,
 	"aria-current": ariaCurrent,
 	onClick,
 }: {
 	href: string;
-	look: "bare" | "row";
 	children: React.ReactNode;
 	"aria-current"?: "page";
 	onClick?: () => void;
 }) {
-	if (look === "row") {
-		return (
-			<Link
-				href={href}
-				aria-current={ariaCurrent}
-				onClick={onClick}
-				className="flex min-h-11 w-full items-center px-2 transition-colors duration-150 ease-out hover:bg-ink hover:text-paper focus-visible:bg-ink focus-visible:text-paper focus-visible:outline-hidden motion-reduce:transition-none aria-[current=page]:bg-ink aria-[current=page]:text-paper"
-			>
-				{children}
-			</Link>
-		);
-	}
-
 	return (
 		<Link
 			href={href}

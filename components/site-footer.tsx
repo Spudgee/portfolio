@@ -17,17 +17,13 @@ export function SiteFooter() {
 		>
 			<div className="flex items-center justify-between gap-4 text-chrome uppercase">
 				<p className="text-muted">Contact</p>
-				<HighlightLink href="#" look="bare">
-					Back to top
-				</HighlightLink>
+				<HighlightLink href="#">Back to top</HighlightLink>
 			</div>
 
 			<ul className="grid justify-items-start text-statement">
 				{PERSON.socialLinks.map((link) => (
 					<li key={link.href}>
-						<HighlightLink href={link.href} look="bare">
-							{link.label} ↗
-						</HighlightLink>
+						<HighlightLink href={link.href}>{link.label} ↗</HighlightLink>
 					</li>
 				))}
 			</ul>

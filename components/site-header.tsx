@@ -7,11 +7,11 @@ import { PERSON } from "@/content/person";
 import { NAV_LINKS, PATHS } from "@/content/site";
 
 /**
- * Top bar: the name in ink on the left, the sections in grey on the right, at the intro's size on
- * wider screens and with no rule beneath. On phones the
- * sections fold behind a three-line button and open downwards as full-width rows, pushing the page
- * down rather than covering it, so it is a disclosure, not a dialog: the button or a link closes it. The page you are on is filled; reading the route and the open
- * state is why this is a client component.
+ * Top bar at the intro's size: the name in ink on the left, the sections in grey on the right, no
+ * rule beneath. On phones the sections fold behind a three-line button and open downwards as one
+ * grey row, pushing the page down rather than covering it, so it is a disclosure, not a dialog: the
+ * button or a link closes it. The page you are on is filled; reading the route and the open state is
+ * why this is a client component.
  */
 export function SiteHeader() {
 	const pathname = usePathname();
@@ -23,10 +23,9 @@ export function SiteHeader() {
 
 	return (
 		<header className="sticky top-0 z-10 bg-paper">
-			<div className="flex min-h-12 items-center justify-between gap-4 px-2 sm:min-h-16 sm:px-6 sm:text-lead">
+			<div className="flex min-h-14 items-center justify-between gap-4 px-2 text-lead sm:min-h-16 sm:px-6">
 				<HighlightLink
 					href={PATHS.home}
-					look="bare"
 					aria-current={pathname === PATHS.home ? "page" : undefined}
 				>
 					{PERSON.name}
@@ -38,7 +37,6 @@ export function SiteHeader() {
 							<li key={link.href}>
 								<HighlightLink
 									href={link.href}
-									look="bare"
 									aria-current={pathname === link.href ? "page" : undefined}
 								>
 									{link.label}
@@ -75,12 +73,11 @@ export function SiteHeader() {
 				inert={!isMenuOpen}
 				className={`grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none sm:hidden ${isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
 			>
-				<ul className="overflow-hidden">
+				<ul className="flex flex-wrap gap-x-4 overflow-hidden px-2 text-lead text-muted">
 					{NAV_LINKS.map((link) => (
-						<li key={link.href} className="border-t border-ink">
+						<li key={link.href}>
 							<HighlightLink
 								href={link.href}
-								look="row"
 								aria-current={pathname === link.href ? "page" : undefined}
 								onClick={() => setIsMenuOpen(false)}
 							>
