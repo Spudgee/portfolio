@@ -39,7 +39,7 @@ function currentEmployers() {
 	return [...employers.values()];
 }
 
-/** Home graph: the site, the profile page, and the person it is about. */
+/** The one page's graph: the site, the profile page, and the person with their work, study, skills and profiles. */
 export function homeGraph(): JsonLdGraph {
 	return {
 		"@context": "https://schema.org",
@@ -66,61 +66,6 @@ export function homeGraph(): JsonLdGraph {
 				givenName: PERSON.givenName,
 				familyName: PERSON.familyName,
 				url: HOME_URL,
-				jobTitle: PERSON.jobTitle,
-				worksFor: currentEmployers(),
-				knowsAbout: PERSON.stack,
-				sameAs: PERSON.socialLinks.map((link) => link.href),
-			},
-		],
-	};
-}
-
-/** Education graph: the page, and the university the person studied at. */
-export function educationGraph(): JsonLdGraph {
-	const url = siteUrl(PATHS.education);
-	return {
-		"@context": "https://schema.org",
-		"@graph": [
-			{
-				"@type": "WebPage",
-				"@id": `${url}#webpage`,
-				url,
-				isPartOf: { "@id": WEBSITE_ID },
-				about: { "@id": PERSON_ID },
-				inLanguage: LOCALE,
-			},
-			{
-				"@type": "Person",
-				"@id": PERSON_ID,
-				name: PERSON.name,
-				alumniOf: {
-					"@type": "CollegeOrUniversity",
-					name: EDUCATION.institution,
-					url: EDUCATION.institutionUrl,
-				},
-			},
-		],
-	};
-}
-
-/** About graph: the page, and the person with their work, study, skills and profiles. */
-export function aboutGraph(): JsonLdGraph {
-	const url = siteUrl(PATHS.about);
-	return {
-		"@context": "https://schema.org",
-		"@graph": [
-			{
-				"@type": "AboutPage",
-				"@id": `${url}#webpage`,
-				url,
-				isPartOf: { "@id": WEBSITE_ID },
-				mainEntity: { "@id": PERSON_ID },
-				inLanguage: LOCALE,
-			},
-			{
-				"@type": "Person",
-				"@id": PERSON_ID,
-				name: PERSON.name,
 				description: PERSON.bio,
 				jobTitle: PERSON.jobTitle,
 				worksFor: currentEmployers(),

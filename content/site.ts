@@ -7,8 +7,6 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = {
 	home: "/",
-	education: "/education",
-	about: "/about",
 } as const;
 
 /** The home page's sections, top to bottom: each is one screen of the carousel and one nav item. */
@@ -20,7 +18,7 @@ export const SECTIONS = [
 ] as const;
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home, PATHS.education, PATHS.about] as const;
+export const PAGE_PATHS = [PATHS.home] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:
