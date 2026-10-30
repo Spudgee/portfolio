@@ -7,7 +7,8 @@ import { PERSON } from "@/content/person";
 import { NAV_LINKS, PATHS } from "@/content/site";
 
 /**
- * Top bar: the name on the left and the sections on the right, a hairline beneath. On phones the
+ * Top bar: the name in ink on the left, the sections in grey on the right, at the intro's size on
+ * wider screens and with no rule beneath. On phones the
  * sections fold behind a three-line button and open downwards as full-width rows, pushing the page
  * down rather than covering it, so it is a disclosure, not a dialog: the button or a link closes it. The page you are on is filled; reading the route and the open
  * state is why this is a client component.
@@ -21,8 +22,8 @@ export function SiteHeader() {
 	}
 
 	return (
-		<header className="sticky top-0 z-10 border-b border-ink bg-paper">
-			<div className="flex min-h-12 items-center justify-between gap-4 px-2 sm:px-6">
+		<header className="sticky top-0 z-10 bg-paper">
+			<div className="flex min-h-12 items-center justify-between gap-4 px-2 sm:min-h-16 sm:px-6 sm:text-lead">
 				<HighlightLink
 					href={PATHS.home}
 					look="bare"
@@ -32,7 +33,7 @@ export function SiteHeader() {
 				</HighlightLink>
 
 				<nav aria-label="Primary" className="hidden sm:block">
-					<ul className="flex gap-7">
+					<ul className="flex gap-6 text-muted">
 						{NAV_LINKS.map((link) => (
 							<li key={link.href}>
 								<HighlightLink
