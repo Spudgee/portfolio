@@ -9,6 +9,7 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = {
 	home: "/",
+	archive: "/archive",
 } as const;
 
 /**
@@ -25,7 +26,7 @@ export const SECTIONS = [
 export type Section = (typeof SECTIONS)[number];
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home] as const;
+export const PAGE_PATHS = [PATHS.home, PATHS.archive] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:
