@@ -6,7 +6,7 @@ import { PERSON } from "@/content/person";
 const COPYRIGHT_YEAR = new Date().getFullYear();
 
 /**
- * One ruled line: the social links first in ink, then the theme switch, copyright and Back to top
+ * One ruled line: the social links first in ink, then the theme switch and copyright
  * in grey. It wraps on phones. The header's Contact link jumps here.
  */
 export function SiteFooter() {
@@ -25,7 +25,6 @@ export function SiteFooter() {
 					<p>
 						© {COPYRIGHT_YEAR} {PERSON.name}
 					</p>
-					<HighlightLink href="#">Back to top</HighlightLink>
 				</div>
 			</div>
 		</footer>
