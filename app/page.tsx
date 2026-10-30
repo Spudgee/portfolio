@@ -20,9 +20,13 @@ export default function HomePage() {
 			<h1 className="sr-only">
 				{PERSON.name}, {PERSON.headline}
 			</h1>
-			<p className="text-row font-medium text-pretty md:text-lead">
-				{PERSON.bio}
-			</p>
+			<div className="grid gap-4 text-row font-medium md:text-lead">
+				{PERSON.statement.map((paragraph) => (
+					<p key={paragraph} className="text-pretty">
+						{paragraph}
+					</p>
+				))}
+			</div>
 			<div className="mt-6">
 				<SocialButtons />
 			</div>
