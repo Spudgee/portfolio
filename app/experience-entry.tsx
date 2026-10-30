@@ -1,32 +1,36 @@
-import { InlineLink } from "@/components/inline-link";
+import Image from "next/image";
+import Link from "next/link";
 import type { Role } from "@/content/experience";
-import { monthLabel } from "@/lib/month-label";
+import { roleYears } from "@/lib/role-years";
 
-/** One ruled row: dates, company, title and site across the grid, the summary beneath. */
+/**
+ * One line per role, after Brian Lovin's work list: the app icon, the company in ink, the title in
+ * grey and the years on the right. The whole row links to the company's site; hover fills the name.
+ */
 export function ExperienceEntry({ role }: { role: Role }) {
 	return (
-		<li className="grid grid-cols-4 gap-x-4 border-t border-ink py-2 sm:grid-cols-12 sm:gap-x-6">
-			<p className="col-span-full text-muted tabular-nums sm:col-span-3">
-				<time dateTime={role.start}>{monthLabel(role.start)}</time>
-				{" – "}
-				{role.end === null ? (
-					"Present"
-				) : (
-					<time dateTime={role.end}>{monthLabel(role.end)}</time>
-				)}
-			</p>
-			<h3 className="col-span-full font-medium sm:col-span-3">
-				{role.company}
-			</h3>
-			<p className="col-span-full sm:col-span-3">{role.title}</p>
-			<p className="col-span-full sm:col-span-3">
-				<InlineLink href={role.companyUrl}>
-					{new URL(role.companyUrl).hostname}
-				</InlineLink>
-			</p>
-			<p className="col-span-full mt-1 max-w-prose text-pretty sm:col-span-6 sm:col-start-4">
-				{role.summary}
-			</p>
+		<li>
+			<Link
+				href={role.companyUrl}
+				className="group flex min-h-11 items-center gap-3 focus-visible:outline-hidden"
+			>
+				<Image
+					src={role.iconPath}
+					alt=""
+					width={18}
+					height={18}
+					className="size-[18px] shrink-0 rounded-[4px] ring-1 ring-muted/30"
+				/>
+				<span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2">
+					<span className="-mx-1 px-1 transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none">
+						{role.company}
+					</span>
+					<span className="text-muted">{role.title}</span>
+				</span>
+				<span className="shrink-0 text-muted tabular-nums">
+					{roleYears(role)}
+				</span>
+			</Link>
 		</li>
 	);
 }

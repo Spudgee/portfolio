@@ -7,7 +7,6 @@ export type Role = {
 	title: string;
 	start: string;
 	end: string | null;
-	summary: string;
 };
 
 export const EXPERIENCE: readonly Role[] = [
@@ -18,8 +17,6 @@ export const EXPERIENCE: readonly Role[] = [
 		title: "Founding Engineer",
 		start: "2024-06",
 		end: null,
-		summary:
-			"24/7 telehealth across Australia: general consults, medical certificates, prescriptions and specialist referrals with AHPRA-registered doctors.",
 	},
 	{
 		company: "Medlo",
@@ -28,8 +25,6 @@ export const EXPERIENCE: readonly Role[] = [
 		title: "Founding Engineer",
 		start: "2024-06",
 		end: null,
-		summary:
-			"A marketplace connecting doctors with locum shifts, and Medlo Evidence, a medical research tool for doctors.",
 	},
 	{
 		company: "Medlo",
@@ -38,6 +33,5 @@ export const EXPERIENCE: readonly Role[] = [
 		title: "Software Engineer Intern",
 		start: "2024-02",
 		end: "2024-06",
-		summary: "Built the full-stack prototype of the Doccy telehealth platform.",
 	},
 ];
