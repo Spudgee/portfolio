@@ -8,7 +8,7 @@ import { PERSON } from "@/content/person";
  */
 export function SocialButtons() {
 	return (
-		<div className="-ml-[13px] flex items-center">
+		<div className="-ml-2.5 flex items-center">
 			{PERSON.socialLinks.map((link) => (
 				<Link
 					key={link.href}

@@ -8,14 +8,10 @@ const BRAND_PATHS = {
 
 export type Brand = keyof typeof BRAND_PATHS;
 
-/** A brand mark sized by its parent's font size; decorative, so the link around it carries the name. */
+/** A 24px brand mark; decorative, so the link around it carries the name. */
 export function BrandIcon({ brand }: { brand: Brand }) {
 	return (
-		<svg
-			viewBox="0 0 24 24"
-			aria-hidden="true"
-			className="size-[1.125rem] fill-current"
-		>
+		<svg viewBox="0 0 24 24" aria-hidden="true" className="size-6 fill-current">
 			<path d={BRAND_PATHS[brand]} />
 		</svg>
 	);
