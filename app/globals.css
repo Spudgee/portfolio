@@ -16,21 +16,6 @@
 	}
 }
 
-/* The footer turns the palette over: paper text on an ink ground, in both themes. */
-[data-tone="inverse"] {
-	--paper: oklch(0.205 0 0);
-	--ink: oklch(1 0 0);
-	--muted: oklch(0.708 0 0);
-}
-
-@media (prefers-color-scheme: dark) {
-	[data-tone="inverse"] {
-		--paper: oklch(0.97 0 0);
-		--ink: oklch(0.205 0 0);
-		--muted: oklch(0.5 0 0);
-	}
-}
-
 @theme inline {
 	/* Only these tokens exist, so a stray palette or size class fails to compile instead of drifting. */
 	--color-*: initial;
@@ -38,25 +23,16 @@
 	--color-ink: var(--ink);
 	--color-muted: var(--muted);
 
-	--font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--font-sans:
+		var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-	/* Five sizes, nothing else. Inter switches to its Display cut on its own above ~20px (optical size axis). */
+	/* Two sizes, nothing else. Inter switches to its Display cut on its own above ~20px (optical size axis). */
 	--text-*: initial;
-	--text-chrome: 0.75rem;
-	--text-chrome--line-height: 1;
-	--text-chrome--letter-spacing: 0.01em;
 	--text-body: 0.9375rem;
 	--text-body--line-height: 1.4;
 	--text-lead: 1.5rem;
 	--text-lead--line-height: 1.4;
 	--text-lead--letter-spacing: -0.015em;
-	--text-statement: clamp(2rem, 1.2rem + 3.2vw, 3.5rem);
-	--text-statement--line-height: 1.2;
-	--text-statement--letter-spacing: -0.02em;
-	/* Sized to its container's width (cqi) so the name spans the footer edge to edge; the name is 6.31em wide, 6.35 leaves slack. */
-	--text-display: calc(100cqi / 6.35);
-	--text-display--line-height: 1;
-	--text-display--letter-spacing: -0.045em;
 }
 
 @layer base {

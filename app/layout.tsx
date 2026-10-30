@@ -37,8 +37,8 @@ export default function RootLayout({
 				<div className="mx-auto flex w-full max-w-(--breakpoint-2xl) flex-1 flex-col px-2">
 					<SiteHeader />
 					<main className="flex-1 px-2 sm:px-6">{children}</main>
+					<SiteFooter />
 				</div>
-				<SiteFooter />
 			</body>
 		</html>
 	);
