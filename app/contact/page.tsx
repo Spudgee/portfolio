@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { type Row, RowList } from "@/components/row-list";
+import { QrCode } from "@/components/qr-code";
+import { SocialButtons } from "@/components/social-buttons";
 import { PERSON } from "@/content/person";
 import { PATHS } from "@/content/site";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -10,20 +11,31 @@ export const metadata: Metadata = pageMetadata({
 	description: `Where to find ${PERSON.name}: ${PERSON.socialLinks.map((link) => link.label).join(" and ")}.`,
 });
 
-/** The handle is the last part of the profile URL: "Spudgee", "cooper-agustin". */
-const CONTACT_ROWS: readonly Row[] = PERSON.socialLinks.map((link) => ({
-	key: link.href,
-	primary: link.label,
-	secondary: new URL(link.href).pathname.split("/").filter(Boolean).at(-1),
-	href: link.href,
-}));
+const LINKEDIN = PERSON.socialLinks.find((link) => link.brand === "linkedin");
 
-/** Where to reach Cooper, in the same rows as Work; the nav pill names the page. */
+/**
+ * Laid out like Home: the statement at lead size, the same GitHub and LinkedIn buttons, then a QR
+ * code that opens LinkedIn, for someone across the table to scan.
+ */
 export default function ContactPage() {
 	return (
 		<div className="mx-auto max-w-[40rem]">
 			<h1 className="sr-only">Contact</h1>
-			<RowList rows={CONTACT_ROWS} />
+			<p className="text-row font-medium text-pretty md:text-lead">
+				{PERSON.contactNote}
+			</p>
+			<div className="mt-6">
+				<SocialButtons />
+			</div>
+			{LINKEDIN && (
+				<figure className="mt-12 grid justify-items-start gap-3">
+					<QrCode
+						value={LINKEDIN.href}
+						label={`QR code that opens ${PERSON.name}'s LinkedIn profile`}
+					/>
+					<figcaption className="text-muted">Scan to open LinkedIn</figcaption>
+				</figure>
+			)}
 		</div>
 	);
 }
