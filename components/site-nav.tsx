@@ -11,10 +11,10 @@ import { NAV_PAGES, PATHS } from "@/content/site";
 /**
  * The bar across the top of every page: the name on the left. From md up, the pages sit on the
  * right as soft pills (the open one darker) beside the theme button. On phones a two-line button
- * opens them downwards as a list of large grey items, the open page on a pill, with the theme
- * button beneath; the page behind dims and stops scrolling (globals.css), and tapping it, the
- * button or a page closes the list. Reading the route and the open state is why this is a client
- * component.
+ * opens them downwards as a list at the name's size, each pill starting where the name starts and
+ * the open page on the darker pill, with the theme button beneath. The page behind dims and stops
+ * scrolling (globals.css); tapping it, the button or a page closes the list. Reading the route and
+ * the open state is why this is a client component.
  */
 export function SiteNav() {
 	const pathname = usePathname();
@@ -31,7 +31,7 @@ export function SiteNav() {
 	return (
 		<header className="sticky top-0 z-20 bg-paper">
 			<div className="relative z-20 flex h-14 items-center justify-between gap-4 bg-paper px-4 md:h-16 md:px-8">
-				<span className="text-row md:text-lead">
+				<span className="text-lead">
 					<HighlightLink href={PATHS.home} onClick={handleMenuClose}>
 						{PERSON.name}
 					</HighlightLink>
@@ -86,7 +86,8 @@ export function SiteNav() {
 				className={`absolute inset-x-0 top-full z-20 grid bg-paper transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none md:hidden ${isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
 			>
 				<div className="overflow-hidden">
-					<ul className="grid px-4 pt-1 text-lead">
+					{/* PillLink pads 12px outwards, so pl-7 starts each pill where the name starts (16px). */}
+					<ul className="grid pt-1 pr-4 pl-7 text-lead">
 						{NAV_PAGES.map((page) => (
 							<li key={page.path}>
 								<PillLink
