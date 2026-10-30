@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMetadata({
 	description: `${PERSON.name} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit: 24/7 consults, certificates and prescriptions at Doccy, and locum shifts at Medlo, in Next.js, TypeScript and PostgreSQL.`,
 });
 
-const [WORK, EDUCATION_SECTION, ABOUT, CONTACT] = SECTIONS;
+const [ABOUT, WORK, EDUCATION_SECTION, CONTACT] = SECTIONS;
 
 const WORK_ROWS: readonly Row[] = EXPERIENCE.map((role) => ({
 	key: `${role.company}-${role.start}`,
@@ -47,7 +47,8 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 }));
 
 /**
- * The whole site on one page: four screens that snap vertically, each opened the same way (label,
+ * The whole site on one page: four screens that snap vertically, About first with the longer
+ * statement, each opened the same way (label,
  * statement) and listed with the same rows. The sidebar and the phone menu jump between them, and
  * a wheel step pages one screen.
  */
@@ -60,16 +61,16 @@ export default function HomePage() {
 			</h1>
 
 			<SectionPager>
+				<SnapSection section={ABOUT}>
+					<RowList rows={STACK_ROWS} />
+				</SnapSection>
+
 				<SnapSection section={WORK}>
 					<RowList rows={WORK_ROWS} />
 				</SnapSection>
 
 				<SnapSection section={EDUCATION_SECTION}>
 					<RowList rows={EDUCATION_ROWS} />
-				</SnapSection>
-
-				<SnapSection section={ABOUT}>
-					<RowList rows={STACK_ROWS} />
 				</SnapSection>
 
 				<SnapSection section={CONTACT}>

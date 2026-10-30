@@ -22,7 +22,7 @@ export function SnapSection({
 				<h2 id={`${section.id}-heading`} className="text-muted">
 					{section.label}
 				</h2>
-				<p className="mt-4 text-lead font-medium text-balance">
+				<p className="mt-4 text-lead font-medium text-pretty">
 					{section.statement}
 				</p>
 				<div className="mt-8">{children}</div>

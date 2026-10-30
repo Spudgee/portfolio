@@ -1,3 +1,5 @@
+import { PERSON } from "@/content/person";
+
 /** Production origin: every canonical, sitemap entry and JSON-LD `@id` is built from it. */
 export const SITE_URL = "https://cooperagustin.vercel.app";
 
@@ -11,25 +13,24 @@ export const PATHS = {
 
 /**
  * The home page's sections, top to bottom: each is one screen of the carousel and one nav item.
- * Each statement says what its rows cannot, so nothing on the page is said twice.
+ * About opens the page with the longer statement; the others say what their rows cannot.
  */
 export const SECTIONS = [
-	{ id: "work", label: "Work", statement: "Building AI-native healthcare." },
+	{ id: "about", label: "About", statement: PERSON.bio },
+	{
+		id: "work",
+		label: "Work",
+		statement: "Building AI-native healthcare in Australia.",
+	},
 	{
 		id: "education",
 		label: "Education",
-		statement: "I majored in Advanced Computer Science in Melbourne.",
-	},
-	{
-		id: "about",
-		label: "About",
-		statement:
-			"I build Doccy's telehealth platform, Medlo's locum marketplace and Medlo Evidence, end to end and from the first commit.",
+		statement: "I finished my degree while building Doccy and Medlo.",
 	},
 	{
 		id: "contact",
 		label: "Contact",
-		statement: "Code on GitHub, everything else on LinkedIn.",
+		statement: "If you're working on healthcare, I'd like to hear about it.",
 	},
 ] as const;
 

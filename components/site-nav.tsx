@@ -37,7 +37,7 @@ export function SiteNav() {
 	return (
 		<header className="fixed inset-x-0 top-0 z-10 bg-paper">
 			<div className="flex h-14 items-center justify-between gap-4 px-4 text-lead md:h-16 md:px-8">
-				<HighlightLink href="/#work">{PERSON.name}</HighlightLink>
+				<HighlightLink href="/#about">{PERSON.name}</HighlightLink>
 
 				<div className="hidden items-center gap-6 md:flex">
 					<nav aria-label="Sections">
@@ -80,7 +80,7 @@ export function SiteNav() {
 			>
 				<div className="flex h-full flex-col px-4">
 					<div className="flex h-14 shrink-0 items-center justify-between text-lead">
-						<HighlightLink href="/#work" onClick={handleMenuClose}>
+						<HighlightLink href="/#about" onClick={handleMenuClose}>
 							{PERSON.name}
 						</HighlightLink>
 						<button
