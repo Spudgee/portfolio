@@ -77,7 +77,7 @@
 	}
 
 	/* The phone menu covers the screen, so the page behind it stops scrolling while it is open. */
-	@media (width < 40rem) {
+	@media (width < 48rem) {
 		body:has(#mobile-menu[data-open]) {
 			overflow: hidden;
 		}

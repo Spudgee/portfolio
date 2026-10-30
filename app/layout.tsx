@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteNav } from "@/components/site-nav";
 import { PERSON } from "@/content/person";
 import { LOCALE, SITE_URL } from "@/content/site";
 import { THEME_BOOT_SCRIPT } from "@/lib/theme-choice";
@@ -41,12 +40,9 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
 				/>
 			</head>
-			<body className="flex min-h-dvh flex-col">
-				<div className="mx-auto flex w-full max-w-(--breakpoint-2xl) flex-1 flex-col px-2">
-					<SiteHeader />
-					<main className="flex-1 px-2 sm:px-6">{children}</main>
-					<SiteFooter />
-				</div>
+			<body className="md:grid md:grid-cols-[15rem_minmax(0,1fr)]">
+				<SiteNav />
+				<main className="px-4 md:px-12">{children}</main>
 			</body>
 		</html>
 	);
