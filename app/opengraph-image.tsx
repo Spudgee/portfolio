@@ -41,9 +41,7 @@ export default async function OpenGraphImage() {
 		</div>,
 		{
 			...size,
-			fonts: [
-				{ name: FONT_FAMILY, data: font, weight: 500, style: "normal" },
-			],
+			fonts: [{ name: FONT_FAMILY, data: font, weight: 500, style: "normal" }],
 		},
 	);
 }
