@@ -39,16 +39,35 @@
 	--font-sans:
 		var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-	/* Two sizes, nothing else. Inter switches to its Display cut on its own above ~20px (optical size axis). */
+	/* Two sizes, nothing else: body for everything, lead for each section's opening line. */
 	--text-*: initial;
-	--text-body: 0.9375rem;
-	--text-body--line-height: 1.4;
-	--text-lead: 1.5rem;
+	--text-body: 0.875rem;
+	--text-body--line-height: 1.5;
+	--text-lead: 1.25rem;
 	--text-lead--line-height: 1.4;
-	--text-lead--letter-spacing: -0.015em;
+	--text-lead--letter-spacing: -0.012em;
 }
 
 @layer base {
+	/* The page is a vertical carousel: each section fills the screen and a scroll snaps to the next.
+	   On phones the sticky bar is 3.5rem tall, so sections snap just below it. */
+	html {
+		scroll-snap-type: y mandatory;
+		scroll-padding-top: 3.5rem;
+	}
+
+	@media (width >= 48rem) {
+		html {
+			scroll-padding-top: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
 	body {
 		@apply bg-paper font-sans text-body text-ink antialiased;
 	}
