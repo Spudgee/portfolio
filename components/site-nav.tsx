@@ -11,7 +11,7 @@ import { NAV_PAGES, PATHS } from "@/content/site";
 /**
  * The bar across the top of every page: the name on the left. From md up, Home, Work, Archive and
  * Contact sit on the right as soft pills (the open page darker) beside the theme button. On phones
- * two short lines open a full-screen panel downwards with the same pages at the name's size, each
+ * three short lines open a full-screen panel downwards with the same pages at the name's size, each
  * pill starting where the name starts; at the foot, within thumb reach, a round theme button on the
  * left and a round × on the right. The page behind stops scrolling (globals.css). Reading the route
  * and the open state is why this is a client component.
@@ -57,7 +57,7 @@ export function SiteNav() {
 					</div>
 				</div>
 
-				{/* Two short lines open the menu; while it is open they step aside for the × at the bottom. */}
+				{/* Three short lines open the menu; while it is open they step aside for the × at the bottom. */}
 				<button
 					type="button"
 					onClick={handleMenuToggle}
@@ -66,9 +66,10 @@ export function SiteNav() {
 					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
 					className={`-mr-3 grid size-11 cursor-pointer place-items-center md:hidden ${isMenuOpen ? "invisible" : ""}`}
 				>
-					<span className="relative block h-3 w-[18px]">
-						<span className="absolute inset-x-0 top-0.5 h-[1.5px] rounded-full bg-ink" />
-						<span className="absolute inset-x-0 top-[8.5px] h-[1.5px] rounded-full bg-ink" />
+					<span className="relative block h-[13.5px] w-[18px]">
+						<span className="absolute inset-x-0 top-0 h-[1.5px] rounded-full bg-ink" />
+						<span className="absolute inset-x-0 top-[6px] h-[1.5px] rounded-full bg-ink" />
+						<span className="absolute inset-x-0 top-[12px] h-[1.5px] rounded-full bg-ink" />
 					</span>
 				</button>
 			</div>
