@@ -14,15 +14,11 @@ export const PERSON = {
 		"Building AI-native healthcare. Founding engineer at Doccy and Medlo.",
 	/** The About page's lead paragraph. */
 	bio: `I'm ${GIVEN_NAME} ${FAMILY_NAME}, a founding engineer at Doccy and Medlo. I build Doccy's telehealth platform, Medlo's locum marketplace and Medlo Evidence, end to end and from the first commit. I studied computer science at RMIT University in Melbourne.`,
+	/** Tools by area, one row each in the About section; search engines get the flat list. */
 	stack: [
-		"Next.js",
-		"React",
-		"TypeScript",
-		"tRPC",
-		"PostgreSQL",
-		"Prisma",
-		"Supabase",
-		"Tailwind CSS",
+		{ area: "Frontend", tools: ["Next.js", "React", "Tailwind CSS"] },
+		{ area: "Backend", tools: ["tRPC", "PostgreSQL", "Prisma", "Supabase"] },
+		{ area: "Language", tools: ["TypeScript"] },
 	],
 	socialLinks: [
 		{ label: "GitHub", brand: "github", href: "https://github.com/Spudgee" },

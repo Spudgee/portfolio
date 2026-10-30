@@ -74,7 +74,7 @@ export function homeGraph(): JsonLdGraph {
 					name: EDUCATION.institution,
 					url: EDUCATION.institutionUrl,
 				},
-				knowsAbout: PERSON.stack,
+				knowsAbout: PERSON.stack.flatMap((group) => group.tools),
 				sameAs: PERSON.socialLinks.map((link) => link.href),
 			},
 		],
