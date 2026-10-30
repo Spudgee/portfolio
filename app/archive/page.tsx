@@ -29,8 +29,9 @@ async function loadImages(): Promise<readonly ArchiveImage[] | null> {
 }
 
 /**
- * Images worth keeping, pulled from an Are.na channel: a grey label with a link out to the channel
- * on the same line, then a masonry grid, four across on desktop and two on phones, where each picture opens its site.
+ * Images worth keeping, pulled from an Are.na channel: a link out to the channel, styled like the
+ * header's pills, then a masonry grid, four across on desktop and two on phones, where each
+ * picture opens its site.
  */
 export default async function ArchivePage() {
 	const images = await loadImages();
@@ -40,11 +41,12 @@ export default async function ArchivePage() {
 			aria-labelledby="archive-heading"
 			className="mx-auto max-w-[72rem]"
 		>
-			<div className="flex items-center justify-between gap-4">
-				<h1 id="archive-heading" className="text-muted">
-					Archive
-				</h1>
-				{/* PillLink pads outwards, so the text lines up with the column's right edge. */}
+			<h1 id="archive-heading" className="sr-only">
+				Archive
+			</h1>
+			{/* Same size and pill as the header's About and Archive; the pill pads outwards, so the text
+			    lines up with the column's right edge. */}
+			<div className="flex justify-end md:text-lead">
 				<PillLink href={ARCHIVE_CHANNEL.url}>View on Are.na</PillLink>
 			</div>
 
