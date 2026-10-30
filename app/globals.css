@@ -16,6 +16,21 @@
 	}
 }
 
+/* The footer turns the palette over: paper text on an ink ground, in both themes. */
+[data-tone="inverse"] {
+	--paper: oklch(0.22 0.008 250);
+	--ink: oklch(0.975 0.003 250);
+	--muted: oklch(0.7 0.008 250);
+}
+
+@media (prefers-color-scheme: dark) {
+	[data-tone="inverse"] {
+		--paper: oklch(0.94 0.004 250);
+		--ink: oklch(0.17 0.005 250);
+		--muted: oklch(0.45 0.008 250);
+	}
+}
+
 @theme inline {
 	/* Only these tokens exist, so a stray palette or size class fails to compile instead of drifting. */
 	--color-*: initial;
@@ -23,12 +38,24 @@
 	--color-ink: var(--ink);
 	--color-muted: var(--muted);
 
-	--font-sans: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+	--font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-	/* One small size for every line of text; hierarchy comes from weight, colour and position. */
+	/* Five sizes, nothing else. Inter switches to its Display cut on its own above ~20px (optical size axis). */
 	--text-*: initial;
-	--text-body: 0.8125rem;
+	--text-chrome: 0.75rem;
+	--text-chrome--line-height: 1;
+	--text-chrome--letter-spacing: 0.01em;
+	--text-body: 0.9375rem;
 	--text-body--line-height: 1.4;
+	--text-lead: 1.5rem;
+	--text-lead--line-height: 1.4;
+	--text-lead--letter-spacing: -0.015em;
+	--text-statement: clamp(2rem, 1.2rem + 3.2vw, 3.5rem);
+	--text-statement--line-height: 1.2;
+	--text-statement--letter-spacing: -0.02em;
+	--text-display: 13.5vw;
+	--text-display--line-height: 0.85;
+	--text-display--letter-spacing: -0.045em;
 }
 
 @layer base {

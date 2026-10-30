@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { PERSON } from "@/content/person";
 import { LOCALE, SITE_URL } from "@/content/site";
 import "./globals.css";
 
-const hankenGrotesk = Hanken_Grotesk({
+/** Inter with its optical-size axis, so large text renders in the Display cut. */
+const inter = Inter({
 	subsets: ["latin"],
-	variable: "--font-hanken-grotesk",
+	axes: ["opsz"],
+	variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -30,10 +32,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang={LOCALE} className={hankenGrotesk.variable}>
-			<body className="mx-auto flex min-h-dvh w-full max-w-(--breakpoint-2xl) flex-col px-4 sm:px-8">
-				<SiteHeader />
-				<main className="flex-1">{children}</main>
+		<html lang={LOCALE} className={inter.variable}>
+			<body className="flex min-h-dvh flex-col">
+				<div className="mx-auto flex w-full max-w-(--breakpoint-2xl) flex-1 flex-col px-2">
+					<SiteHeader />
+					<main className="flex-1 px-2 sm:px-6">{children}</main>
+				</div>
 				<SiteFooter />
 			</body>
 		</html>
