@@ -1,18 +1,19 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useRef, useSyncExternalStore } from "react";
 import { HighlightLink } from "@/components/highlight-link";
 import { PillLink } from "@/components/pill-link";
 import { SocialButtons } from "@/components/social-buttons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
-import { SECTIONS } from "@/content/site";
+import { PATHS, SECTIONS } from "@/content/site";
 import { activeSectionStore } from "@/lib/active-section";
 
 /**
  * A bar fixed over the top of every section, at the lead size: the name on the left; on wider
- * screens the four sections on the right as soft pills (the one on screen darker), then the theme
- * button.
+ * screens the four sections and the Archive page on the right as soft pills (the one on screen or
+ * open darker), then the theme button.
  * On phones, Menu opens a full-screen sidebar that slides in from the right: the name and Close
  * where the bar was, the sections down the left, the icon buttons at the foot. It is a modal
  * <dialog>, so Escape closes it and focus stays inside; the page behind stops scrolling
@@ -25,6 +26,7 @@ export function SiteNav() {
 		activeSectionStore.readServerActiveSection,
 	);
 	const menuRef = useRef<HTMLDialogElement>(null);
+	const isArchiveOpen = usePathname() === PATHS.archive;
 
 	function handleMenuOpen() {
 		menuRef.current?.showModal();
@@ -54,6 +56,14 @@ export function SiteNav() {
 									</PillLink>
 								</li>
 							))}
+							<li>
+								<PillLink
+									href={PATHS.archive}
+									aria-current={isArchiveOpen ? "page" : undefined}
+								>
+									Archive
+								</PillLink>
+							</li>
 						</ul>
 					</nav>
 					<div className="-mr-[13px]">
@@ -106,6 +116,15 @@ export function SiteNav() {
 									</PillLink>
 								</li>
 							))}
+							<li>
+								<PillLink
+									href={PATHS.archive}
+									aria-current={isArchiveOpen ? "page" : undefined}
+									onClick={handleMenuClose}
+								>
+									Archive
+								</PillLink>
+							</li>
 						</ul>
 					</nav>
 					<div className="pb-6">

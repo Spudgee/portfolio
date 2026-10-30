@@ -12,6 +12,12 @@ export const metadata: Metadata = pageMetadata({
 	description: `Sites, type and images ${PERSON.name} keeps coming back to, collected on Are.na.`,
 });
 
+/**
+ * Columns fill top to bottom, so the first screen shows the top of every column, not the first
+ * few images; loading the first nine eagerly covers three columns of three.
+ */
+const ABOVE_FOLD_COUNT = 9;
+
 /** Are.na down or slow should cost the Archive its pictures, never the whole site its build. */
 async function loadImages(): Promise<readonly ArchiveImage[] | null> {
 	try {
@@ -59,7 +65,7 @@ export default async function ArchivePage() {
 				</p>
 			) : (
 				<ul className="mt-8 columns-2 gap-4 md:columns-3">
-					{images.map((image) => (
+					{images.map((image, index) => (
 						<li key={image.id} className="mb-4 break-inside-avoid">
 							<a href={image.href} className="group grid gap-2">
 								{/* Are.na already serves resized copies; the 800px one stays sharp on 2x screens at this width. */}
@@ -69,9 +75,10 @@ export default async function ArchivePage() {
 									width={image.width * 2}
 									height={image.height * 2}
 									unoptimized
+									loading={index < ABOVE_FOLD_COUNT ? "eager" : "lazy"}
 									className="h-auto w-full bg-pill-soft transition-opacity duration-150 group-hover:opacity-85"
 								/>
-								<span className="text-muted transition-colors group-hover:text-ink">
+								<span className="truncate text-muted transition-colors group-hover:text-ink">
 									{image.title}
 								</span>
 							</a>
