@@ -5,7 +5,7 @@ import { useState } from "react";
 import { HighlightLink } from "@/components/highlight-link";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
-import { NAV_LINKS, PATHS } from "@/content/site";
+import { PATHS, SECTIONS } from "@/content/site";
 
 /**
  * Top bar at the intro's size: the name in ink on the left, the sections in grey on the right, no
@@ -30,13 +30,15 @@ export function SiteHeader() {
 
 				<nav aria-label="Primary" className="hidden sm:block">
 					<ul className="flex gap-6 text-muted">
-						{NAV_LINKS.map((link) => (
-							<li key={link.href}>
+						{SECTIONS.map((section) => (
+							<li key={section.id}>
 								<HighlightLink
-									href={link.href}
-									aria-current={pathname === link.href ? "page" : undefined}
+									href={`/#${section.id}`}
+									aria-current={
+										pathname === `/#${section.id}` ? "page" : undefined
+									}
 								>
-									{link.label}
+									{section.label}
 								</HighlightLink>
 							</li>
 						))}
@@ -72,15 +74,17 @@ export function SiteHeader() {
 				className={`fixed inset-x-0 top-14 overflow-hidden bg-paper transition-[height] duration-300 ease-out motion-reduce:transition-none sm:hidden ${isMenuOpen ? "h-[calc(100dvh-3.5rem)]" : "h-0"}`}
 			>
 				<ul className="mx-4 divide-y divide-ink border-y border-ink text-lead text-muted">
-					{NAV_LINKS.map((link) => (
-						<li key={link.href}>
+					{SECTIONS.map((section) => (
+						<li key={section.id}>
 							<HighlightLink
-								href={link.href}
-								aria-current={pathname === link.href ? "page" : undefined}
+								href={`/#${section.id}`}
+								aria-current={
+									pathname === `/#${section.id}` ? "page" : undefined
+								}
 								onClick={() => setIsMenuOpen(false)}
 								className="w-full py-2"
 							>
-								{link.label}
+								{section.label}
 							</HighlightLink>
 						</li>
 					))}

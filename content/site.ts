@@ -11,12 +11,12 @@ export const PATHS = {
 	about: "/about",
 } as const;
 
-/** Primary navigation, in reading order. Contact jumps to the footer, which every page has. */
-export const NAV_LINKS = [
-	{ label: "Work", href: "/#experience" },
-	{ label: "Education", href: PATHS.education },
-	{ label: "About", href: PATHS.about },
-	{ label: "Contact", href: "#contact" },
+/** The home page's sections, top to bottom: each is one screen of the carousel and one nav item. */
+export const SECTIONS = [
+	{ id: "work", label: "Work" },
+	{ id: "education", label: "Education" },
+	{ id: "about", label: "About" },
+	{ id: "contact", label: "Contact" },
 ] as const;
 
 /** Indexable routes, in sitemap order. */
