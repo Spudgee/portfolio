@@ -6,28 +6,34 @@ import { PERSON } from "@/content/person";
 import { NAV_LINKS, PATHS } from "@/content/site";
 
 /**
- * Base-style header: the name boxed on the left, the sections boxed on the right in caps,
- * a rule beneath. The page you are on is filled; reading the route is why this is a client component.
+ * Sidebar header: on wide screens a fixed column down the left edge, each link a full-width
+ * row that fills with ink on hover; on phones the same rows sit above the page.
+ * The layout pads the page by the column's width (`lg:pl-60`). The page you are on is filled;
+ * reading the route is why this is a client component.
  */
 export function SiteHeader() {
 	const pathname = usePathname();
 
 	return (
-		<header className="sticky top-0 z-10 flex items-center justify-between gap-2 border-b border-ink bg-paper py-2 text-chrome">
-			<HighlightLink
-				href={PATHS.home}
-				look="box"
-				aria-current={pathname === PATHS.home ? "page" : undefined}
-			>
-				{PERSON.name}
-			</HighlightLink>
+		<header
+			className="flex flex-col justify-between gap-8 border-b border-ink bg-paper py-2 lg:fixed lg:inset-y-0 lg:left-0 lg:z-10 lg:w-60 lg:border-r lg:border-b-0 lg:px-2"
+		>
 			<nav aria-label="Primary">
-				<ul className="flex gap-1 uppercase">
+				<ul className="grid">
+					<li>
+						<HighlightLink
+							href={PATHS.home}
+							look="row"
+							aria-current={pathname === PATHS.home ? "page" : undefined}
+						>
+							{PERSON.name}
+						</HighlightLink>
+					</li>
 					{NAV_LINKS.map((link) => (
 						<li key={link.href}>
 							<HighlightLink
 								href={link.href}
-								look="box"
+								look="row"
 								aria-current={pathname === link.href ? "page" : undefined}
 							>
 								{link.label}
@@ -36,6 +42,15 @@ export function SiteHeader() {
 					))}
 				</ul>
 			</nav>
+			<ul className="hidden text-muted lg:grid">
+				{PERSON.socialLinks.map((link) => (
+					<li key={link.href}>
+						<HighlightLink href={link.href} look="row">
+							{link.label} ↗
+						</HighlightLink>
+					</li>
+				))}
+			</ul>
 		</header>
 	);
 }

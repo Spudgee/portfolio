@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang={LOCALE} className={inter.variable}>
-			<body className="flex min-h-dvh flex-col">
+			<body className="flex min-h-dvh flex-col lg:pl-60">
 				<div className="mx-auto flex w-full max-w-(--breakpoint-2xl) flex-1 flex-col px-2">
 					<SiteHeader />
 					<main className="flex-1 px-2 sm:px-6">{children}</main>

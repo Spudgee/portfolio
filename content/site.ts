@@ -15,6 +15,7 @@ export const PATHS = {
 export const NAV_LINKS = [
 	{ label: "Work", href: "/#experience" },
 	{ label: "Education", href: PATHS.education },
+	{ label: "About", href: PATHS.about },
 	{ label: "Contact", href: "#contact" },
 ] as const;
 
