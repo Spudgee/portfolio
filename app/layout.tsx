@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { PERSON } from "@/content/person";
 import { LOCALE, SITE_URL } from "@/content/site";
+import { THEME_BOOT_SCRIPT } from "@/lib/theme-choice";
 import "./globals.css";
 
 /** Inter with its optical-size axis, so large text renders in the Display cut. */
@@ -32,7 +33,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang={LOCALE} className={inter.variable}>
+		// The boot script may set data-theme before React hydrates, so <html> can differ from the server's.
+		<html lang={LOCALE} className={inter.variable} suppressHydrationWarning>
+			<head>
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from lib/theme-choice.ts, no user input.
+					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
+				/>
+			</head>
 			<body className="flex min-h-dvh flex-col">
 				<div className="mx-auto flex w-full max-w-(--breakpoint-2xl) flex-1 flex-col px-2">
 					<SiteHeader />

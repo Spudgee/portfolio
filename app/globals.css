@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* Monochrome tokens: paper, ink, muted, all pure neutral. White paper by default; dark mode follows the OS. */
+/* Monochrome tokens: paper, ink, muted, all pure neutral. White paper by default; dark follows the OS
+   unless the theme switch pins one (data-theme on <html>, set before paint by lib/theme-choice.ts). */
 :root {
 	color-scheme: light dark;
 	--paper: oklch(1 0 0);
@@ -8,12 +9,24 @@
 	--muted: oklch(0.556 0 0);
 }
 
+:root[data-theme="light"] {
+	color-scheme: light;
+}
+
+/* The dark values appear twice: once for the OS setting, once for the switch. */
 @media (prefers-color-scheme: dark) {
-	:root {
+	:root:not([data-theme="light"]) {
 		--paper: oklch(0.205 0 0);
 		--ink: oklch(0.97 0 0);
 		--muted: oklch(0.708 0 0);
 	}
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--paper: oklch(0.205 0 0);
+	--ink: oklch(0.97 0 0);
+	--muted: oklch(0.708 0 0);
 }
 
 @theme inline {
