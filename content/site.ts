@@ -7,6 +7,13 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = { home: "/", education: "/education" } as const;
 
+/** Primary navigation, in reading order. Contact jumps to the footer, which every page has. */
+export const NAV_LINKS = [
+	{ label: "Work", href: "/#experience" },
+	{ label: "Education", href: PATHS.education },
+	{ label: "Contact", href: "#contact" },
+] as const;
+
 /** Indexable routes, in sitemap order. */
 export const PAGE_PATHS = [PATHS.home, PATHS.education] as const;
 

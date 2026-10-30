@@ -1,4 +1,4 @@
-import { HoverUnderlineLink } from "@/components/hover-underline-link";
+import { HighlightLink } from "@/components/highlight-link";
 import { PERSON } from "@/content/person";
 
 /** Read once at module load, keeping render pure. Pages prerender, so it rolls over on the next deploy. */
@@ -14,9 +14,9 @@ export function SiteFooter() {
 			<ul className="col-span-full flex gap-x-5 sm:col-span-9">
 				{PERSON.socialLinks.map((link) => (
 					<li key={link.href}>
-						<HoverUnderlineLink href={link.href}>
+						<HighlightLink href={link.href} look="bare">
 							{link.label}
-						</HoverUnderlineLink>
+						</HighlightLink>
 					</li>
 				))}
 			</ul>

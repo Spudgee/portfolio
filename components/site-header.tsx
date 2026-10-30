@@ -1,38 +1,40 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { HoverUnderlineLink } from "@/components/hover-underline-link";
+import { HighlightLink } from "@/components/highlight-link";
 import { PERSON } from "@/content/person";
-import { PATHS } from "@/content/site";
+import { NAV_LINKS, PATHS } from "@/content/site";
 
 /**
- * The name, linking home, and the education page. The page you are on is ink and the
- * other is muted; reading the route is why this is a client component.
- * All caps by CSS; the source keeps proper names.
+ * Base-style header: the name boxed on the left, the sections boxed on the right in caps,
+ * a rule beneath. The page you are on is filled; reading the route is why this is a client component.
  */
 export function SiteHeader() {
 	const pathname = usePathname();
 
 	return (
-		<header className="grid grid-cols-4 gap-x-4 border-b border-ink pt-1 tracking-wider text-muted uppercase sm:grid-cols-12 sm:gap-x-6 sm:pt-3">
-			<div className="col-span-2 sm:col-span-3">
-				<HoverUnderlineLink
-					href={PATHS.home}
-					aria-current={pathname === PATHS.home ? "page" : undefined}
-				>
-					{PERSON.name}
-				</HoverUnderlineLink>
-			</div>
-			<nav
-				aria-label="Primary"
-				className="col-span-2 text-right sm:col-span-9 sm:text-left"
+		<header className="sticky top-0 z-10 flex items-center justify-between gap-2 border-b border-ink bg-paper py-2 text-chrome">
+			<HighlightLink
+				href={PATHS.home}
+				look="box"
+				aria-current={pathname === PATHS.home ? "page" : undefined}
 			>
-				<HoverUnderlineLink
-					href={PATHS.education}
-					aria-current={pathname === PATHS.education ? "page" : undefined}
-				>
-					Education
-				</HoverUnderlineLink>
+				{PERSON.name}
+			</HighlightLink>
+			<nav aria-label="Primary">
+				<ul className="flex gap-1 uppercase">
+					{NAV_LINKS.map((link) => (
+						<li key={link.href}>
+							<HighlightLink
+								href={link.href}
+								look="box"
+								aria-current={pathname === link.href ? "page" : undefined}
+							>
+								{link.label}
+							</HighlightLink>
+						</li>
+					))}
+				</ul>
 			</nav>
 		</header>
 	);

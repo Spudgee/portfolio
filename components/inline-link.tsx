@@ -2,7 +2,7 @@ import Link from "next/link";
 
 /**
  * Link inside running text: underlined at rest in the muted colour, full ink on hover or focus.
- * @see components/hover-underline-link.tsx for header and footer links
+ * @see components/highlight-link.tsx for header and footer links
  */
 export function InlineLink({
 	href,
