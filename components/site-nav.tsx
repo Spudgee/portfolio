@@ -11,9 +11,9 @@ import { NAV_PAGES, PATHS } from "@/content/site";
 /**
  * The bar across the top of every page: the name on the left. From md up, the pages sit on the
  * right as soft pills (the open one darker) beside the theme button. On phones a two-line button
- * opens them downwards as a list at the name's size, each pill starting where the name starts and
- * the open page on the darker pill, with the theme button beneath. The page behind dims and stops
- * scrolling (globals.css); tapping it, the button or a page closes the list. Reading the route and
+ * opens a full-screen panel downwards: the pages at the name's size, each pill starting where the
+ * name starts and the open page on the darker pill, with the theme button beneath. The page behind
+ * stops scrolling (globals.css); the button or a page closes it. Reading the route and
  * the open state is why this is a client component.
  */
 export function SiteNav() {
@@ -68,24 +68,24 @@ export function SiteNav() {
 				>
 					<span className="relative block h-3 w-[18px]">
 						<span
-							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-250 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] rotate-45" : "top-0.5"}`}
+							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-150 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] rotate-45" : "top-0.5"}`}
 						/>
 						<span
-							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-250 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] -rotate-45" : "top-[8.5px]"}`}
+							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-150 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] -rotate-45" : "top-[8.5px]"}`}
 						/>
 					</span>
 				</button>
 			</div>
 
-			{/* Rows 0fr → 1fr slide the list down from the bar; inert keeps closed links out of tab order. */}
+			{/* Height 0 → the rest of the screen opens it downwards in solid paper; inert keeps closed links out of tab order. */}
 			<nav
 				id="mobile-menu"
 				aria-label="Main"
 				inert={!isMenuOpen}
 				data-open={isMenuOpen || undefined}
-				className={`absolute inset-x-0 top-full z-20 grid bg-paper transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none md:hidden ${isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+				className={`absolute inset-x-0 top-full z-20 overflow-hidden bg-paper transition-[height] duration-150 ease-out motion-reduce:transition-none md:hidden ${isMenuOpen ? "h-[calc(100dvh-3.5rem)]" : "h-0"}`}
 			>
-				<div className="overflow-hidden">
+				<div>
 					{/* PillLink pads 12px outwards, so pl-7 starts each pill where the name starts (16px). */}
 					<ul className="grid pt-1 pr-4 pl-7 text-lead">
 						{NAV_PAGES.map((page) => (
@@ -107,15 +107,6 @@ export function SiteNav() {
 					</div>
 				</div>
 			</nav>
-
-			{/* The page behind dims while the list is open; tapping it closes the list. */}
-			<button
-				type="button"
-				tabIndex={-1}
-				aria-label="Close menu"
-				onClick={handleMenuClose}
-				className={`fixed inset-x-0 top-14 bottom-0 z-10 bg-paper/85 transition-opacity duration-300 motion-reduce:transition-none md:hidden ${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
-			/>
 		</header>
 	);
 }
