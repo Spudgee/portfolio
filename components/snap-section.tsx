@@ -1,30 +1,32 @@
+import type { Section } from "@/content/site";
+
 /**
- * One screen of the home page's vertical carousel. Every section opens the same way: its name as a
- * small ink heading, then one lead line, then its rows or buttons. It fills the screen below the
- * phone bar (3.5rem) or the whole screen beside the sidebar, and snaps to the top on scroll.
+ * One screen of the home page's vertical carousel, laid out like a section of Brian Lovin's about
+ * page: a small grey label, the statement at lead size in medium weight, then its rows or buttons,
+ * in a 40rem column centred on the screen both ways. The fixed bar floats over the top padding.
  */
 export function SnapSection({
-	id,
-	heading,
-	lead,
+	section,
 	children,
 }: {
-	id: string;
-	heading: string;
-	lead: string;
+	section: Section;
 	children: React.ReactNode;
 }) {
 	return (
 		<section
-			id={id}
-			aria-labelledby={`${id}-heading`}
-			className="flex min-h-[calc(100dvh-3.5rem)] snap-start flex-col gap-10 py-12 md:min-h-dvh md:py-24"
+			id={section.id}
+			aria-labelledby={`${section.id}-heading`}
+			className="flex min-h-dvh snap-start flex-col justify-center py-24"
 		>
-			<h2 id={`${id}-heading`} className="font-medium">
-				{heading}
-			</h2>
-			<p className="max-w-[28em] text-lead text-balance">{lead}</p>
-			{children}
+			<div className="mx-auto w-full max-w-[40rem]">
+				<h2 id={`${section.id}-heading`} className="text-muted">
+					{section.label}
+				</h2>
+				<p className="mt-4 text-lead font-medium text-balance">
+					{section.statement}
+				</p>
+				<div className="mt-8">{children}</div>
+			</div>
 		</section>
 	);
 }

@@ -7,7 +7,7 @@ import { SocialButtons } from "@/components/social-buttons";
 import { EDUCATION } from "@/content/education";
 import { EXPERIENCE } from "@/content/experience";
 import { PERSON } from "@/content/person";
-import { PATHS } from "@/content/site";
+import { PATHS, SECTIONS } from "@/content/site";
 import { homeGraph } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/page-metadata";
 import { yearSpan } from "@/lib/year-span";
@@ -17,6 +17,8 @@ export const metadata: Metadata = pageMetadata({
 	title: `${PERSON.name} – ${PERSON.headline}`,
 	description: `${PERSON.name} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit: 24/7 consults, certificates and prescriptions at Doccy, and locum shifts at Medlo, in Next.js, TypeScript and PostgreSQL.`,
 });
+
+const [WORK, EDUCATION_SECTION, ABOUT, CONTACT] = SECTIONS;
 
 const WORK_ROWS: readonly Row[] = EXPERIENCE.map((role) => ({
 	key: `${role.company}-${role.start}`,
@@ -45,8 +47,8 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 }));
 
 /**
- * The whole site on one page: four screens that snap vertically, each opened the same way (heading,
- * lead line) and listed with the same rows. The sidebar and the phone menu jump between them, and
+ * The whole site on one page: four screens that snap vertically, each opened the same way (label,
+ * statement) and listed with the same rows. The sidebar and the phone menu jump between them, and
  * a wheel step pages one screen.
  */
 export default function HomePage() {
@@ -58,27 +60,19 @@ export default function HomePage() {
 			</h1>
 
 			<SectionPager>
-				<SnapSection id="work" heading="Work" lead={PERSON.introduction}>
+				<SnapSection section={WORK}>
 					<RowList rows={WORK_ROWS} />
 				</SnapSection>
 
-				<SnapSection
-					id="education"
-					heading="Education"
-					lead={`${EDUCATION.degree} at ${EDUCATION.institution}, ${EDUCATION.location}, majoring in ${EDUCATION.major}.`}
-				>
+				<SnapSection section={EDUCATION_SECTION}>
 					<RowList rows={EDUCATION_ROWS} />
 				</SnapSection>
 
-				<SnapSection id="about" heading="About" lead={PERSON.bio}>
+				<SnapSection section={ABOUT}>
 					<RowList rows={STACK_ROWS} />
 				</SnapSection>
 
-				<SnapSection
-					id="contact"
-					heading="Contact"
-					lead="Find me on GitHub and LinkedIn."
-				>
+				<SnapSection section={CONTACT}>
 					<SocialButtons hasThemeSwitch={false} />
 				</SnapSection>
 			</SectionPager>

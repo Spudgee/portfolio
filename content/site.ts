@@ -9,13 +9,31 @@ export const PATHS = {
 	home: "/",
 } as const;
 
-/** The home page's sections, top to bottom: each is one screen of the carousel and one nav item. */
+/**
+ * The home page's sections, top to bottom: each is one screen of the carousel and one nav item.
+ * Each statement says what its rows cannot, so nothing on the page is said twice.
+ */
 export const SECTIONS = [
-	{ id: "work", label: "Work" },
-	{ id: "education", label: "Education" },
-	{ id: "about", label: "About" },
-	{ id: "contact", label: "Contact" },
+	{ id: "work", label: "Work", statement: "Building AI-native healthcare." },
+	{
+		id: "education",
+		label: "Education",
+		statement: "I majored in Advanced Computer Science in Melbourne.",
+	},
+	{
+		id: "about",
+		label: "About",
+		statement:
+			"I build Doccy's telehealth platform, Medlo's locum marketplace and Medlo Evidence, end to end and from the first commit.",
+	},
+	{
+		id: "contact",
+		label: "Contact",
+		statement: "Code on GitHub, everything else on LinkedIn.",
+	},
 ] as const;
+
+export type Section = (typeof SECTIONS)[number];
 
 /** Indexable routes, in sitemap order. */
 export const PAGE_PATHS = [PATHS.home] as const;

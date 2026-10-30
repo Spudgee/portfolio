@@ -9,10 +9,7 @@ export const PERSON = {
 	jobTitle: "Founding Engineer",
 	/** The one-line role used in titles, the preview image and its alt text. */
 	headline: "Founding Engineer at Doccy and Medlo",
-	/** The home page's H1: the mission, then the role. The header above it carries the name. */
-	introduction:
-		"Building AI-native healthcare. Founding engineer at Doccy and Medlo.",
-	/** The About page's lead paragraph. */
+	/** The whole story in one paragraph, for search engines; the page splits it across its sections. */
 	bio: `I'm ${GIVEN_NAME} ${FAMILY_NAME}, a founding engineer at Doccy and Medlo. I build Doccy's telehealth platform, Medlo's locum marketplace and Medlo Evidence, end to end and from the first commit. I studied computer science at RMIT University in Melbourne.`,
 	/** Tools by area, one row each in the About section; search engines get the flat list. */
 	stack: [
