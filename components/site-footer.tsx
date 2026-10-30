@@ -15,7 +15,7 @@ export function SiteFooter() {
 				<ul className="flex gap-5">
 					{PERSON.socialLinks.map((link) => (
 						<li key={link.href}>
-							<HighlightLink href={link.href}>{link.label} ↗</HighlightLink>
+							<HighlightLink href={link.href}>{link.label}</HighlightLink>
 						</li>
 					))}
 				</ul>

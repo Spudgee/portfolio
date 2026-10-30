@@ -59,7 +59,7 @@ export default function AboutPage() {
 					<dt className="text-muted">Elsewhere</dt>
 					{PERSON.socialLinks.map((link) => (
 						<dd key={link.href}>
-							<InlineLink href={link.href}>{link.label} ↗</InlineLink>
+							<InlineLink href={link.href}>{link.label}</InlineLink>
 						</dd>
 					))}
 				</div>
