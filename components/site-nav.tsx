@@ -10,11 +10,11 @@ import { NAV_PAGES, PATHS } from "@/content/site";
 
 /**
  * The bar across the top of every page: the name on the left. From md up, the pages sit on the
- * right as soft pills (the open one darker) beside the theme button. On phones a two-line button
- * opens a full-screen panel downwards: the pages at the name's size, each pill starting where the
- * name starts and the open page on the darker pill, with the theme button beneath. The page behind
- * stops scrolling (globals.css); the button or a page closes it. Reading the route and
- * the open state is why this is a client component.
+ * right as soft pills (the open one darker) beside the theme button. On phones two short lines open
+ * a full-screen panel downwards: the pages at the name's size, each pill starting where the name
+ * starts and the open page on the darker pill; at the foot, within thumb reach, a round theme
+ * button on the left and a round × on the right. The page behind stops scrolling (globals.css).
+ * Reading the route and the open state is why this is a client component.
  */
 export function SiteNav() {
 	const pathname = usePathname();
@@ -57,22 +57,18 @@ export function SiteNav() {
 					</div>
 				</div>
 
-				{/* Two short lines that cross into an × while the list is open. */}
+				{/* Two short lines open the menu; while it is open they step aside for the × at the bottom. */}
 				<button
 					type="button"
 					onClick={handleMenuToggle}
 					aria-expanded={isMenuOpen}
 					aria-controls="mobile-menu"
 					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-					className="-mr-3 grid size-11 cursor-pointer place-items-center md:hidden"
+					className={`-mr-3 grid size-11 cursor-pointer place-items-center md:hidden ${isMenuOpen ? "invisible" : ""}`}
 				>
 					<span className="relative block h-3 w-[18px]">
-						<span
-							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-150 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] rotate-45" : "top-0.5"}`}
-						/>
-						<span
-							className={`absolute inset-x-0 h-[1.5px] rounded-full bg-ink transition-[top,rotate] duration-150 ease-out motion-reduce:transition-none ${isMenuOpen ? "top-[5.25px] -rotate-45" : "top-[8.5px]"}`}
-						/>
+						<span className="absolute inset-x-0 top-0.5 h-[1.5px] rounded-full bg-ink" />
+						<span className="absolute inset-x-0 top-[8.5px] h-[1.5px] rounded-full bg-ink" />
 					</span>
 				</button>
 			</div>
@@ -85,7 +81,7 @@ export function SiteNav() {
 				data-open={isMenuOpen || undefined}
 				className={`absolute inset-x-0 top-full z-20 overflow-hidden bg-paper transition-[height] duration-150 ease-out motion-reduce:transition-none md:hidden ${isMenuOpen ? "h-[calc(100dvh-3.5rem)]" : "h-0"}`}
 			>
-				<div>
+				<div className="flex h-full flex-col justify-between">
 					{/* PillLink pads 12px outwards, so pl-7 starts each pill where the name starts (16px). */}
 					<ul className="grid pt-1 pr-4 pl-7 text-lead">
 						{NAV_PAGES.map((page) => (
@@ -100,10 +96,20 @@ export function SiteNav() {
 							</li>
 						))}
 					</ul>
-					<div className="px-4 pt-2 pb-5">
-						<div className="-ml-[13px]">
-							<ThemeSwitch />
-						</div>
+					{/* Both controls sit in the thumb's reach: theme bottom left, close bottom right. */}
+					<div className="flex items-center justify-between px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+						<ThemeSwitch isRound />
+						<button
+							type="button"
+							onClick={handleMenuClose}
+							aria-label="Close menu"
+							className="grid size-14 cursor-pointer place-items-center rounded-full bg-pill text-ink"
+						>
+							<span className="relative block h-3 w-[18px]">
+								<span className="absolute inset-x-0 top-[5.25px] h-[1.5px] rotate-45 rounded-full bg-current" />
+								<span className="absolute inset-x-0 top-[5.25px] h-[1.5px] -rotate-45 rounded-full bg-current" />
+							</span>
+						</button>
 					</div>
 				</div>
 			</nav>

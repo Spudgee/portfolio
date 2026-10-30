@@ -13,8 +13,11 @@ const LABELS: Record<ThemeChoice, string> = {
 	dark: "Dark",
 };
 
-/** One icon button that steps Auto → Light → Dark; its label names the current theme and the next. */
-export function ThemeSwitch() {
+/**
+ * One icon button that steps Auto → Light → Dark; its label names the current theme and the next.
+ * `isRound` sets it in a 56px soft grey circle, as at the foot of the phone menu.
+ */
+export function ThemeSwitch({ isRound = false }: { isRound?: boolean }) {
 	const choice = useSyncExternalStore(
 		themeChoiceStore.subscribe,
 		themeChoiceStore.readChoice,
@@ -29,12 +32,12 @@ export function ThemeSwitch() {
 			onClick={() => themeChoiceStore.setThemeChoice(next)}
 			aria-label={`Theme: ${LABELS[choice]}. Switch to ${LABELS[next]}`}
 			title={`Theme: ${LABELS[choice]}`}
-			className="grid size-11 cursor-pointer place-items-center text-muted transition-colors duration-150 ease-out hover:text-ink focus-visible:text-ink focus-visible:outline-hidden motion-reduce:transition-none"
+			className={`grid cursor-pointer place-items-center transition-colors duration-150 ease-out focus-visible:outline-hidden motion-reduce:transition-none ${isRound ? "size-14 rounded-full bg-pill-soft text-ink hover:bg-pill focus-visible:bg-pill" : "size-11 text-muted hover:text-ink focus-visible:text-ink"}`}
 		>
 			<svg
 				viewBox="0 0 24 24"
 				aria-hidden="true"
-				className="size-[1.125rem] fill-current"
+				className={`fill-current ${isRound ? "size-5" : "size-[1.125rem]"}`}
 			>
 				{choice === "system" && (
 					<>
