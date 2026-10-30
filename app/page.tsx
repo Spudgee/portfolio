@@ -33,9 +33,12 @@ const EDUCATION_ROWS: readonly Row[] = [
 		aside: yearSpan(EDUCATION.start, EDUCATION.end),
 		href: EDUCATION.institutionUrl,
 	},
-	{ key: "major", primary: "Major", secondary: EDUCATION.major },
-	{ key: "gpa", primary: "GPA", aside: EDUCATION.gpa },
-	{ key: "wam", primary: "WAM", aside: EDUCATION.wam },
+	{
+		key: "major",
+		primary: "Major",
+		secondary: EDUCATION.major,
+		aside: `GPA ${EDUCATION.gpa} · WAM ${EDUCATION.wam}`,
+	},
 ];
 
 const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({

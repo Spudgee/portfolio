@@ -11,14 +11,18 @@ export type Row = {
 	href?: string;
 };
 
+/**
+ * Phones: a two-column grid, primary and aside on the first line and the secondary across the full
+ * width beneath, so it never shares width with the aside. From md: one flex line, aside pushed right.
+ */
 const ROW_CLASS =
-	"group flex min-h-11 items-start justify-between gap-4 py-1.5 md:min-h-8 md:items-center md:py-0";
+	"group grid min-h-11 grid-cols-[minmax(0,1fr)_auto] gap-x-4 py-1.5 md:flex md:min-h-8 md:items-center md:gap-x-2 md:py-0";
 
 /**
  * The one row style for every list on the site, after Brian Lovin's work list: the primary in medium
  * ink with the secondary in grey beside it, and the aside in grey on the right. On phones the
- * secondary drops under the primary and the aside sits on the first line, so nothing wraps mid-row;
- * from md up it is one 32px line. Rows are body size everywhere, smaller than the statement. A
+ * secondary runs full width under the first line, so nothing wraps beside the aside; from md up it
+ * is one 32px line. Rows are body size everywhere, smaller than the statement. A
  * linked row is a link across its whole width.
  */
 export function RowList({ rows }: { rows: readonly Row[] }) {
@@ -27,16 +31,16 @@ export function RowList({ rows }: { rows: readonly Row[] }) {
 			{rows.map((row) => {
 				const content = (
 					<>
-						<span className="flex min-w-0 flex-col md:flex-row md:items-baseline md:gap-x-2">
-							<span className="-mx-1 self-start px-1 font-medium transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none">
-								{row.primary}
-							</span>
-							{row.secondary && (
-								<span className="text-muted">{row.secondary}</span>
-							)}
+						<span className="-mx-1 self-start justify-self-start px-1 font-medium transition-colors duration-150 ease-out group-hover:bg-ink group-hover:text-paper group-focus-visible:bg-ink group-focus-visible:text-paper motion-reduce:transition-none md:self-auto">
+							{row.primary}
 						</span>
+						{row.secondary && (
+							<span className="col-span-2 row-start-2 text-muted md:min-w-0">
+								{row.secondary}
+							</span>
+						)}
 						{row.aside && (
-							<span className="shrink-0 text-muted tabular-nums">
+							<span className="col-start-2 row-start-1 text-right text-muted tabular-nums md:ml-auto md:shrink-0">
 								{row.aside}
 							</span>
 						)}
