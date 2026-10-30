@@ -98,7 +98,12 @@ export default function HomePage() {
 				</ContentGroup>
 			</section>
 
-			<section id="contact" aria-label="Contact" className="mt-24 scroll-mt-24">
+			{/* At least a screen tall, so the nav can bring every section up to the top. */}
+			<section
+				id="contact"
+				aria-label="Contact"
+				className="mt-24 min-h-[calc(100dvh-8rem)] scroll-mt-24"
+			>
 				<ContentGroup id="elsewhere" label="Contact">
 					<RowList rows={CONTACT_ROWS} />
 				</ContentGroup>

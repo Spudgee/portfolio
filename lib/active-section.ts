@@ -3,6 +3,9 @@
  * than stored, so it is right after any jump, resize or client navigation. Off the home page there
  * are no sections and nothing is active.
  */
+/** A section counts once its top passes this line, just under the sticky bar and the jump offset. */
+const ACTIVE_LINE_PX = 128;
+
 function readActiveSection() {
 	const sections = [
 		...document.querySelectorAll<HTMLElement>("main section[id]"),
@@ -13,9 +16,10 @@ function readActiveSection() {
 		document.documentElement.scrollHeight - 2;
 	if (isAtBottom && sections.length > 0)
 		return sections[sections.length - 1].id;
-	let activeId = "";
+	// Before any section passes the line, the first one is the one being read.
+	let activeId = sections[0]?.id ?? "";
 	for (const section of sections) {
-		if (section.getBoundingClientRect().top <= window.innerHeight / 2) {
+		if (section.getBoundingClientRect().top <= ACTIVE_LINE_PX) {
 			activeId = section.id;
 		}
 	}
