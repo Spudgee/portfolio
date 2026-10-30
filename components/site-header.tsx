@@ -24,12 +24,8 @@ export function SiteHeader() {
 	return (
 		<header className="sticky top-0 z-10 bg-paper">
 			<div className="flex min-h-14 items-center justify-between gap-4 px-2 text-lead sm:min-h-16 sm:px-6">
-				<HighlightLink
-					href={PATHS.home}
-					aria-current={pathname === PATHS.home ? "page" : undefined}
-				>
-					{PERSON.name}
-				</HighlightLink>
+				{/* The name links home but never stays filled: it is the site's name, not a tab. */}
+				<HighlightLink href={PATHS.home}>{PERSON.name}</HighlightLink>
 
 				<nav aria-label="Primary" className="hidden sm:block">
 					<ul className="flex gap-6 text-muted">
