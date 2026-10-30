@@ -2,6 +2,7 @@
 
 import { useRef, useSyncExternalStore } from "react";
 import { HighlightLink } from "@/components/highlight-link";
+import { PillLink } from "@/components/pill-link";
 import { SocialButtons } from "@/components/social-buttons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
@@ -10,7 +11,8 @@ import { activeSectionStore } from "@/lib/active-section";
 
 /**
  * A bar fixed over the top of every section, at the lead size: the name on the left; on wider
- * screens the four sections in grey on the right, the one on screen filled, then the theme button.
+ * screens the four sections on the right as soft pills (the one on screen darker), then the theme
+ * button.
  * On phones, Menu opens a full-screen sidebar that slides in from the right: the name and Close
  * where the bar was, the sections down the left, the icon buttons at the foot. It is a modal
  * <dialog>, so Escape closes it and focus stays inside; the page behind stops scrolling
@@ -39,17 +41,17 @@ export function SiteNav() {
 
 				<div className="hidden items-center gap-6 md:flex">
 					<nav aria-label="Sections">
-						<ul className="flex gap-6 text-muted">
+						<ul className="flex gap-8">
 							{SECTIONS.map((section) => (
 								<li key={section.id}>
-									<HighlightLink
+									<PillLink
 										href={`/#${section.id}`}
 										aria-current={
 											activeId === section.id ? "location" : undefined
 										}
 									>
 										{section.label}
-									</HighlightLink>
+									</PillLink>
 								</li>
 							))}
 						</ul>
@@ -90,10 +92,10 @@ export function SiteNav() {
 						</button>
 					</div>
 					<nav aria-label="Sections" className="flex-1 pt-10">
-						<ul className="grid gap-2 text-lead text-muted">
+						<ul className="grid gap-2 text-lead">
 							{SECTIONS.map((section) => (
 								<li key={section.id}>
-									<HighlightLink
+									<PillLink
 										href={`/#${section.id}`}
 										aria-current={
 											activeId === section.id ? "location" : undefined
@@ -101,7 +103,7 @@ export function SiteNav() {
 										onClick={handleMenuClose}
 									>
 										{section.label}
-									</HighlightLink>
+									</PillLink>
 								</li>
 							))}
 						</ul>

@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
-/* Monochrome tokens: paper, ink, muted, all pure neutral. White paper by default; dark follows the OS
+/* Monochrome tokens: paper, ink, muted, plus two pill greys for the nav (pill marks the section on
+   screen, pill-soft a hover, a step closer to the paper), all pure neutral. White paper by default; dark follows the OS
    unless the theme switch pins one (data-theme on <html>, set before paint by lib/theme-choice.ts). */
 :root {
 	color-scheme: light dark;
 	--paper: oklch(1 0 0);
 	--ink: oklch(0.205 0 0);
 	--muted: oklch(0.556 0 0);
+	--pill: oklch(0.922 0 0);
+	--pill-soft: oklch(0.965 0 0);
 }
 
 :root[data-theme="light"] {
@@ -19,6 +22,8 @@
 		--paper: oklch(0.205 0 0);
 		--ink: oklch(0.97 0 0);
 		--muted: oklch(0.708 0 0);
+		--pill: oklch(0.371 0 0);
+		--pill-soft: oklch(0.285 0 0);
 	}
 }
 
@@ -27,6 +32,8 @@
 	--paper: oklch(0.205 0 0);
 	--ink: oklch(0.97 0 0);
 	--muted: oklch(0.708 0 0);
+	--pill: oklch(0.371 0 0);
+	--pill-soft: oklch(0.285 0 0);
 }
 
 @theme inline {
@@ -35,6 +42,8 @@
 	--color-paper: var(--paper);
 	--color-ink: var(--ink);
 	--color-muted: var(--muted);
+	--color-pill: var(--pill);
+	--color-pill-soft: var(--pill-soft);
 
 	--font-sans:
 		var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
