@@ -103,6 +103,39 @@ export function educationGraph(): JsonLdGraph {
 	};
 }
 
+/** About graph: the page, and the person with their work, study, skills and profiles. */
+export function aboutGraph(): JsonLdGraph {
+	const url = siteUrl(PATHS.about);
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "AboutPage",
+				"@id": `${url}#webpage`,
+				url,
+				isPartOf: { "@id": WEBSITE_ID },
+				mainEntity: { "@id": PERSON_ID },
+				inLanguage: LOCALE,
+			},
+			{
+				"@type": "Person",
+				"@id": PERSON_ID,
+				name: PERSON.name,
+				description: PERSON.bio,
+				jobTitle: PERSON.jobTitle,
+				worksFor: currentEmployers(),
+				alumniOf: {
+					"@type": "CollegeOrUniversity",
+					name: EDUCATION.institution,
+					url: EDUCATION.institutionUrl,
+				},
+				knowsAbout: PERSON.stack,
+				sameAs: PERSON.socialLinks.map((link) => link.href),
+			},
+		],
+	};
+}
+
 /** JSON for a `<script>` body: every `<` becomes its JSON unicode escape (u003c), so no string can close the element. */
 export function toJsonLd(graph: JsonLdGraph) {
 	return JSON.stringify(graph).replace(/</g, "\\u003c");

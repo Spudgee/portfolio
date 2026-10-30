@@ -5,7 +5,11 @@ export const SITE_URL = "https://cooperagustin.vercel.app";
 export const LOCALE = "en-AU";
 
 /** Every route, named once. */
-export const PATHS = { home: "/", education: "/education" } as const;
+export const PATHS = {
+	home: "/",
+	education: "/education",
+	about: "/about",
+} as const;
 
 /** Primary navigation, in reading order. Contact jumps to the footer, which every page has. */
 export const NAV_LINKS = [
@@ -15,7 +19,7 @@ export const NAV_LINKS = [
 ] as const;
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home, PATHS.education] as const;
+export const PAGE_PATHS = [PATHS.home, PATHS.education, PATHS.about] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:
