@@ -61,17 +61,18 @@
 }
 
 @layer base {
-	@media (prefers-reduced-motion: no-preference) {
-		html {
-			scroll-behavior: smooth;
-		}
-	}
-
 	body {
 		@apply bg-paper font-sans text-body text-ink antialiased;
 	}
 
 	::selection {
 		@apply bg-ink text-paper;
+	}
+
+	/* While the phone menu is open the page behind is dimmed and stops scrolling. */
+	@media (width < 48rem) {
+		body:has(#mobile-menu[data-open]) {
+			overflow: hidden;
+		}
 	}
 }
