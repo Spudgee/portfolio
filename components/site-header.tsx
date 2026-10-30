@@ -85,7 +85,7 @@ export function SiteHeader() {
 						</li>
 					))}
 				</ul>
-				<div className="mx-4 pt-4 text-muted">
+				<div className="mt-2 ml-[3px]">
 					<ThemeSwitch />
 				</div>
 			</nav>
