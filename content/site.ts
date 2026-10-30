@@ -20,17 +20,17 @@ export const SECTIONS = [
 	{
 		id: "work",
 		label: "Work",
-		statement: "Building AI-native healthcare in Australia.",
+		statement: "Building products for patients and clinicians.",
 	},
 	{
 		id: "education",
 		label: "Education",
-		statement: "I finished my degree while building Doccy and Medlo.",
+		statement: "Completed alongside two founding roles.",
 	},
 	{
 		id: "contact",
 		label: "Contact",
-		statement: "If you're working on healthcare, I'd like to hear about it.",
+		statement: "Always happy to talk product, design and engineering.",
 	},
 ] as const;
 

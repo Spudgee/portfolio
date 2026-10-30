@@ -15,7 +15,7 @@ import { yearSpan } from "@/lib/year-span";
 export const metadata: Metadata = pageMetadata({
 	path: PATHS.home,
 	title: `${PERSON.name} – ${PERSON.headline}`,
-	description: `${PERSON.name} is a founding engineer at Doccy and Medlo, building the future of telehealth from the first commit: 24/7 consults, certificates and prescriptions at Doccy, and locum shifts at Medlo, in Next.js, TypeScript and PostgreSQL.`,
+	description: `${PERSON.name} is a product-focused engineer and a founding engineer at Doccy and Medlo, building telehealth and locum software for patients and clinicians.`,
 });
 
 const [ABOUT, WORK, EDUCATION_SECTION, CONTACT] = SECTIONS;

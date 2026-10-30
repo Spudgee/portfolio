@@ -10,7 +10,7 @@ export const PERSON = {
 	/** The one-line role used in titles, the preview image and its alt text. */
 	headline: "Founding Engineer at Doccy and Medlo",
 	/** The longer statement that opens the page, also the description search engines read. */
-	bio: "I build healthcare software designed around AI from the start. Since 2024 I've been a founding engineer at Doccy and Medlo, writing everything from the first commit: Doccy's telehealth platform, Medlo's marketplace for locum doctors, and Medlo Evidence, a medical answer engine for Australian clinicians. I want doctors to spend less time on paperwork and patients to wait less for care, and I think the companies that get there will be built this way.",
+	bio: "Founding engineer at Doccy and Medlo, working where engineering meets product design: building around the people who use the software, and refining the details until the experience feels obvious.",
 	/** Tools by area, one row each in the About section; search engines get the flat list. */
 	stack: [
 		{ area: "Frontend", tools: ["Next.js", "React", "Tailwind CSS"] },
