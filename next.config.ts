@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	/** About and Education became part of the home page; old links land there. */
+	/** About is the home page now; old links to /about land there. */
 	async redirects() {
-		return [
-			{ source: "/about", destination: "/", permanent: true },
-			{ source: "/education", destination: "/", permanent: true },
-		];
+		return [{ source: "/about", destination: "/", permanent: true }];
 	},
 };
 

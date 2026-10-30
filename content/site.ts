@@ -7,19 +7,29 @@ export const LOCALE = "en-AU";
 /** Every route, named once. */
 export const PATHS = {
 	home: "/",
-	archive: "/archive",
+	work: "/work",
+	education: "/education",
 	stack: "/stack",
+	archive: "/archive",
 } as const;
 
-/** The nav, in order: About is the home page; Archive is the Are.na grid; Stack is the tools. */
+/** The nav, in order: About is the home page with the statement; each other page is one list. */
 export const NAV_PAGES = [
 	{ label: "About", path: PATHS.home },
-	{ label: "Archive", path: PATHS.archive },
+	{ label: "Work", path: PATHS.work },
+	{ label: "Education", path: PATHS.education },
 	{ label: "Stack", path: PATHS.stack },
+	{ label: "Archive", path: PATHS.archive },
 ] as const;
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home, PATHS.archive, PATHS.stack] as const;
+export const PAGE_PATHS = [
+	PATHS.home,
+	PATHS.work,
+	PATHS.education,
+	PATHS.stack,
+	PATHS.archive,
+] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:
