@@ -45,8 +45,8 @@ const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
 }));
 
 /**
- * The career in one place: Experience and Projects (what has been built), then Education and Stack
- * (the background behind it). Every group opens with the same grey label over the same rows.
+ * The career in one place: Experience, then Education and Stack (the background behind it).
+ * Every group opens with the same grey label over the same rows.
  */
 export default function WorkPage() {
 	return (
@@ -54,9 +54,6 @@ export default function WorkPage() {
 			<h1 className="sr-only">Work</h1>
 			<ContentGroup id="experience" label="Experience">
 				<RowList rows={EXPERIENCE_ROWS} />
-			</ContentGroup>
-			<ContentGroup id="projects" label="Projects">
-				<p className="text-muted">Projects are on the way.</p>
 			</ContentGroup>
 			<ContentGroup id="education" label="Education">
 				<RowList rows={EDUCATION_ROWS} />
