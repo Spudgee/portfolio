@@ -12,6 +12,12 @@ export const PATHS = {
 	archive: "/archive",
 } as const;
 
+/** The nav: two pages. About is the home page with every section; Archive is the Are.na grid. */
+export const NAV_PAGES = [
+	{ label: "About", path: PATHS.home },
+	{ label: "Archive", path: PATHS.archive },
+] as const;
+
 /**
  * The home page's sections, top to bottom: each is one screen of the carousel and one nav item.
  * Only About carries a statement, the one summary at the top; the rest are a label and their rows.
