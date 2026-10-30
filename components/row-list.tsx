@@ -6,7 +6,7 @@ export type Row = {
 	primary: string;
 	/** In grey, on the same line after the primary. */
 	secondary?: string;
-	/** In grey monospace, right-aligned: years, a grade. */
+	/** In grey, right-aligned, digits at even width: years, a grade. */
 	aside?: string;
 	href?: string;
 };
@@ -17,7 +17,7 @@ const ROW_CLASS =
 /**
  * The one row style for every list on the site, after Brian Lovin's work list: 38px rows (44px on
  * phones, for thumbs), the primary in medium ink with the secondary in grey beside it, and the aside
- * in grey monospace on the right. A linked row is a link across its whole width.
+ * in grey on the right, in Inter like everything else. A linked row is a link across its whole width.
  */
 export function RowList({ rows }: { rows: readonly Row[] }) {
 	return (
@@ -34,7 +34,9 @@ export function RowList({ rows }: { rows: readonly Row[] }) {
 							)}
 						</span>
 						{row.aside && (
-							<span className="shrink-0 font-mono text-muted">{row.aside}</span>
+							<span className="shrink-0 text-muted tabular-nums">
+								{row.aside}
+							</span>
 						)}
 					</>
 				);
