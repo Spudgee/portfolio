@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Role } from "@/content/experience";
-import { roleYears } from "@/lib/role-years";
+import { yearSpan } from "@/lib/year-span";
 
 /**
  * One line per role, after Brian Lovin's work list: the company in ink, the title in grey and the
@@ -20,7 +20,7 @@ export function ExperienceEntry({ role }: { role: Role }) {
 					<span className="text-muted">{role.title}</span>
 				</span>
 				<span className="shrink-0 text-muted tabular-nums">
-					{roleYears(role)}
+					{yearSpan(role.start, role.end)}
 				</span>
 			</Link>
 		</li>
