@@ -8,16 +8,18 @@ export const LOCALE = "en-AU";
 export const PATHS = {
 	home: "/",
 	archive: "/archive",
+	stack: "/stack",
 } as const;
 
-/** The nav: two pages. About is the home page with every section; Archive is the Are.na grid. */
+/** The nav, in order: About is the home page; Archive is the Are.na grid; Stack is the tools. */
 export const NAV_PAGES = [
 	{ label: "About", path: PATHS.home },
 	{ label: "Archive", path: PATHS.archive },
+	{ label: "Stack", path: PATHS.stack },
 ] as const;
 
 /** Indexable routes, in sitemap order. */
-export const PAGE_PATHS = [PATHS.home, PATHS.archive] as const;
+export const PAGE_PATHS = [PATHS.home, PATHS.archive, PATHS.stack] as const;
 
 /**
  * Absolute URL for a site path, spelled exactly as Next writes the canonical:

@@ -41,15 +41,9 @@ const EDUCATION_ROWS: readonly Row[] = [
 	},
 ];
 
-const STACK_ROWS: readonly Row[] = PERSON.stack.map((group) => ({
-	key: group.area,
-	primary: group.area,
-	secondary: group.tools.join(", "),
-}));
-
 /**
- * About: the summary statement with the GitHub and LinkedIn buttons right under it, then Work,
- * Education and Stack as labelled groups of the same rows, in the centred pane under the bar.
+ * About: the summary statement with the GitHub and LinkedIn buttons right under it, then Work and
+ * Education as labelled groups of the same rows, in the centred pane under the bar.
  */
 export default function HomePage() {
 	return (
@@ -72,9 +66,6 @@ export default function HomePage() {
 				</ContentGroup>
 				<ContentGroup id="education" label="Education">
 					<RowList rows={EDUCATION_ROWS} />
-				</ContentGroup>
-				<ContentGroup id="stack" label="Stack">
-					<RowList rows={STACK_ROWS} />
 				</ContentGroup>
 			</div>
 		</div>
