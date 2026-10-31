@@ -6,7 +6,7 @@ Cooper Agustin's personal site, served from Vercel at `https://cooperagustin.dev
 
 **The person leads, not the work.** Cooper is a founding engineer at Doccy (telehealth, doccy.com.au) and Medlo (locum marketplace, medlo.com.au), and a product- and experience-focused engineer.
 
-- `/` (Home): only the two-paragraph statement (`STATEMENT` in `content/person.ts`). It is the site's one summary.
+- `/` (Home): only the two-paragraph statement (`STATEMENT` in `content/person.ts`). It is the site's one summary. It is set in regular muted grey, with the `statementStress` phrases (Founding engineer, Doccy, Medlo) in medium ink.
 - `/work`: Experience, Education and Stack, each a `ContentGroup` of `RowList` rows.
 - `/archive`: an image grid fed from the Are.na channel in `content/archive.ts`, 2 columns on phones and 4 on desktop, plus a "View on Are.na" pill.
 - `/contact`: one note (`contactNote`).
