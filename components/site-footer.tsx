@@ -15,7 +15,7 @@ export function SiteFooter() {
 				<p className="text-muted">
 					© {COPYRIGHT_YEAR} {PERSON.name}
 				</p>
-				<SocialButtons isAtEnd />
+				<SocialButtons />
 			</div>
 		</footer>
 	);

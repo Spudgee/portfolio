@@ -1,51 +1,57 @@
 # Portfolio
 
-Cooper Agustin's personal site, served static from Vercel at `https://cooperagustin.vercel.app` (the `SITE_URL` constant in `content/site.ts`). Where this file and the code disagree, this file wins.
+Cooper Agustin's personal site, served from Vercel at `https://cooperagustin.dev` (the `SITE_URL` constant in `content/site.ts`). Where this file and the code disagree, this file wins.
 
 ## What the site says
 
-**Experience leads.** Cooper is a founding engineer at Doccy (telehealth, doccy.com.au) and Medlo (locum marketplace, medlo.com.au); the home page exists to show that work.
+**The person leads, not the work.** Cooper is a founding engineer at Doccy (telehealth, doccy.com.au) and Medlo (locum marketplace, medlo.com.au), and a product- and experience-focused engineer.
 
-- `/` — one sentence naming Cooper, the founding-engineer role and both companies (the H1), then experience: what was built at each company, with dates and numbers where they are true, then the stack. Projects join here as they ship.
-- `/education` — RMIT and grades. Secondary: one link in the header, nothing about it on the home page.
+- `/` (Home): only the two-paragraph statement (`STATEMENT` in `content/person.ts`). It is the site's one summary.
+- `/work`: Experience, Education and Stack, each a `ContentGroup` of `RowList` rows.
+- `/archive`: an image grid fed from the Are.na channel in `content/archive.ts`, 2 columns on phones and 4 on desktop, plus a "View on Are.na" pill.
+- `/contact`: one note (`contactNote`).
+- `/qr`: hidden (noindex, not in the nav or sitemap). It shows one QR code that opens LinkedIn.
+- Retired paths redirect in `next.config.ts`: `/about` → `/`, and `/education`, `/stack` and `/projects` → `/work`. A blog joins the nav later through `NAV_PAGES`.
 - `app/not-found.tsx` serves a real 404.
 
-Copy, links and paths live once, in typed modules under `content/`. Pages, header, footer, metadata, JSON-LD and the sitemap all read from them, so a role, date or URL changes in one place.
+**Copy rules:**
+
+- No first or third person on the page.
+- Lead with "Founding engineer at Doccy and Medlo".
+- Never "from the first commit".
+- Never mention Medlo Evidence.
+- State only facts that are true.
+
+Copy, links and paths live once, in typed modules under `content/`.
 
 ## Design direction
 
-**Swiss and small**: studio-grade, typography doing all the work, every line of text the same small size. References, and what each contributes:
+**Calm, minimal, product-grade.** Large grey type, generous space and soft pills, after brianlovin.com's spacing and f451.studio's restraint.
 
-- [Luke Hoban](https://lukehoban.co.nz) — the model: all text small, information set in columns across a 12-column grid, hierarchy from colour and position, most of the page left empty. Take the small type, not its giant "Selected Work" heading.
-- [Shovel](https://www.shovel.studio) — text-only nav and social links, work as a name plus one factual line, underlines that appear on hover. Take the text links, not its pill-shaped nav buttons.
-- [F451](https://f451.studio) — one text size for everything, each project as stacked lines of facts (name, site, year, disciplines, stack), and a nav where the current page is ink and the others grey.
-- [Nuevo.Tokyo](https://www.nuevo.tokyo) — small text in columns: short descriptor lines on the left, the statement in a middle column, generous off-white space. Take the layout, not its monospace capitals.
-- [Katharina Nejdl](https://portfolio.katharinanejdl.com/about) — simple lines: every fact a row under a thin rule, date first; all-caps chrome; capitalised words throughout. Take the rules and the casing, not its boxed tag buttons.
-
-The rules that hold it together:
-
-- **Type** — one family, Hanken Grotesk via `next/font/google`, weights 400 and 500. One size: the `--text-body` token in `app/globals.css` (13 px). The default Tailwind size scale is removed, so `text-body` is the only named size, and the e2e fails if any text node renders at another size. Hierarchy comes from weight, colour, rules and position.
-- **Colour** — monochrome: paper, ink and one muted grey, as tokens in `app/globals.css`. Muted text holds 4.5:1 contrast on paper. Dark mode follows the OS through `prefers-color-scheme` in CSS, with no toggle.
-- **Space and lines** — content sits directly on the page, aligned to shared column lines: dates and labels in columns 1–3, content from column 4. Each row of facts (a role, a degree detail, the stack) sits under a 1 px ink rule, and the list closes with one; the header has a rule beneath, the footer one above. Mobile is one column.
-- **Case** — never lowercase. Header and footer are all caps (CSS `uppercase`, `tracking-wider`); headings, labels, names and titles are capitalised words; sentences start with a capital.
-- **Copy** — short, factual: what was built, for whom, when.
-- **Text only** — every control is a text link. No buttons, pills, boxes, icons or images.
-- **Motion** — the hover underline is the only animation.
+- **Type:** Inter with optical sizing, through `next/font/google`. Three sizes are tokens in `app/globals.css`:
+  - `text-body`: 16px, for rows;
+  - `text-row`: 20px, for headings and phone statements;
+  - `text-lead`: 24px, for the nav, the desktop statement and the menu.
+  Hierarchy comes from size, weight (400/500) and ink versus muted grey.
+- **Colour:** `paper`, `ink`, `muted`, `pill` and `pill-soft` tokens. Light mode is white paper; dark mode is neutral oklch(0.205). The theme follows the OS until the switch picks Light or Dark. The choice is stored in localStorage and applied before paint by `THEME_BOOT_SCRIPT` as `data-theme` on `<html>`.
+- **Layout:** content is centred in a 40rem column; Archive runs to 72rem. No rules, boxes or shader backgrounds.
+- **Links:**
+  - Nav links are `PillLink`: grey text, a soft pill on hover, and a darker pill for the current page (`aria-current="page"`).
+  - The name is a `HighlightLink`.
+  - Row titles take an ink-block hover.
 
 ## Header and footer
 
-Both are quiet text on the page, in all caps. The caps come from the CSS `uppercase` class, so the source and accessible names keep proper capitals ("Cooper Agustin", "GitHub").
-
-- **Header** — the name (links to `/`) and Education. The current page's link is ink (`aria-current="page"`), the other muted, as on F451.
-- **Footer** — one line: `© <year> Cooper Agustin`, GitHub, LinkedIn.
-- **Hover underline** — every header and footer link is `components/hover-underline-link.tsx`: the underline is always drawn in a transparent colour and fades to `currentColor` on `:hover` and `:focus-visible` (1 px thick, 3 px offset, 150 ms), with a 44 px tall hit area. The line already exists, so nothing shifts. Links inside running text use `components/inline-link.tsx`, underlined at rest.
-- Tailwind v4's `hover:` fires only on hover-capable devices, so on touch a header or footer link must read as a link from its position alone.
+- **Header:** sticky. The name sits on the left. On desktop, the nav (Home · Work · Archive · Contact) and the round theme switch sit on the right.
+- **Phone header:** a three-line button opens a full-screen menu downwards in 150ms. The links are at lead size, aligned with the name. The theme switch sits bottom-left and a round × bottom-right, within thumb reach.
+- **Footer:** one cluster in the bottom-right corner on every page: `© <year> Cooper Agustin`, then the GitHub and LinkedIn icon buttons. It has no rule, and it sits at the bottom of short pages.
+- **Profile links:** GitHub and LinkedIn appear only in the footer, never in page content.
 
 ## Fast core
 
-- **Static** — every route prerenders: `bun run build` marks each one `○ (Static)`. Reading cookies, headers or search params, or fetching per request, breaks this.
+- **Static** — every route prerenders: `bun run build` marks each one `○ (Static)`; `/archive` revalidates hourly. Reading cookies, headers or search params, or fetching per request, breaks this.
 - **Server Components** — a `"use client"` file needs a job CSS cannot do.
-- **Dependencies** — the site ships Next, React and Tailwind only: no UI kit, icon pack, animation library or third-party script. Dev tools (Biome, oxlint, Playwright) stay in `devDependencies`.
+- **Dependencies** — the site ships Next, React, Tailwind and `qrcode` (run at build time for `/qr`) only: no UI kit, icon pack, animation library or third-party script. Dev tools (Biome, oxlint, Playwright) stay in `devDependencies`.
 - **Check** — Lighthouse (mobile) against `bun run build && bun run start`: Performance ≥ 95 and CLS 0 (2026-10-18: 98–99, real first paint 0.7 s). Its simulated LCP (~2.3 s) counts the Next runtime download; search engines rank on field Core Web Vitals instead: p75 LCP ≤ 2.5 s, INP < 200 ms, CLS < 0.1.
 
 ## SEO and GEO
@@ -53,9 +59,9 @@ Both are quiet text on the page, in all caps. The caps come from the CSS `upperc
 AI engines retrieve pages much as search engines do, so one job serves both: readable server HTML, one clear entity, facts stated plainly.
 
 - **One entity** — the name is "Cooper Agustin" everywhere: site, titles, JSON-LD, GitHub and LinkedIn.
-- **Answer first** — the H1 of `/` states the name, the founding-engineer role and both company names. Each section still makes sense when quoted on its own.
+- **Answer first** — the (visually hidden) H1 of `/` states the name, the founding-engineer role and both company names, and the statement says what both companies do.
 - **Per route** — a unique `<title>` (`<page> – Cooper Agustin`; the home title carries the founding-engineer line), one H1, a page-specific description, an absolute self-canonical and a 1200×630 `og:image`, all through `lib/page-metadata.ts`.
-- **JSON-LD** — one `@graph` per page from `lib/json-ld.ts`, server-rendered with every `<` escaped. `/` holds `WebSite` (`/#website`), a `ProfilePage` and its `mainEntity` `Person` (`/#person`: `jobTitle`, `worksFor` Doccy and Medlo, `knowsAbout` the stack, `sameAs` GitHub and LinkedIn). `/education` adds `alumniOf` RMIT to the same `/#person` node. Markup mirrors the visible text of its own page.
+- **JSON-LD** — one `@graph` per page from `lib/json-ld.ts`, server-rendered with every `<` escaped. `/` holds `WebSite` (`/#website`), a `ProfilePage` and its `mainEntity` `Person` (`/#person`: `jobTitle`, `worksFor` Doccy and Medlo, `knowsAbout` the stack, `sameAs` GitHub and LinkedIn). `alumniOf` carries RMIT. Other pages carry no JSON-LD. Markup mirrors facts the site shows.
 - **Crawl files** — `app/sitemap.ts` lists canonical URLs, with `lastmod` only where a real date exists; `app/robots.ts` allows every crawler, AI ones included, and points at the sitemap.
 - Skip `llms.txt`, FAQ or HowTo markup, the `keywords` meta, `priority` and `changefreq`: no engine reads them.
 
@@ -63,8 +69,8 @@ AI engines retrieve pages much as search engines do, so one job serves both: rea
 
 - Bun only; npm, pnpm and yarn installs are refused on purpose.
 - Tailwind v4 is configured in CSS (`@theme` in `app/globals.css`); there is no `tailwind.config`.
-- Before finishing: `bun run check` (Biome format, lint and imports; it writes), `bun run lint` (oxlint), `bun run build`, then `bun run test:e2e` (Playwright against the built site on port 3100; `e2e/site.spec.ts`). CI runs lint, build and e2e on `main` and `staging`.
-- Work lands on `staging`. Vercel deploys `main` only, so there are no preview URLs: check changes locally.
+- Before finishing: `bun run check` (Biome format, lint and imports; it writes), `bun run lint` (oxlint), `bun run build`, then `bun run test:e2e` (Playwright against the built site on port 3100; `e2e/site.spec.ts`; stop any server left on 3100 first, or it is reused). CI runs lint, build and e2e on `main` and `staging`.
+- Work lands on `staging` through a PR, then `staging` → `main`. Vercel deploys `main` only, so there are no preview URLs: check changes locally.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

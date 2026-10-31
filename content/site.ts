@@ -1,5 +1,5 @@
 /** Production origin: every canonical, sitemap entry and JSON-LD `@id` is built from it. */
-export const SITE_URL = "https://cooperagustin.vercel.app";
+export const SITE_URL = "https://cooperagustin.dev";
 
 /** Language of every page, as BCP 47. */
 export const LOCALE = "en-AU";

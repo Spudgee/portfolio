@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SocialButtons } from "@/components/social-buttons";
 import { PERSON } from "@/content/person";
 import { PATHS } from "@/content/site";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -7,10 +6,10 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata: Metadata = pageMetadata({
 	path: PATHS.contact,
 	title: `Contact – ${PERSON.name}`,
-	description: `Where to find ${PERSON.name}: ${PERSON.socialLinks.map((link) => link.label).join(" and ")}.`,
+	description: `How to reach ${PERSON.name}, founding engineer at Doccy and Medlo: ${PERSON.socialLinks.map((link) => link.label).join(" and ")}.`,
 });
 
-/** Laid out like Home: the statement at lead size, then the same GitHub and LinkedIn buttons. */
+/** Laid out like Home: one note at lead size. GitHub and LinkedIn sit in the footer, as on every page. */
 export default function ContactPage() {
 	return (
 		<div className="mx-auto max-w-[40rem]">
@@ -18,9 +17,6 @@ export default function ContactPage() {
 			<p className="text-row font-medium text-pretty md:text-lead">
 				{PERSON.contactNote}
 			</p>
-			<div className="mt-6">
-				<SocialButtons />
-			</div>
 		</div>
 	);
 }
