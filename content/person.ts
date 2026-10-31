@@ -17,6 +17,8 @@ export const PERSON = {
 	headline: "Founding Engineer at Doccy and Medlo",
 	/** The home statement's paragraphs. */
 	statement: STATEMENT,
+	/** Phrases the home statement sets in medium ink against its grey body: who, and where. */
+	statementStress: ["Founding engineer", "Doccy", "Medlo"],
 	/** The same statement as one paragraph, for search engines. */
 	bio: STATEMENT.join(" "),
 	/** The Contact page's statement. */
