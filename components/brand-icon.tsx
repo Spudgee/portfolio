@@ -9,9 +9,19 @@ const BRAND_PATHS = {
 export type Brand = keyof typeof BRAND_PATHS;
 
 /** A 24px brand mark; decorative, so the link around it carries the name. */
-export function BrandIcon({ brand }: { brand: Brand }) {
+export function BrandIcon({
+	brand,
+	className = "size-6",
+}: {
+	brand: Brand;
+	className?: string;
+}) {
 	return (
-		<svg viewBox="0 0 24 24" aria-hidden="true" className="size-6 fill-current">
+		<svg
+			viewBox="0 0 24 24"
+			aria-hidden="true"
+			className={`fill-current ${className}`}
+		>
 			<path d={BRAND_PATHS[brand]} />
 		</svg>
 	);
