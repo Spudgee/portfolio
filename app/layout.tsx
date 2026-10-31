@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteNav } from "@/components/site-nav";
 import { PERSON } from "@/content/person";
 import { LOCALE, SITE_URL } from "@/content/site";
+import { THEME_BOOT_SCRIPT } from "@/lib/theme-choice";
 import "./globals.css";
 
-const hankenGrotesk = Hanken_Grotesk({
+/** Inter with its optical-size axis, so large text renders in the Display cut. */
+const inter = Inter({
 	subsets: ["latin"],
-	variable: "--font-hanken-grotesk",
+	axes: ["opsz"],
+	variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -30,10 +33,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang={LOCALE} className={hankenGrotesk.variable}>
-			<body className="mx-auto flex min-h-dvh w-full max-w-(--breakpoint-2xl) flex-col px-4 sm:px-8">
-				<SiteHeader />
-				<main className="flex-1">{children}</main>
+		// The boot script may set data-theme before React hydrates, so <html> can differ from the server's.
+		<html lang={LOCALE} className={inter.variable} suppressHydrationWarning>
+			<head>
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from lib/theme-choice.ts, no user input.
+					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
+				/>
+			</head>
+			<body className="flex min-h-dvh flex-col">
+				<SiteNav />
+				{/* Pages centre their own column: About reads narrow, Archive's grid runs wider. */}
+				<main className="flex-1 px-4 pt-[8vh] pb-24">{children}</main>
 				<SiteFooter />
 			</body>
 		</html>

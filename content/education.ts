@@ -7,6 +7,6 @@ export const EDUCATION = {
 	location: "Melbourne",
 	start: "2023-02",
 	end: "2026-06",
-	gpa: "3.4/4.0",
+	gpa: "3.4/4",
 	wam: "83%",
 } as const;
