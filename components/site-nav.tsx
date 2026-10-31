@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HighlightLink } from "@/components/highlight-link";
 import { PillLink } from "@/components/pill-link";
+import { SocialButtons } from "@/components/social-buttons";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { PERSON } from "@/content/person";
 import { NAV_PAGES, PATHS } from "@/content/site";
@@ -97,14 +98,17 @@ export function SiteNav() {
 							</li>
 						))}
 					</ul>
-					{/* Both controls sit in the thumb's reach: theme bottom left, close bottom right. */}
+					{/* Every control sits in the thumb's reach, in one grey: theme and profiles bottom left, close bottom right. */}
 					<div className="flex items-center justify-between px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-						<ThemeSwitch isRound />
+						<div className="flex items-center gap-3">
+							<ThemeSwitch isRound />
+							<SocialButtons isRound />
+						</div>
 						<button
 							type="button"
 							onClick={handleMenuClose}
 							aria-label="Close menu"
-							className="grid size-14 cursor-pointer place-items-center rounded-full bg-pill text-ink"
+							className="grid size-14 cursor-pointer place-items-center rounded-full bg-pill-soft text-ink transition-colors duration-150 ease-out hover:bg-pill focus-visible:bg-pill focus-visible:outline-hidden motion-reduce:transition-none"
 						>
 							<span className="relative block h-3 w-[18px]">
 								<span className="absolute inset-x-0 top-[5.25px] h-[1.5px] rotate-45 rounded-full bg-current" />

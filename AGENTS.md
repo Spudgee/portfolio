@@ -43,9 +43,9 @@ Copy, links and paths live once, in typed modules under `content/`.
 ## Header and footer
 
 - **Header:** sticky. The name sits on the left. On desktop, the nav (Home · Work · Archive · Contact) and the round theme switch sit on the right.
-- **Phone header:** a three-line button opens a full-screen menu downwards in 150ms. The links are at lead size, aligned with the name. The theme switch sits bottom-left and a round × bottom-right, within thumb reach.
+- **Phone header:** a three-line button opens a full-screen menu downwards in 150ms. The links are at lead size, aligned with the name. The theme switch, GitHub and LinkedIn sit bottom-left and a round × bottom-right, within thumb reach, all as round `pill-soft` buttons that darken to `pill` on hover.
 - **Footer:** one cluster in the bottom-right corner on every page: `© <year> Cooper Agustin`, then the GitHub and LinkedIn icon buttons. It has no rule, and it sits at the bottom of short pages.
-- **Profile links:** GitHub and LinkedIn appear only in the footer, never in page content.
+- **Profile links:** GitHub and LinkedIn appear in the footer and the phone menu, never in page content.
 
 ## Fast core
 
