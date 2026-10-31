@@ -3,13 +3,13 @@ import { BrandIcon } from "@/components/brand-icon";
 import { PERSON } from "@/content/person";
 
 /**
- * GitHub and LinkedIn as grey icon buttons that turn ink on hover. The 44px buttons pull outwards by
- * their inner margin, so the first icon lines up with the text above (or, with `isAtEnd`, the last
- * icon lines up with the right edge).
+ * GitHub and LinkedIn as grey icon buttons that turn ink on hover. They live only in the footer, so
+ * they sit in one place on every page; the 44px buttons pull right by their inner margin so the
+ * last icon lines up with the nav's right edge.
  */
-export function SocialButtons({ isAtEnd = false }: { isAtEnd?: boolean }) {
+export function SocialButtons() {
 	return (
-		<div className={`flex items-center ${isAtEnd ? "-mr-2.5" : "-ml-2.5"}`}>
+		<div className="-mr-2.5 flex items-center">
 			{PERSON.socialLinks.map((link) => (
 				<Link
 					key={link.href}
