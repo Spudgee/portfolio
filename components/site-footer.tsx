@@ -5,13 +5,13 @@ import { PERSON } from "@/content/person";
 const COPYRIGHT_YEAR = new Date().getFullYear();
 
 /**
- * One quiet strip at the foot of every page, in the content column: a hairline, then the copyright
- * in grey on the left and the GitHub and LinkedIn buttons on the right.
+ * One quiet strip at the foot of every page, spanning the screen with the nav's side padding: the
+ * copyright in grey on the left and the GitHub and LinkedIn buttons on the right.
  */
 export function SiteFooter() {
 	return (
-		<footer className="mx-auto w-full max-w-[40rem] px-4 pb-6 md:px-0">
-			<div className="flex items-center justify-between gap-4 border-t border-pill pt-2">
+		<footer className="px-4 pb-6 md:px-8">
+			<div className="flex items-center justify-between gap-4">
 				<p className="text-muted">
 					© {COPYRIGHT_YEAR} {PERSON.name}
 				</p>
