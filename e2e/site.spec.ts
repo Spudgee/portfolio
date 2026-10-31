@@ -168,6 +168,9 @@ test("on a phone the menu button opens a full-screen menu that navigates and clo
 		"true",
 	);
 	await expect(menu).toBeVisible();
+	for (const name of ["GitHub", "LinkedIn"]) {
+		await expect(menu.getByRole("link", { name })).toBeVisible();
+	}
 
 	await menu.getByRole("link", { name: "Work" }).click();
 	await expect(page).toHaveURL(/\/work$/);
