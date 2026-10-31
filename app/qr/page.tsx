@@ -16,19 +16,18 @@ export const metadata: Metadata = {
 
 const LINKEDIN = PERSON.socialLinks.find((link) => link.brand === "linkedin");
 
-/** A large QR code that opens LinkedIn, centred, with one grey line beneath it. */
+/** One oversized QR code that opens LinkedIn, centred, with nothing else on the page to scan past. */
 export default function QrPage() {
 	return (
 		<div className="mx-auto max-w-[40rem]">
 			<h1 className="sr-only">LinkedIn QR code</h1>
 			{LINKEDIN && (
-				<figure className="grid justify-items-center gap-4 pt-[6vh]">
+				<div className="grid justify-items-center pt-[4vh]">
 					<QrCode
 						value={LINKEDIN.href}
 						label={`QR code that opens ${PERSON.name}'s LinkedIn profile`}
 					/>
-					<figcaption className="text-muted">Scan to open LinkedIn</figcaption>
-				</figure>
+				</div>
 			)}
 		</div>
 	);
