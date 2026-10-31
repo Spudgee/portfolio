@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { PERSON } from "@/content/person";
 import { LOCALE, SITE_URL } from "@/content/site";
@@ -40,10 +41,11 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
 				/>
 			</head>
-			<body>
+			<body className="flex min-h-dvh flex-col">
 				<SiteNav />
 				{/* Pages centre their own column: About reads narrow, Archive's grid runs wider. */}
-				<main className="px-4 pt-[8vh] pb-24">{children}</main>
+				<main className="flex-1 px-4 pt-[8vh] pb-24">{children}</main>
+				<SiteFooter />
 			</body>
 		</html>
 	);
