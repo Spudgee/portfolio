@@ -1,279 +1,35 @@
-"use client";
+import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
+import { SocialButtons } from "@/components/social-buttons";
+import { PERSON } from "@/content/person";
+import { PATHS } from "@/content/site";
+import { homeGraph } from "@/lib/json-ld";
+import { pageMetadata } from "@/lib/page-metadata";
 
-import { Button } from "@/components/ui/button";
-import { Moon, SunMedium, Ellipsis, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+export const metadata: Metadata = pageMetadata({
+	path: PATHS.home,
+	title: `${PERSON.name} – ${PERSON.headline}`,
+	description: `${PERSON.name} is a product-focused engineer and a founding engineer at Doccy and Medlo, building telehealth and locum software for patients and clinicians.`,
+});
 
-// oxlint-disable-next-line no-unused-vars -- kept for the parked Projects grid
-const features = [
-	{
-		icon: Ellipsis,
-		title: "In progress",
-		description:
-			"Developing high-quality projects to enhance my abilities at work and in my free time.",
-	},
-];
-
-/** Read once per page load; React render must stay pure. */
-const COPYRIGHT_YEAR = new Date().getFullYear();
-
-export default function Home() {
-	const [isNightMode, setIsNightMode] = useState(() => {
-		if (typeof window !== "undefined") {
-			const stored = localStorage.getItem("isNightMode");
-			return stored === "true";
-		}
-		return false;
-	});
-
-	useEffect(() => {
-		localStorage.setItem("isNightMode", String(isNightMode));
-		if (isNightMode) document.documentElement.classList.add("dark");
-		else document.documentElement.classList.remove("dark");
-	}, [isNightMode]);
-
+/** Home is only the statement and the GitHub and LinkedIn buttons; Work, Archive and Contact are pages. */
+export default function HomePage() {
 	return (
-		<div className="min-h-screen from-background via-background to-muted/20 flex flex-col items-center p-4 sm:m-4 overflow-hidden">
-			<main className="w-full max-w-3xl px-4 md:px-6 pb-12 pt-10">
-				{/* Header about me */}
-				<header className="flex flex-col items-start mb-12">
-					<div className="flex flex-row items-center justify-between gap-2 w-full">
-						<h1 className="text-lg sm:text-xl font-medium">Cooper Agustin</h1>
-						<Button
-							variant="outline"
-							size="icon-sm"
-							className="hover:bg-accent transition-colors p-0 border-none shadow-none"
-							onClick={() => setIsNightMode(!isNightMode)}
-							aria-label={
-								isNightMode ? "Switch to light mode" : "Switch to dark mode"
-							}
-						>
-							{isNightMode ? (
-								<SunMedium className="size-4" />
-							) : (
-								<Moon className="size-4" />
-							)}
-						</Button>
-					</div>
-					<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full">
-						<p className="text-xs sm:text-sm text-muted-foreground">
-							Junior Software Engineer
-						</p>
-						<div className="flex flex-row items-center gap-4">
-							<a
-								href="https://github.com/Spudgee"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors group"
-							>
-								<span className="underline">github</span>
-							</a>
-							<a
-								href="https://www.linkedin.com/in/cooper-agustin/"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors group"
-							>
-								<span className="underline">linkedin</span>
-							</a>
-						</div>
-					</div>
-					<div className="flex flex-col items-start gap-2 w-full mt-4">
-						<p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-							Eager to learn and grow. Learning to develop efficient,
-							high-quality, and scalable software at Medlo.
-						</p>
-					</div>
-				</header>
-
-				{/* Professional Experience */}
-				<section
-					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
-					aria-labelledby="professional-experience"
-				>
-					<h2
-						id="professional-experience"
-						className="text-lg sm:text-xl font-medium"
-					>
-						Professional Experience
-					</h2>
-					<div className="flex flex-col items-start gap-6 w-full">
-						{/* Junior Software Engineer */}
-						<div className="flex flex-col items-start gap-2 w-full">
-							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-xs sm:text-sm">
-									Junior Software Engineer @ Medlo
-								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
-									June 2024 - Present
-								</span>
-							</div>
-							<div className="flex flex-col items-start pl-2 sm:pl-4 gap-2">
-								<a
-									href="https://medlo.com.au"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
-								>
-									<ChevronRight className="size-4 shrink-0" />
-									<Image
-										src="/favicon/medlo.png"
-										alt="Medlo"
-										width={20}
-										height={20}
-										priority
-									/>
-									<span className="underline">Locum shifts with Medlo</span>
-								</a>
-								<a
-									href="https://doccy.com.au"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
-								>
-									<ChevronRight className="size-4 shrink-0" />
-									<Image
-										src="/favicon/doccy.png"
-										alt="Doccy"
-										width={20}
-										height={20}
-										priority
-									/>
-									<span className="underline">
-										Online telehealth with Doccy
-									</span>
-								</a>
-								<a
-									href="https://evidence.medlo.com.au"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-all duration-200 flex items-center gap-2"
-								>
-									<ChevronRight className="size-4 shrink-0" />
-									<Image
-										src="/favicon/evidence.png"
-										alt="Medlo"
-										width={20}
-										height={20}
-										priority
-									/>
-									<span className="underline">
-										Become a better doctor with Medlo Evidence
-									</span>
-								</a>
-							</div>
-						</div>
-
-						{/* Software Engineer Intern */}
-						<div className="flex flex-col items-start gap-2 w-full">
-							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-xs sm:text-sm">
-									Software Engineer Intern @ Medlo
-								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
-									Feb 2024 - June 2024
-								</span>
-							</div>
-							<div className="flex flex-col items-start pl-2 sm:pl-4 gap-2">
-								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 shrink-0" />
-									Developed a full-stack prototype for Doccy telehealth platform
-								</span>
-
-								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 shrink-0" />
-									Tech stack: Next.js, shadcn/ui, Tailwind CSS, TypeScript,
-									React, Supabase, tRPC, Zod
-								</span>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* Education */}
-				<section
-					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
-					aria-labelledby="education"
-				>
-					<h2 id="education" className="text-lg sm:text-xl font-medium">
-						Education
-					</h2>
-					<div className="flex flex-col items-start gap-6 w-full">
-						<div className="flex flex-col items-start gap-2 w-full">
-							<div className="flex flex-col sm:flex-row w-full items-start sm:items-center justify-between ">
-								<span className="text-xs sm:text-sm">
-									Bachelor of Computer Science @ RMIT
-								</span>
-								<span className="text-xs sm:text-sm text-muted-foreground">
-									Feb 2023 - Present
-								</span>
-							</div>
-							<div className="flex flex-col items-start pl-2 sm:pl-4">
-								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2 mr-4">
-									<ChevronRight className="size-4 shrink-0" />
-									Major: Advanced Computer Science
-								</span>
-								<div className="flex flex-row items-center gap-2">
-									<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2 mr-4">
-										<ChevronRight className="size-4 shrink-0" />
-										GPA: 3.6/4.0
-									</span>
-									<span className="text-xs sm:text-sm text-muted-foreground">
-										WAM: 86%
-									</span>
-								</div>
-								<span className="text-xs sm:text-sm text-muted-foreground flex items-center gap-2">
-									<ChevronRight className="size-4 shrink-0" />
-									Expected Graduation: June 2026
-								</span>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* Features */}
-				<section
-					className="flex flex-col items-start space-y-2 sm:space-y-3 mb-12"
-					aria-labelledby="projects"
-				>
-					<h2 id="projects" className="text-lg sm:text-xl font-medium">
-						Projects
-					</h2>
-					{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full">
-						{features.map((feature) => (
-							<div
-								key={feature.title}
-								className="border rounded-sm p-6 sm:p-8 transition-colors border-border bg-card hover:bg-accent/50"
-							>
-								<div className="mb-4 sm:mb-6">
-									<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-sm flex items-center justify-center">
-										<feature.icon className="size-5 sm:size-6 text-foreground" />
-									</div>
-								</div>
-								<h3 className="text-sm sm:text-base font-normal mb-3 sm:mb-4 text-foreground">
-									{feature.title}
-								</h3>
-								<p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
-									{feature.description}
-								</p>
-							</div>
-						))}
-					</div> */}
-					<div className="flex flex-col items-start gap-3 mb-4">
-						<span className="text-xs sm:text-sm text-muted-foreground">
-							Currently developing projects to showcase here. Building tools and
-							applications to strengthen my development skills in both
-							professional and personal contexts.
-						</span>
-					</div>
-				</section>
-			</main>
-			<footer className="w-full max-w-3xl mt-auto px-4 md:px-6">
-				<div className="flex flex-row gap-6 items-end justify-start py-8 sm:py-12 pb-0 text-[10px] sm:text-xs text-muted-foreground">
-					<span>© {COPYRIGHT_YEAR} Cooper Agustin</span>
-				</div>
-			</footer>
+		<div className="mx-auto max-w-[40rem]">
+			<JsonLd graph={homeGraph()} />
+			<h1 className="sr-only">
+				{PERSON.name}, {PERSON.headline}
+			</h1>
+			<div className="grid gap-4 text-row font-medium md:text-lead">
+				{PERSON.statement.map((paragraph) => (
+					<p key={paragraph} className="text-pretty">
+						{paragraph}
+					</p>
+				))}
+			</div>
+			<div className="mt-6">
+				<SocialButtons />
+			</div>
 		</div>
 	);
 }

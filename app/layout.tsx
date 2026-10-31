@@ -1,80 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
+import { PERSON } from "@/content/person";
+import { LOCALE, SITE_URL } from "@/content/site";
+import { THEME_BOOT_SCRIPT } from "@/lib/theme-choice";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+/** Inter with its optical-size axis, so large text renders in the Display cut. */
+const inter = Inter({
 	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+	axes: ["opsz"],
+	variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-	title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
-	description:
-		"Cooper Agustin is a Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT (3.6 GPA). Available for software engineering opportunities.",
-	keywords: [
-		"Cooper Agustin",
-		"Software Engineer",
-		"Junior Software Engineer",
-		"Full-Stack Developer",
-		"Next.js Developer",
-		"React Developer",
-		"TypeScript",
-		"Supabase",
-		"Medlo",
-		"RMIT Computer Science",
-		"Web Developer",
-		"Frontend Developer",
-		"Backend Developer",
-	],
-	authors: [{ name: "Cooper Agustin" }],
-	creator: "Cooper Agustin",
-	publisher: "Cooper Agustin",
-	metadataBase: new URL("https://cooperagustin.vercel.app"),
-	alternates: {
-		canonical: "/",
-	},
-	openGraph: {
-		type: "profile",
-		locale: "en_US",
-		url: "/",
-		title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
-		description:
-			"Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT.",
-		siteName: "Cooper Agustin Portfolio",
-		// images: [
-		// 	{
-		// 		url: "/og-image.png",
-		// 		width: 1200,
-		// 		height: 630,
-		// 		alt: "Cooper Agustin - Junior Software Engineer",
-		// 	},
-		// ],
-	},
-	// twitter: {
-	// 	card: "summary_large_image",
-	// 	title: "Cooper Agustin - Junior Software Engineer | Full-Stack Developer",
-	// 	description: "Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase.",
-	// 	images: ["/og-image.png"],
-	// },
+	metadataBase: new URL(SITE_URL),
+	authors: [{ name: PERSON.name, url: SITE_URL }],
+	creator: PERSON.name,
+	twitter: { card: "summary_large_image" },
+	// Indexing is the default; leaving index/follow out keeps the 404's own noindex unopposed.
 	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			"max-video-preview": -1,
-			"max-image-preview": "large",
-			"max-snippet": -1,
-		},
+		"max-image-preview": "large",
+		"max-snippet": -1,
+		"max-video-preview": -1,
 	},
-	// verification: {
-	// 	google: "google-site-verification-code", // You'll need to get this from Google Search Console
-	// },
 };
 
 export default function RootLayout({
@@ -82,53 +32,20 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Person",
-		name: "Cooper Agustin",
-		jobTitle: "Junior Software Engineer",
-		worksFor: {
-			"@type": "Organization",
-			name: "Medlo",
-			url: "https://medlo.com.au",
-		},
-		alumniOf: {
-			"@type": "CollegeOrUniversity",
-			name: "RMIT University",
-		},
-		knowsAbout: [
-			"Software Engineering",
-			"Full-Stack Development",
-			"Next.js",
-			"React",
-			"TypeScript",
-			"Supabase",
-			"Web Development",
-			"JavaScript",
-			"Tailwind CSS",
-			"tRPC",
-		],
-		sameAs: [
-			"https://github.com/Spudgee",
-			"https://www.linkedin.com/in/cooper-agustin/",
-		],
-		url: "https://cooperagustin.vercel.app",
-		description:
-			"Junior Software Engineer at Medlo specializing in full-stack development with Next.js, React, TypeScript, and Supabase. Computer Science student at RMIT University.",
-	};
-
 	return (
-		<html lang="en" suppressHydrationWarning>
+		// The boot script may set data-theme before React hydrates, so <html> can differ from the server's.
+		<html lang={LOCALE} className={inter.variable} suppressHydrationWarning>
 			<head>
 				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: a fixed string from lib/theme-choice.ts, no user input.
+					dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }}
 				/>
 			</head>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				{children}
+			<body className="flex min-h-dvh flex-col">
+				<SiteNav />
+				{/* Pages centre their own column: About reads narrow, Archive's grid runs wider. */}
+				<main className="flex-1 px-4 pt-[8vh] pb-24">{children}</main>
+				<SiteFooter />
 			</body>
 		</html>
 	);
